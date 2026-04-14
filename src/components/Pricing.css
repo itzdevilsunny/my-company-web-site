@@ -81,3 +81,13 @@
   opacity: 0.85;
   transform: scale(1.03);
 }
+
+@media (max-width: 768px) {
+  .pricing-card.featured {
+    transform: none;
+  }
+  
+  .pricing-card.featured:hover {
+    transform: translateY(-5px);
+  }
+}

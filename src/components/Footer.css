@@ -68,3 +68,26 @@
   color: rgba(255, 255, 255, 0.5);
   font-size: 0.9rem;
 }
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 40px 5% 20px;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .footer-section {
+    text-align: center;
+  }
+
+  .footer-section h2 {
+    text-align: center;
+  }
+
+  .social-links {
+    justify-content: center;
+  }
+}

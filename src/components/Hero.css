@@ -77,3 +77,30 @@
     height: 400px;
   }
 }
+
+@media (max-width: 480px) {
+  .hero {
+    padding-top: 130px; /* Make room for the double-stacked navbar */
+  }
+
+  .hero-content h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  .hero-visual {
+    height: 300px;
+  }
+  
+  .hero-ctas {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-ctas button {
+    width: 100%;
+  }
+}
