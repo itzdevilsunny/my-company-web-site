@@ -1,0 +1,83 @@
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  align-items: start;
+}
+
+.pricing-card {
+  text-align: center;
+  position: relative;
+  border: 1px solid var(--glass-border);
+  transition: all 0.3s ease;
+}
+
+.pricing-card.featured {
+  border-color: var(--plan-color);
+  box-shadow: 0 0 40px rgba(255, 0, 200, 0.15);
+  transform: scale(1.04);
+}
+
+.badge {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(45deg, #ff00c8, #7000ff);
+  padding: 5px 16px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+.pricing-card h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.price {
+  font-size: 3rem;
+  font-weight: 900;
+  margin: 20px 0;
+  color: var(--plan-color);
+  text-shadow: 0 0 20px var(--plan-color);
+}
+
+.feature-list {
+  margin: 20px 0 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+}
+
+.feature-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: #bbb;
+}
+
+.plan-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid;
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 1px;
+}
+
+.plan-btn:hover {
+  opacity: 0.85;
+  transform: scale(1.03);
+}
