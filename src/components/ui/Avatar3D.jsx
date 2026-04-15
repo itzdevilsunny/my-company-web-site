@@ -14,26 +14,26 @@ const Avatar3D = () => {
 
   return (
     <group>
-      {/* Representing the "Founder Avatar" as a high-tech abstract sphere/artifact since we don't have a 3D model file */}
-      <Float speed={5} rotationIntensity={2} floatIntensity={5}>
+      {/* High-tech abstract sphere/artifact in refined silver/glass */}
+      <Float speed={2} rotationIntensity={0.5} floatIntensity={1}>
         <Sphere args={[1, 100, 100]} scale={2.5} ref={sphereRef}>
           <MeshDistortMaterial
-            color="#00f2ff"
+            color="#ffffff"
             attach="material"
-            distort={0.4}
-            speed={2}
-            roughness={0}
+            distort={0.3}
+            speed={1.5}
+            roughness={0.1}
             metalness={1}
-            emissive="#7000ff"
-            emissiveIntensity={0.5}
+            emissive="#ffffff"
+            emissiveIntensity={0.1}
           />
         </Sphere>
       </Float>
       
-      {/* Decorative Outer Ring */}
+      {/* Subtle Monochrome Outer Ring */}
       <mesh rotation={[Math.PI / 2, 0, 0]}>
-        <torusGeometry args={[3.5, 0.05, 16, 100]} />
-        <meshStandardMaterial color="#ff00c8" emissive="#ff00c8" emissiveIntensity={2} />
+        <torusGeometry args={[3.8, 0.02, 16, 100]} />
+        <meshStandardMaterial color="#ffffff" opacity={0.2} transparent />
       </mesh>
     </group>
   );

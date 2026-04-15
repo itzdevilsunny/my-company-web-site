@@ -1,29 +1,40 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import Navbar from './components/layouts/Navbar';
 import Home from './pages/Home';
 import About from './pages/About';
-import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
-import ThreeBackground from './components/ThreeBackground';
-import Footer from './components/Footer';
+import ProjectIntake from './pages/ProjectIntake';
+import ThreeBackground from './components/ui/ThreeBackground';
+import Footer from './components/layouts/Footer';
+
+function AppContent() {
+  const location = useLocation();
+  const isAdminPage = ['/admin', '/dashboard', '/zorvia-hq'].includes(location.pathname);
+
+  return (
+    <div className="app-container">
+      <ThreeBackground />
+      {!isAdminPage && <Navbar />}
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/zorvia-hq" element={<AdminDashboard />} />
+          <Route path="/dashboard" element={<AdminDashboard />} />
+          <Route path="/start-project" element={<ProjectIntake />} />
+        </Routes>
+      </main>
+      {!isAdminPage && <Footer />}
+    </div>
+  );
+}
 
 function App() {
   return (
     <Router>
-      <div className="app-container">
-        <ThreeBackground />
-        <Navbar />
-        <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/admin" element={<AdminLogin />} />
-            <Route path="/dashboard" element={<AdminDashboard />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
+      <AppContent />
     </Router>
   );
 }

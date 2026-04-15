@@ -1,0 +1,158 @@
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ExternalLink, Code2, Cpu, Globe, Smartphone, Loader2, AlertCircle, ArrowUpRight } from 'lucide-react';
+import { GithubIcon } from '../ui/Icons';
+import AnimatedText from '../ui/AnimatedText';
+import { supabase } from '../../lib/supabaseClient';
+import { Link } from "react-router-dom";
+
+const Portfolio = ({ teaser = false }) => {
+  const [projects, setProjects] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [filter, setFilter] = useState('All');
+  const categories = ['All', 'Web', 'App', 'AI'];
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('portfolio_projects')
+          .select('*')
+          .order('created_at', { ascending: true });
+
+        if (error) throw error;
+        setProjects(data || []);
+      } catch (err) {
+        console.error("Error fetching portfolios:", err);
+        setError("Failed to load strategic portfolio assets.");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchProjects();
+  }, []);
+
+  const filteredProjects = teaser
+    ? projects.slice(0, 2)
+    : filter === 'All'
+      ? projects
+      : projects.filter(p => p.category === filter);
+
+  return (
+    <section className="px-6 lg:px-24 py-32 bg-white relative overflow-hidden" id="portfolio">
+      <div className="absolute inset-0 opacity-5 bg-[radial-gradient(#1E293B_1px,transparent_1px)] bg-[size:24px_24px]" />
+
+      <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="flex flex-col lg:flex-row justify-between items-end mb-16 gap-8">
+          <div className="max-w-2xl">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              className="text-primary font-black text-xs uppercase tracking-[0.3em] mb-4"
+            >
+              // Case Studies & Proofs
+            </motion.div>
+            <h2 className="text-5xl lg:text-7xl font-heading text-foreground tracking-tighter leading-none">
+              Strategic <span className="text-secondary italic">Portfolio.</span>
+            </h2>
+          </div>
+
+          {!teaser && !isLoading && !error && (
+            <div className="flex bg-muted p-2 rounded-2xl border-2 border-foreground shadow-pop">
+              {categories.map(cat => (
+                <button
+                  key={cat}
+                  onClick={() => setFilter(cat)}
+                  className={`px-6 py-2 rounded-xl font-heading font-black text-xs uppercase transition-all ${filter === cat ? 'bg-foreground text-white' : 'hover:bg-foreground/5'}`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {isLoading ? (
+          <div className="flex flex-col items-center justify-center py-20">
+            <Loader2 className="animate-spin text-secondary mb-4" size={48} />
+            <p className="font-heading font-black text-[10px] uppercase tracking-widest text-muted-foreground">Parsing Infrastructure...</p>
+          </div>
+        ) : error ? (
+          <div className="flex flex-col items-center justify-center py-20 text-secondary">
+            <AlertCircle size={48} className="mb-4" />
+            <p className="font-heading font-black text-xs uppercase tracking-widest">{error}</p>
+          </div>
+        ) : (
+          <motion.div
+            layout
+            className="grid grid-cols-1 md:grid-cols-2 gap-12"
+          >
+            <AnimatePresence mode="popLayout">
+              {filteredProjects.map((p) => (
+                <motion.div
+                  key={p.id}
+                  layout
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  className="group relative"
+                >
+                  <div className={`p-10 border-4 border-foreground rounded-[2.5rem] bg-white shadow-pop hover:shadow-pop-lg transition-all h-full flex flex-col`}>
+                    <div className="flex justify-between items-start mb-8">
+                      <div className={`p-4 ${p.theme_color} border-2 border-foreground rounded-2xl shadow-pop transform -rotate-6 group-hover:rotate-0 transition-transform`}>
+                        {p.category === 'AI' ? <Cpu className="text-white" /> : p.category === 'Web' ? <Globe className="text-white" /> : <Smartphone className="text-white" />}
+                      </div>
+                      <div className="flex gap-4">
+                        {p.github_url && p.github_url !== '#' && (
+                          <a href={p.github_url} className="w-12 h-12 border-2 border-foreground rounded-xl flex items-center justify-center hover:bg-muted transition-colors shadow-pop">
+                            <GithubIcon size={20} />
+                          </a>
+                        )}
+                        {p.demo_url && p.demo_url !== '#' && (
+                          <a href={p.demo_url} className="w-12 h-12 border-2 border-foreground rounded-xl flex items-center justify-center bg-foreground text-white hover:bg-primary transition-colors shadow-pop">
+                            <ExternalLink size={20} />
+                          </a>
+                        )}
+                      </div>
+                    </div>
+
+                    <h3 className="text-3xl font-heading font-black mb-4 tracking-tight group-hover:text-primary transition-colors">{p.name}</h3>
+                    <p className="text-muted-foreground font-sans font-medium mb-8 leading-relaxed">
+                      {p.description}
+                    </p>
+
+                    <div className="mt-auto flex flex-wrap gap-2">
+                      {(p.tech_stack || []).map(t => (
+                        <span key={t} className="px-4 py-1.5 bg-muted border-2 border-foreground/10 rounded-full text-[10px] font-black uppercase tracking-widest">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </motion.div>
+        )}
+
+        {teaser && !isLoading && (
+          <div className="mt-16 text-center">
+            <Link to="/about">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-10 py-5 bg-foreground text-white border-2 border-foreground rounded-full font-heading font-black uppercase tracking-[0.2em] shadow-pop hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all"
+              >
+                View Full Portfolio
+              </motion.button>
+            </Link>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+};
+
+export default Portfolio;
