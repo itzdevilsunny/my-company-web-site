@@ -12,22 +12,22 @@ const reasons = [
 
 const WhyUs = () => {
   return (
-    <section id="why-us" className="px-6 lg:px-24 py-40 border-t-2 border-foreground bg-white relative overflow-hidden">
+    <section id="why-us" className="px-6 lg:px-24 py-20 lg:py-40 border-t-2 border-foreground bg-white relative overflow-hidden">
       {/* Background polka pattern */}
       <div className="absolute inset-0 opacity-5 bg-[radial-gradient(#1E293B_1px,transparent_1px)] bg-[size:20px_20px]" />
       
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center relative z-10">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center relative z-10">
         <div>
           <motion.div 
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            className="text-primary font-black text-xs uppercase tracking-[0.3em] mb-4"
+            className="text-primary font-black text-[10px] lg:text-xs uppercase tracking-[0.3em] mb-3 lg:mb-4"
           >
             // Our Strategic Advantage
           </motion.div>
           
           <motion.h2 
-            className="text-6xl lg:text-8xl font-heading text-foreground tracking-tighter leading-none mb-10"
+            className="text-4xl sm:text-6xl lg:text-8xl font-heading text-foreground tracking-tighter leading-none mb-6 lg:mb-10"
           >
             <AnimatedText 
               text="Why Partners" 
@@ -42,16 +42,16 @@ const WhyUs = () => {
             />
           </motion.h2>
           
-          <p className="text-xl text-muted-foreground leading-relaxed max-w-lg mb-12 font-sans">
+          <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-lg mb-8 lg:mb-12 font-sans">
             We deliver high-performance digital infrastructure designed for enterprise reliability and long-term business growth.
           </p>
           
-          <div className="relative w-full h-24 bg-muted/20 border-2 border-foreground border-dashed rounded-2xl flex items-center justify-center overflow-hidden">
-             <div className="marquee-container w-full">
-                <div className="flex flex-wrap gap-4 font-heading font-black text-sm uppercase">
-                  <span className="bg-muted px-4 py-2 rounded-full border-2 border-foreground/10">Architecture-First</span>
-                  <span className="bg-muted px-4 py-2 rounded-full border-2 border-foreground/10">Seamless UX</span>
-                  <span className="bg-muted px-4 py-2 rounded-full border-2 border-foreground/10">Data Intelligence</span>
+          <div className="relative w-full h-auto min-h-[6rem] py-4 bg-muted/20 border-2 border-foreground border-dashed rounded-2xl flex items-center justify-center overflow-hidden">
+             <div className="w-full px-4">
+                <div className="flex flex-wrap justify-center gap-3 lg:gap-4 font-heading font-black text-[10px] lg:text-sm uppercase">
+                  <span className="bg-muted px-3 lg:px-4 py-1.5 lg:py-2 rounded-full border-2 border-foreground/10">Architecture-First</span>
+                  <span className="bg-muted px-3 lg:px-4 py-1.5 lg:py-2 rounded-full border-2 border-foreground/10">Seamless UX</span>
+                  <span className="bg-muted px-3 lg:px-4 py-1.5 lg:py-2 rounded-full border-2 border-foreground/10">Data Intelligence</span>
                 </div>
              </div>
           </div>

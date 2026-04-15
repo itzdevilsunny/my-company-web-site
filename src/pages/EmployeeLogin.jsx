@@ -38,45 +38,45 @@ const EmployeeLogin = () => {
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="max-w-md w-full p-12 bg-white border-4 border-foreground rounded-[3rem] shadow-pop relative z-10"
+        className="max-w-md w-full p-8 lg:p-12 bg-white border-4 border-foreground rounded-[2rem] lg:rounded-[3rem] shadow-pop relative z-10"
       >
-        <div className="flex items-center gap-4 mb-12">
-          <div className="w-14 h-14 bg-black text-white rounded-2xl flex items-center justify-center font-black text-2xl shadow-pop">
+        <div className="flex items-center gap-4 mb-8 lg:mb-12">
+          <div className="w-12 h-12 lg:w-14 lg:h-14 bg-black text-white rounded-xl lg:rounded-2xl flex items-center justify-center font-black text-xl lg:text-2xl shadow-pop">
             Z
           </div>
           <div>
-            <h1 className="font-heading font-black text-2xl tracking-tighter uppercase italic leading-none">Employee</h1>
-            <p className="text-[10px] font-black text-primary uppercase tracking-[0.3em] mt-1">Command Sync</p>
+            <h1 className="font-heading font-black text-xl lg:text-2xl tracking-tighter uppercase italic leading-none">Employee</h1>
+            <p className="text-[9px] lg:text-[10px] font-black text-primary uppercase tracking-[0.3em] mt-1">Command Sync</p>
           </div>
         </div>
 
-        <form onSubmit={handleLogin} className="space-y-8">
-          <div className="space-y-3">
-            <label className="block font-heading text-[10px] uppercase font-black text-muted-foreground tracking-widest pl-2">Employee Identifier</label>
+        <form onSubmit={handleLogin} className="space-y-6 lg:space-y-8">
+          <div className="space-y-2 lg:space-y-3">
+            <label className="block font-heading text-[9px] lg:text-[10px] uppercase font-black text-muted-foreground tracking-widest pl-2">Employee Identifier</label>
             <div className="relative group">
-              <User className="absolute left-5 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within:text-primary transition-colors" size={18} />
+              <User className="absolute left-5 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within:text-primary transition-colors" size={16} lg:size={18} />
               <input 
                 type="text" 
                 placeholder="ZRV-XXXX" 
                 value={employeeId}
                 onChange={(e) => setEmployeeId(e.target.value.toUpperCase())}
                 required
-                className="w-full bg-slate-50 border-2 border-foreground rounded-2xl pl-14 pr-6 py-4 font-sans font-bold shadow-pop-sm focus:shadow-none transition-all outline-none"
+                className="w-full bg-slate-50 border-2 border-foreground rounded-xl lg:rounded-2xl pl-12 lg:pl-14 pr-6 py-3.5 lg:py-4 font-sans font-bold shadow-pop-sm focus:shadow-none transition-all outline-none text-sm lg:text-base"
               />
             </div>
           </div>
 
-          <div className="space-y-3">
-            <label className="block font-heading text-[10px] uppercase font-black text-muted-foreground tracking-widest pl-2">Security Access Key</label>
+          <div className="space-y-2 lg:space-y-3">
+            <label className="block font-heading text-[9px] lg:text-[10px] uppercase font-black text-muted-foreground tracking-widest pl-2">Security Access Key</label>
             <div className="relative group">
-              <Lock className="absolute left-5 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within:text-secondary transition-colors" size={18} />
+              <Lock className="absolute left-5 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within:text-secondary transition-colors" size={16} lg:size={18} />
               <input 
                 type="password" 
                 placeholder="••••••••••••" 
                 value={accessKey}
                 onChange={(e) => setAccessKey(e.target.value)}
                 required
-                className="w-full bg-slate-50 border-2 border-foreground rounded-2xl pl-14 pr-6 py-4 font-sans font-bold shadow-pop-sm focus:shadow-none transition-all outline-none"
+                className="w-full bg-slate-50 border-2 border-foreground rounded-xl lg:rounded-2xl pl-12 lg:pl-14 pr-6 py-3.5 lg:py-4 font-sans font-bold shadow-pop-sm focus:shadow-none transition-all outline-none text-sm lg:text-base"
               />
             </div>
           </div>
@@ -85,14 +85,14 @@ const EmployeeLogin = () => {
             <button 
               type="submit" 
               disabled={isLoading}
-              className="w-full py-6 bg-foreground text-white border-4 border-foreground rounded-full font-heading font-black uppercase tracking-widest shadow-pop hover:shadow-pop-active transition-all flex items-center justify-center gap-3 group disabled:opacity-50"
+              className="w-full py-5 lg:py-6 bg-foreground text-white border-4 border-foreground rounded-full font-heading font-black text-sm lg:text-base uppercase tracking-widest shadow-pop hover:shadow-pop-active transition-all flex items-center justify-center gap-3 group disabled:opacity-50"
             >
               {isLoading ? (
                 <span className="animate-pulse">Authenticating...</span>
               ) : (
                 <>
                   Initialize Sync
-                  <ArrowRight size={20} strokeWidth={3} className="group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight size={18} lg:size={20} strokeWidth={3} className="group-hover:translate-x-1 transition-transform" />
                 </>
               )}
             </button>

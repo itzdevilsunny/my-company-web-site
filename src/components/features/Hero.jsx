@@ -21,7 +21,7 @@ const Hero = () => {
   const calcY = (amount) => (mousePos.y - window.innerHeight / 2) * amount;
 
   return (
-    <section className="relative min-h-screen flex flex-col lg:flex-row items-center justify-center lg:justify-between px-6 lg:px-24 pt-32 pb-20 lg:py-20 overflow-hidden">
+    <section className="relative min-h-screen flex flex-col lg:flex-row items-center justify-center lg:justify-between px-6 lg:px-24 pt-48 lg:pt-32 pb-20 lg:py-20 overflow-hidden">
       {/* Massive Yellow Circle Decoration with Parallax */}
       <motion.div 
         animate={{ 
@@ -128,9 +128,9 @@ const Hero = () => {
           }}
         >
           <img 
-            src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop" 
-            alt="Playful Tech"
-            className="w-full h-full object-cover mix-blend-multiply opacity-80"
+            src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=2232&auto=format&fit=crop" 
+            alt="High-Impact Digital Engineering"
+            className="w-full h-full object-cover mix-blend-multiply opacity-90 contrast-125 grayscale-[20%]"
           />
         </motion.div>
         

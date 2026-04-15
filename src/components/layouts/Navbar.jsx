@@ -28,7 +28,7 @@ const Navbar = () => {
       <motion.nav 
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className={`fixed top-4 lg:top-8 left-1/2 -translate-x-1/2 z-50 w-[95%] lg:w-fit transition-all duration-500`}
+        className={`fixed top-4 lg:top-12 left-1/2 -translate-x-1/2 z-[100] w-[95%] lg:w-fit transition-all duration-500`}
       >
         <div className={`bg-white/90 backdrop-blur-xl border-2 border-foreground shadow-pop rounded-full px-4 lg:px-10 py-2 lg:py-5 flex items-center justify-between lg:justify-start gap-4 lg:gap-16 transition-all ${scrolled ? 'scale-95 opacity-90' : 'scale-100'}`}>
           {/* Playful Logo & Status */}

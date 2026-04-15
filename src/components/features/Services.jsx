@@ -81,7 +81,7 @@ const Services = () => {
           Visual Spectrum
         </motion.span>
         <motion.h2 
-          className="text-5xl lg:text-7xl font-heading text-foreground tracking-tight max-w-2xl"
+          className="text-4xl sm:text-5xl lg:text-7xl font-heading text-foreground tracking-tight max-w-4xl"
         >
           <AnimatedText 
             text="Engineering Excellence" 
@@ -90,7 +90,7 @@ const Services = () => {
           />
           <AnimatedText 
             text="In Every Solution." 
-            className="text-primary italic" 
+            className="text-primary italic block sm:inline" 
             from="right"
             delay={0.5}
           />

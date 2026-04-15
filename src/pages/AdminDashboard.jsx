@@ -391,45 +391,45 @@ const AdminDashboard = () => {
         </div>
 
         {showAddForm && activeTab === 'team' && (
-          <form onSubmit={handleAddTeam} className="w-full bg-white border-4 border-foreground rounded-[3rem] p-8 mb-8 shadow-pop-lg grid grid-cols-2 gap-6">
-            <h3 className="col-span-2 text-2xl font-heading font-black">Add Team Member</h3>
-            <input type="text" placeholder="Name" required value={teamForm.name} onChange={(e)=>setTeamForm({...teamForm, name: e.target.value})} className="p-4 border-2 border-foreground rounded-xl" />
-            <input type="text" placeholder="Role" required value={teamForm.role} onChange={(e)=>setTeamForm({...teamForm, role: e.target.value})} className="p-4 border-2 border-foreground rounded-xl" />
-            <input type="url" placeholder="Image URL" required value={teamForm.image_url} onChange={(e)=>setTeamForm({...teamForm, image_url: e.target.value})} className="col-span-2 p-4 border-2 border-foreground rounded-xl" />
-            <textarea placeholder="Bio" required value={teamForm.bio} onChange={(e)=>setTeamForm({...teamForm, bio: e.target.value})} className="col-span-2 p-4 border-2 border-foreground rounded-xl" rows="3"></textarea>
-            <input type="text" placeholder="LinkedIn URL" value={teamForm.linkedin} onChange={(e)=>setTeamForm({...teamForm, linkedin: e.target.value})} className="p-4 border-2 border-foreground rounded-xl" />
-            <input type="text" placeholder="GitHub URL" value={teamForm.github} onChange={(e)=>setTeamForm({...teamForm, github: e.target.value})} className="p-4 border-2 border-foreground rounded-xl" />
-            <input type="text" placeholder="Twitter URL" value={teamForm.twitter} onChange={(e)=>setTeamForm({...teamForm, twitter: e.target.value})} className="p-4 border-2 border-foreground rounded-xl" />
-            <select value={teamForm.theme_color} onChange={(e)=>setTeamForm({...teamForm, theme_color: e.target.value})} className="p-4 border-2 border-foreground rounded-xl appearance-none">
+          <form onSubmit={handleAddTeam} className="w-full bg-white border-4 border-foreground rounded-[2rem] lg:rounded-[3rem] p-6 lg:p-8 mb-8 shadow-pop-lg grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
+            <h3 className="md:col-span-2 text-xl lg:text-2xl font-heading font-black">Add Team Member</h3>
+            <input type="text" placeholder="Name" required value={teamForm.name} onChange={(e)=>setTeamForm({...teamForm, name: e.target.value})} className="p-3 lg:p-4 border-2 border-foreground rounded-xl" />
+            <input type="text" placeholder="Role" required value={teamForm.role} onChange={(e)=>setTeamForm({...teamForm, role: e.target.value})} className="p-3 lg:p-4 border-2 border-foreground rounded-xl" />
+            <input type="url" placeholder="Image URL" required value={teamForm.image_url} onChange={(e)=>setTeamForm({...teamForm, image_url: e.target.value})} className="md:col-span-2 p-3 lg:p-4 border-2 border-foreground rounded-xl" />
+            <textarea placeholder="Bio" required value={teamForm.bio} onChange={(e)=>setTeamForm({...teamForm, bio: e.target.value})} className="md:col-span-2 p-3 lg:p-4 border-2 border-foreground rounded-xl" rows="3"></textarea>
+            <input type="text" placeholder="LinkedIn URL" value={teamForm.linkedin} onChange={(e)=>setTeamForm({...teamForm, linkedin: e.target.value})} className="p-3 lg:p-4 border-2 border-foreground rounded-xl" />
+            <input type="text" placeholder="GitHub URL" value={teamForm.github} onChange={(e)=>setTeamForm({...teamForm, github: e.target.value})} className="p-3 lg:p-4 border-2 border-foreground rounded-xl" />
+            <input type="text" placeholder="Twitter URL" value={teamForm.twitter} onChange={(e)=>setTeamForm({...teamForm, twitter: e.target.value})} className="p-3 lg:p-4 border-2 border-foreground rounded-xl" />
+            <select value={teamForm.theme_color} onChange={(e)=>setTeamForm({...teamForm, theme_color: e.target.value})} className="p-3 lg:p-4 border-2 border-foreground rounded-xl appearance-none bg-white">
               <option value="border-primary">Primary Color</option>
               <option value="border-secondary">Secondary Color</option>
               <option value="border-tertiary">Tertiary Color</option>
               <option value="border-quaternary">Quaternary Color</option>
             </select>
-            <button type="submit" className="p-4 bg-primary text-white border-2 border-foreground rounded-xl font-heading font-black uppercase">Save Member</button>
+            <button type="submit" className="md:col-span-2 p-4 bg-primary text-white border-2 border-foreground rounded-xl font-heading font-black uppercase shadow-pop hover:shadow-none transition-all">Save Member</button>
           </form>
         )}
 
         {showAddForm && activeTab === 'portfolio' && (
-          <form onSubmit={handleAddPortfolio} className="w-full bg-white border-4 border-foreground rounded-[3rem] p-8 mb-8 shadow-pop-lg grid grid-cols-2 gap-6">
-            <h3 className="col-span-2 text-2xl font-heading font-black">Add Portfolio Project</h3>
-            <input type="text" placeholder="Project Name" required value={portfolioForm.name} onChange={(e)=>setPortfolioForm({...portfolioForm, name: e.target.value})} className="p-4 border-2 border-foreground rounded-xl" />
-            <select value={portfolioForm.category} onChange={(e)=>setPortfolioForm({...portfolioForm, category: e.target.value})} className="p-4 border-2 border-foreground rounded-xl appearance-none">
+          <form onSubmit={handleAddPortfolio} className="w-full bg-white border-4 border-foreground rounded-[2rem] lg:rounded-[3rem] p-6 lg:p-8 mb-8 shadow-pop-lg grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
+            <h3 className="md:col-span-2 text-xl lg:text-2xl font-heading font-black">Add Portfolio Project</h3>
+            <input type="text" placeholder="Project Name" required value={portfolioForm.name} onChange={(e)=>setPortfolioForm({...portfolioForm, name: e.target.value})} className="p-3 lg:p-4 border-2 border-foreground rounded-xl" />
+            <select value={portfolioForm.category} onChange={(e)=>setPortfolioForm({...portfolioForm, category: e.target.value})} className="p-3 lg:p-4 border-2 border-foreground rounded-xl appearance-none bg-white">
               <option value="Web">Web</option>
               <option value="App">App</option>
               <option value="AI">AI</option>
             </select>
-            <textarea placeholder="Description" required value={portfolioForm.description} onChange={(e)=>setPortfolioForm({...portfolioForm, description: e.target.value})} className="col-span-2 p-4 border-2 border-foreground rounded-xl" rows="3"></textarea>
-            <input type="text" placeholder="Tech Stack (comma separated)" required value={portfolioForm.tech_stack} onChange={(e)=>setPortfolioForm({...portfolioForm, tech_stack: e.target.value})} className="col-span-2 p-4 border-2 border-foreground rounded-xl" />
-            <input type="url" placeholder="Demo URL" value={portfolioForm.demo_url} onChange={(e)=>setPortfolioForm({...portfolioForm, demo_url: e.target.value})} className="p-4 border-2 border-foreground rounded-xl" />
-            <input type="url" placeholder="GitHub URL" value={portfolioForm.github_url} onChange={(e)=>setPortfolioForm({...portfolioForm, github_url: e.target.value})} className="p-4 border-2 border-foreground rounded-xl" />
-            <select value={portfolioForm.theme_color} onChange={(e)=>setPortfolioForm({...portfolioForm, theme_color: e.target.value})} className="p-4 border-2 border-foreground rounded-xl appearance-none">
+            <textarea placeholder="Description" required value={portfolioForm.description} onChange={(e)=>setPortfolioForm({...portfolioForm, description: e.target.value})} className="md:col-span-2 p-3 lg:p-4 border-2 border-foreground rounded-xl" rows="3"></textarea>
+            <input type="text" placeholder="Tech Stack (comma separated)" required value={portfolioForm.tech_stack} onChange={(e)=>setPortfolioForm({...portfolioForm, tech_stack: e.target.value})} className="md:col-span-2 p-3 lg:p-4 border-2 border-foreground rounded-xl" />
+            <input type="url" placeholder="Demo URL" value={portfolioForm.demo_url} onChange={(e)=>setPortfolioForm({...portfolioForm, demo_url: e.target.value})} className="p-3 lg:p-4 border-2 border-foreground rounded-xl" />
+            <input type="url" placeholder="GitHub URL" value={portfolioForm.github_url} onChange={(e)=>setPortfolioForm({...portfolioForm, github_url: e.target.value})} className="p-3 lg:p-4 border-2 border-foreground rounded-xl" />
+            <select value={portfolioForm.theme_color} onChange={(e)=>setPortfolioForm({...portfolioForm, theme_color: e.target.value})} className="p-3 lg:p-4 border-2 border-foreground rounded-xl appearance-none bg-white">
               <option value="bg-primary">Primary Color</option>
               <option value="bg-secondary">Secondary Color</option>
               <option value="bg-tertiary">Tertiary Color</option>
               <option value="bg-quaternary">Quaternary Color</option>
             </select>
-            <button type="submit" className="p-4 bg-primary text-white border-2 border-foreground rounded-xl font-heading font-black uppercase">Save Project</button>
+            <button type="submit" className="md:col-span-2 p-4 bg-primary text-white border-2 border-foreground rounded-xl font-heading font-black uppercase shadow-pop hover:shadow-none transition-all">Save Project</button>
           </form>
         )}
 

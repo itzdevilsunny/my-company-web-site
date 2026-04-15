@@ -11,14 +11,14 @@ import { motion } from 'framer-motion';
  * @param {number} delay - Base delay before starting the animation.
  */
 const AnimatedText = ({ text, className, from = 'left', delay = 0 }) => {
-  const characters = text.split('');
+  const words = text.split(' ');
   
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.03,
+        staggerChildren: 0.1,
         delayChildren: delay,
       },
     },
@@ -48,15 +48,15 @@ const AnimatedText = ({ text, className, from = 'left', delay = 0 }) => {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
-      className={`inline-flex flex-wrap ${className}`}
+      className={`inline-flex flex-wrap gap-x-[0.3em] ${className}`}
     >
-      {characters.map((char, index) => (
+      {words.map((word, index) => (
         <motion.span
           key={index}
           variants={childVariants}
-          className="inline-block whitespace-pre"
+          className="inline-block"
         >
-          {char}
+          {word}
         </motion.span>
       ))}
     </motion.span>

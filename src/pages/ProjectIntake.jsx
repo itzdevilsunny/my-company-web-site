@@ -191,41 +191,50 @@ ${browserInfo}
   }
 
   return (
-    <div className="min-h-screen pt-40 pb-20 px-6 lg:px-24 bg-transparent">
-      {/* Dynamic Progress Header */}
-      <div className="max-w-4xl mx-auto mb-16 text-center relative z-20">
-        <div className="flex justify-between items-center mb-8 px-4">
-          {[1, 2, 3, 4, 5].map((step) => {
-            if (formData.intakeMode === 'update' && step !== 1 && step !== 5) return null;
-            return (
-              <div key={step} className="flex flex-col items-center gap-3">
-                <div className={`w-12 h-12 rounded-full border-4 flex items-center justify-center font-black transition-all ${currentStep === step ? 'bg-primary text-white border-primary scale-110 shadow-pop' : currentStep > step ? 'bg-primary/20 text-primary border-primary/20' : 'bg-muted text-muted-foreground border-foreground/10'}`}>
-                  {currentStep > step ? <CheckCircle2 size={24} /> : step}
-                </div>
-                <span className={`text-[10px] uppercase font-black tracking-widest ${currentStep === step ? 'text-primary' : 'text-muted-foreground'}`}>
-                  {step === 1 ? (formData.intakeMode === 'new' ? 'Basic' : 'Update') : step === 2 ? 'Project' : step === 3 ? 'Pricing' : step === 4 ? 'Design' : 'Verify'}
-                </span>
-              </div>
-            );
-          })}
-          {/* Progress bar line background */}
-          <div className="absolute top-6 left-0 w-full h-1 bg-muted -z-10" />
-          {/* Active progress bar line */}
+    <div className="min-h-screen bg-[#F8F9FA] pt-24 lg:pt-32 pb-20 px-4 lg:px-12 flex flex-col items-center">
+      {/* Dynamic Progress Engine */}
+      <div className="w-full max-w-4xl mb-12 lg:mb-24 flex flex-col items-center gap-8 lg:gap-12">
+        <div className="flex flex-col items-center gap-4 text-center">
           <motion.div 
-            className="absolute top-6 left-0 h-1 bg-primary -z-10 origin-left"
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: formData.intakeMode === 'new' ? (currentStep - 1) / (totalSteps - 1) : (currentStep === 5 ? 1 : 0) }}
-          />
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            className="px-4 py-1.5 bg-primary text-white border-2 border-foreground rounded-full text-[10px] font-black uppercase tracking-widest shadow-pop-sm"
+          >
+            Project Blueprint Engine v3.0
+          </motion.div>
+          <h1 className="text-4xl lg:text-7xl font-heading font-black tracking-tighter italic uppercase leading-none">
+            {formData.intakeMode === 'new' ? 'Initialize Strategy' : 'Strategic Update'}
+          </h1>
+          <p className="text-[10px] lg:text-xs font-black uppercase tracking-[0.4em] text-muted-foreground opacity-60">System Synchronized // Node: BLR-01</p>
         </div>
 
-        <h1 className="text-5xl lg:text-7xl font-heading text-foreground tracking-tighter mb-4">
-          <AnimatedText 
-            text={formData.intakeMode === 'new' ? "Project Consultation" : "Strategy Update"} 
-            className="block" 
-            from="bottom" 
-          />
-          <span className="text-secondary italic">Step {currentStep === 5 ? 'Final' : currentStep}</span>
-        </h1>
+        <div className="w-full flex justify-between items-center relative gap-2">
+           {/* Connecting Line */}
+           <div className="absolute top-1/2 left-0 w-full h-1 lg:h-2 bg-foreground/5 -translate-y-1/2 z-0 rounded-full" />
+           <motion.div 
+             initial={{ width: 0 }}
+             animate={{ width: `${((currentStep - 1) / (totalSteps - 1)) * 100}%` }}
+             className="absolute top-1/2 left-0 h-1 lg:h-2 bg-primary -translate-y-1/2 z-0 rounded-full transition-all duration-500 shadow-[0_0_15px_rgba(59,130,246,0.5)]" 
+           />
+
+           {[1, 2, 3, 4, 5].map((step) => (
+              <div key={step} className="relative z-10 flex flex-col items-center">
+                 <motion.div 
+                   animate={{ 
+                     scale: currentStep === step ? 1.2 : 1,
+                     backgroundColor: currentStep >= step ? '#3b82f6' : '#fff',
+                     color: currentStep >= step ? '#fff' : '#000'
+                   }}
+                   className={`w-8 h-8 lg:w-16 lg:h-16 rounded-full border-2 lg:border-4 border-foreground flex items-center justify-center font-heading font-black text-xs lg:text-2xl shadow-pop transition-colors duration-500`}
+                 >
+                    {currentStep > step ? <CheckCircle2 size={window.innerWidth < 1024 ? 16 : 32} strokeWidth={3} /> : step}
+                 </motion.div>
+                 <span className={`hidden lg:block absolute -bottom-8 whitespace-nowrap text-[10px] font-black uppercase tracking-widest transition-opacity duration-300 ${currentStep === step ? 'opacity-100' : 'opacity-40'}`}>
+                    {['Identity', 'Blueprint', 'Pricing', 'Design', 'Verify'][step-1]}
+                 </span>
+              </div>
+           ))}
+        </div>
       </div>
 
       {/* Mode Toggle */}
@@ -284,22 +293,22 @@ ${browserInfo}
             )}
 
             {/* Navigation Buttons */}
-            <div className="flex justify-between items-center mt-20 gap-8">
+            <div className="flex flex-col sm:flex-row justify-between items-center mt-12 lg:mt-20 gap-4 lg:gap-8">
               {currentStep > 1 && (
                 <Magnetic strength={0.2}>
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={handleBack}
-                    className="flex items-center gap-3 px-12 py-5 bg-white border-4 border-foreground rounded-full font-black text-sm uppercase shadow-pop hover:shadow-pop-active transition-all group"
+                    className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 lg:px-12 py-4 lg:py-5 bg-white border-4 border-foreground rounded-full font-black text-xs lg:text-sm uppercase shadow-pop hover:shadow-pop-active transition-all group"
                   >
-                    <ArrowLeft size={18} strokeWidth={3} className="group-hover:-translate-x-1 transition-transform" />
+                    <ArrowLeft size={16} strokeWidth={3} className="group-hover:-translate-x-1 transition-transform" />
                     Back / वापस
                   </motion.button>
                 </Magnetic>
               )}
               
-              <div className="flex-grow" />
+              <div className="hidden sm:block flex-grow" />
 
               {currentStep < totalSteps ? (
                 <Magnetic strength={0.3}>
@@ -307,10 +316,10 @@ ${browserInfo}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={handleNext}
-                    className="flex items-center gap-3 px-14 py-5 bg-foreground text-white border-4 border-foreground rounded-full font-black text-sm uppercase shadow-pop hover:shadow-pop-active transition-all group"
+                    className="w-full sm:w-auto flex items-center justify-center gap-3 px-10 lg:px-14 py-4 lg:py-5 bg-foreground text-white border-4 border-foreground rounded-full font-black text-xs lg:text-sm uppercase shadow-pop hover:shadow-pop-active transition-all group"
                   >
                     Continue / आगे बढ़ें
-                    <ArrowRight size={18} strokeWidth={3} className="group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight size={16} strokeWidth={3} className="group-hover:translate-x-1 transition-transform" />
                   </motion.button>
                 </Magnetic>
               ) : (
@@ -320,10 +329,10 @@ ${browserInfo}
                     whileTap={{ scale: 0.95 }}
                     onClick={handleSubmit}
                     disabled={isSubmitting}
-                    className="flex items-center gap-4 px-20 py-6 bg-secondary text-white border-4 border-foreground rounded-full font-black text-2xl uppercase shadow-pop-lg hover:shadow-pop-active transition-all disabled:opacity-50 group"
+                    className="w-full sm:w-auto flex items-center justify-center gap-4 px-10 lg:px-20 py-5 lg:py-6 bg-secondary text-white border-4 border-foreground rounded-full font-black text-xl lg:text-2xl uppercase shadow-pop-lg hover:shadow-pop-active transition-all disabled:opacity-50 group"
                   >
                     {isSubmitting ? 'Architecting...' : 'Sync Strategy / सिंक करें'}
-                    <Send size={28} strokeWidth={3} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    <Send size={24} strokeWidth={3} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </motion.button>
                 </Magnetic>
               )}
