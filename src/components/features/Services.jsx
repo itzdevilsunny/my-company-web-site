@@ -112,7 +112,10 @@ const Services = () => {
               <Sparkles className="text-tertiary" size={40} />
            </div>
            <h3 className="text-2xl font-heading font-extrabold max-w-[200px]">Have a wild idea?</h3>
-           <button className="bg-foreground text-white px-8 py-3 rounded-full font-bold shadow-pop hover:scale-110 transition-transform">
+           <button 
+             onClick={() => window.dispatchEvent(new CustomEvent('open-command-palette'))}
+             className="bg-foreground text-white px-8 py-3 rounded-full font-bold shadow-pop hover:scale-110 transition-transform"
+           >
              Let's Chat
            </button>
         </motion.div>
