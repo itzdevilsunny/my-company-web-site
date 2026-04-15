@@ -7,6 +7,7 @@ import {
   Users, 
   Layers, 
   RefreshCcw, 
+  Trash,
   Trash2, 
   ChevronRight, 
   ShieldCheck, 

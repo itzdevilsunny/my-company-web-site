@@ -284,21 +284,6 @@ const DesignSelection = () => {
                       )}
                    </div>
                    
-                   <div className="w-px h-24 bg-slate-100 hidden md:block" />
-                   
-                   <div className="grid grid-cols-2 gap-3 lg:gap-4 w-full md:w-auto">
-                      <div className="p-3 lg:p-4 bg-white rounded-xl lg:rounded-2xl border border-slate-100 shadow-sm">
-                         <div className="text-[7px] lg:text-[8px] font-black text-slate-300 uppercase mb-1.5 lg:mb-2">Typography</div>
-                         <div className={`text-sm lg:text-lg transition-all text-foreground ${selectedTheme.styles.font}`}>{selectedTheme.type} Stack</div>
-                      </div>
-                      <div className="p-3 lg:p-4 bg-white rounded-xl lg:rounded-2xl border border-slate-100 shadow-sm">
-                         <div className="text-[7px] lg:text-[8px] font-black text-slate-300 uppercase mb-1.5 lg:mb-2">Core Token</div>
-                         <div className="flex items-center gap-2">
-                            <div className="w-3.5 h-3.5 lg:w-4 lg:h-4 rounded-full border border-slate-200" style={{ backgroundColor: selectedTheme.styles.primary }} />
-                            <span className="text-[10px] lg:text-xs uppercase font-mono tracking-tighter text-foreground">{selectedTheme.styles.primary}</span>
-                         </div>
-                      </div>
-                   </div>
                 </div>
 
                 {/* DYNAMIC REAL MOCKUP CONTAINER */}
@@ -326,31 +311,6 @@ const DesignSelection = () => {
                       } origin-top scale-[0.6] sm:scale-100`}>
                         <MockupRenderer theme={selectedTheme} />
                       </div>
-                   </div>
-                </div>
-
-                {/* Technical Meta Detail Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 py-12 lg:py-20 border-t border-slate-100">
-                   <div className="space-y-3 lg:space-y-4">
-                      <div className="w-8 h-8 lg:w-10 lg:h-10 rounded-lg lg:rounded-xl bg-violet-50 flex items-center justify-center border-2 border-primary/20">
-                         <Sparkles className="text-primary" size={14} lg:size={16} />
-                      </div>
-                      <h5 className="font-heading font-black text-lg lg:text-xl text-foreground">Architectural Integrity</h5>
-                      <p className="text-slate-400 text-xs lg:text-sm leading-relaxed">The {selectedTheme.name} system is engineered to maintain visual consistency across all possible component permutations.</p>
-                   </div>
-                   <div className="space-y-3 lg:space-y-4">
-                      <div className="w-8 h-8 lg:w-10 lg:h-10 rounded-lg lg:rounded-xl bg-pink-50 flex items-center justify-center border-2 border-secondary/20">
-                         <CheckCircle2 className="text-secondary" size={14} lg:size={16} />
-                      </div>
-                      <h5 className="font-heading font-black text-lg lg:text-xl text-foreground">Runtime Optimized</h5>
-                      <p className="text-slate-400 text-xs lg:text-sm leading-relaxed">Lightweight CSS variables and modern layout engines ensure sub-100ms LCP scores for this specific archetype.</p>
-                   </div>
-                   <div className="space-y-3 lg:space-y-4">
-                      <div className="w-8 h-8 lg:w-10 lg:h-10 rounded-lg lg:rounded-xl bg-emerald-50 flex items-center justify-center border-2 border-emerald-500/20">
-                         <Monitor className="text-emerald-500" size={14} lg:size={16} />
-                      </div>
-                      <h5 className="font-heading font-black text-lg lg:text-xl text-foreground">Cross-Canvas Logic</h5>
-                      <p className="text-slate-400 text-xs lg:text-sm leading-relaxed">Hardware-accelerated layout transitions maintain 60FPS even when switching between complex design primitives.</p>
                    </div>
                 </div>
               </motion.div>

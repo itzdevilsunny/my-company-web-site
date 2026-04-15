@@ -99,14 +99,6 @@ const Pricing = () => {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[600px] bg-secondary/5 rotate-[-5deg] z-0 blur-3xl pointer-events-none" />
       
       <div className="relative z-10 flex flex-col items-center text-center mb-32">
-        <motion.div 
-          className="bg-quaternary/20 text-quaternary border-2 border-quaternary/30 px-8 py-3 rounded-full font-black text-sm uppercase tracking-[0.5em] mb-10 flex items-center gap-3 shadow-pop-sm"
-          initial={{ scale: 0 }}
-          whileInView={{ scale: 1 }}
-        >
-          <Sparkles size={16} fill="currentColor" /> Strategic Scaling Models
-        </motion.div>
-        
         <h2 className="text-6xl lg:text-9xl font-heading text-foreground tracking-tighter leading-[0.8]">
           Transparent <br />
           <span className="text-secondary italic underline decoration-foreground decoration-8 underline-offset-8">Investments.</span>

@@ -152,8 +152,6 @@ const Portfolio = ({ teaser = false }) => {
         )}
       </div>
     </section>
-      </div>
-    </section>
   );
 };
 

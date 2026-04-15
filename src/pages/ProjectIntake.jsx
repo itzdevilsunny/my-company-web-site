@@ -13,6 +13,7 @@ import IntakeStepPricing from '../components/features/intake/IntakeStepPricing';
 import IntakeStepDesign from '../components/features/intake/IntakeStepDesign';
 import IntakeStepSecurity from '../components/features/intake/IntakeStepSecurity';
 import IntakeSuccess from '../components/features/intake/IntakeSuccess';
+import { otpService } from '../lib/otpService';
 
 const ProjectIntake = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -20,7 +21,8 @@ const ProjectIntake = () => {
   const [isVerified, setIsVerified] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [sentCode, setSentCode] = useState('');
+  const [isOtpSent, setIsOtpSent] = useState(false);
+  const [isEmailVerified, setIsEmailVerified] = useState(false);
   const [verificationCode, setVerificationCode] = useState('');
   const [errors, setErrors] = useState({});
 
@@ -28,7 +30,6 @@ const ProjectIntake = () => {
     intakeMode: 'new', // 'new' or 'update'
     name: '',
     email: '',
-    phone: '',
     address: '',
     updateNote: '',
     projectType: '',
@@ -40,7 +41,7 @@ const ProjectIntake = () => {
     referenceUrl: '',
     website_url: '',
     additionalRequirements: '',
-    contactMethod: 'whatsapp',
+    contactMethod: 'email',
     budget: 'entry'
   });
 
@@ -66,24 +67,12 @@ const ProjectIntake = () => {
     localStorage.setItem('zorvia_intake_v3_progress', JSON.stringify(formData));
   }, [formData]);
 
-  const generateCode = () => {
-    const code = Math.floor(100000 + Math.random() * 900000).toString();
-    setSentCode(code);
-  };
-
-  useEffect(() => {
-    if (currentStep === totalSteps) {
-      generateCode();
-    }
-  }, [currentStep]);
-
   const validateStep = (step) => {
     const newErrors = {};
     if (formData.intakeMode === 'new') {
         if (step === 1) {
             if (!formData.name) newErrors.name = "Architect Identity Required.";
             if (!formData.email || !/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = "Valid Communication Protocol Required.";
-            if (!formData.phone) newErrors.phone = "Secure Line Required.";
         }
         if (step === 2) {
             if (!formData.projectType) newErrors.projectType = "Specify Target Architecture.";
@@ -99,8 +88,34 @@ const ProjectIntake = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (validateStep(currentStep)) {
+      if (currentStep === 1 && !isEmailVerified) {
+        if (!isOtpSent) {
+          setIsSubmitting(true);
+          const { error } = await otpService.sendEmailOtp(formData.email);
+          setIsSubmitting(false);
+          if (error) {
+            setErrors({ global: error.message || "Failed to dispatch verification code." });
+          } else {
+            setIsOtpSent(true);
+            setErrors({});
+          }
+          return;
+        } else {
+          setIsSubmitting(true);
+          const { error } = await otpService.verifyOtp(formData.email, verificationCode);
+          setIsSubmitting(false);
+          if (error) {
+            setErrors({ verification: "INVALID AUTHENTICATION TOKEN." });
+            return;
+          } else {
+            setIsEmailVerified(true);
+            setErrors({});
+          }
+        }
+      }
+      
       setCurrentStep(prev => prev + 1);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -114,10 +129,6 @@ const ProjectIntake = () => {
   const handleSubmit = async () => {
     if (formData.website_url) {
       setErrors({ global: "Bot detection triggered. Access denied." });
-      return;
-    }
-    if (verificationCode !== sentCode) {
-      setErrors({ verification: "INVALID AUTHENTICATION TOKEN." });
       return;
     }
     
@@ -138,7 +149,6 @@ Screen: ${window.screen.width}x${window.screen.height}
           .insert([{
             name: formData.name,
             email: formData.email,
-            phone: formData.phone,
             address: formData.address,
             project_type: formData.projectType,
             project_description: formData.projectDescription,
@@ -267,7 +277,7 @@ ${browserInfo}
             exit={{ x: -20, opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
-            {currentStep === 1 && <IntakeStepBasic formData={formData} setFormData={setFormData} errors={errors} />}
+            {currentStep === 1 && <IntakeStepBasic formData={formData} setFormData={setFormData} errors={errors} isOtpSent={isOtpSent} verificationCode={verificationCode} setVerificationCode={setVerificationCode} />}
             {currentStep === 2 && <IntakeStepProject formData={formData} setFormData={setFormData} errors={errors} />}
             {currentStep === 3 && <IntakeStepPricing formData={formData} setFormData={setFormData} errors={errors} />}
             {currentStep === 4 && <IntakeStepDesign formData={formData} setFormData={setFormData} errors={errors} />}
@@ -276,9 +286,6 @@ ${browserInfo}
                 formData={formData} 
                 setFormData={setFormData} 
                 errors={errors} 
-                sentCode={sentCode}
-                verificationCode={verificationCode}
-                setVerificationCode={setVerificationCode}
               />
             )}
 
@@ -316,10 +323,11 @@ ${browserInfo}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={handleNext}
-                    className="w-full sm:w-auto flex items-center justify-center gap-3 px-10 lg:px-14 py-4 lg:py-5 bg-foreground text-white border-4 border-foreground rounded-full font-black text-xs lg:text-sm uppercase shadow-pop hover:shadow-pop-active transition-all group"
+                    disabled={isSubmitting}
+                    className="w-full sm:w-auto flex items-center justify-center gap-3 px-10 lg:px-14 py-4 lg:py-5 bg-foreground text-white border-4 border-foreground rounded-full font-black text-xs lg:text-sm uppercase shadow-pop hover:shadow-pop-active transition-all group disabled:opacity-50"
                   >
-                    Continue / आगे बढ़ें
-                    <ArrowRight size={16} strokeWidth={3} className="group-hover:translate-x-1 transition-transform" />
+                    {isSubmitting ? 'Processing...' : (currentStep === 1 && !isEmailVerified) ? (isOtpSent ? 'Verify Code' : 'Send Verification') : 'Continue / आगे बढ़ें'}
+                    {!isSubmitting && <ArrowRight size={16} strokeWidth={3} className="group-hover:translate-x-1 transition-transform" />}
                   </motion.button>
                 </Magnetic>
               ) : (
