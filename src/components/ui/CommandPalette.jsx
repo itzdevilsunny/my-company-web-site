@@ -1,12 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, Command, X, ArrowRight, Zap, Layout, Briefcase, User, MessageSquare } from 'lucide-react';
+import { Search, Command, X, ArrowRight, Zap, Layout, Briefcase, User, MessageSquare, Send } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { sendMessageToMistral } from '../../lib/mistral';
 
 const CommandPalette = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState('');
+  const [messages, setMessages] = useState([
+    { role: 'assistant', content: 'Greeting. I am the Zorvia Architect. How can I assist your digital evolution today?' }
+  ]);
+  const [isTyping, setIsTyping] = useState(false);
   const navigate = useNavigate();
+  const chatEndRef = React.useRef(null);
+
+  useEffect(() => {
+    if (chatEndRef.current) {
+        chatEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [messages, isTyping]);
 
   const actions = [
     { id: 'home', title: 'Home', icon: <User size={18} />, category: 'Navigation', shortcut: 'H', url: '/' },
@@ -36,6 +48,28 @@ const CommandPalette = () => {
     return () => document.removeEventListener('keydown', down);
   }, []);
 
+  const handleSendMessage = async () => {
+    if (!query.trim()) return;
+
+    const userMessage = { role: 'user', content: query };
+    setMessages(prev => [...prev, userMessage]);
+    setQuery('');
+    setIsTyping(true);
+
+    try {
+        const response = await sendMessageToMistral([...messages, userMessage]);
+        if (response.error) {
+            setMessages(prev => [...prev, { role: 'assistant', content: `System Error: ${response.error}` }]);
+        } else {
+            setMessages(prev => [...prev, response]);
+        }
+    } catch (error) {
+        setMessages(prev => [...prev, { role: 'assistant', content: 'Apologies, my synaptic link is flickering. Please try again.' }]);
+    } finally {
+        setIsTyping(false);
+    }
+  };
+
   const handleAction = (url) => {
     setIsOpen(false);
     if (url.startsWith('/#')) {
@@ -60,9 +94,11 @@ const CommandPalette = () => {
         onClick={() => setIsOpen(true)}
         className="fixed bottom-10 left-10 z-[100] bg-white border-2 border-foreground shadow-pop p-4 rounded-2xl hover:bg-muted hover:shadow-pop-active transition-all group lg:flex hidden items-center gap-3"
       >
-        <Command size={20} className="group-hover:rotate-12 transition-transform" />
+        <div className="w-10 h-10 bg-primary text-white rounded-xl flex items-center justify-center shadow-pop-sm group-hover:rotate-12 transition-transform">
+            <Zap size={20} fill="currentColor" />
+        </div>
         <span className="text-[10px] font-black uppercase tracking-widest flex items-center gap-1.5 pt-0.5">
-            Press <kbd className="px-1.5 py-0.5 bg-muted border border-foreground/10 rounded">⌘K</kbd> to search
+            Press <kbd className="px-1.5 py-0.5 bg-muted border border-foreground/10 rounded">⌘K</kbd> to talk to AI
         </span>
       </motion.button>
 
@@ -84,12 +120,19 @@ const CommandPalette = () => {
               className="relative w-full max-w-2xl bg-white border-4 border-foreground rounded-[2rem] shadow-pop-lg overflow-hidden flex flex-col"
             >
               <div className="p-6 border-b-4 border-foreground flex items-center gap-4 bg-muted/30">
-                <Search className="text-foreground/40" />
+                <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white shrink-0">
+                    <Zap size={16} fill="currentColor" />
+                </div>
                 <input
                   autoFocus
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
-                  placeholder="Where do we go?"
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && query.trim()) {
+                        handleSendMessage();
+                    }
+                  }}
+                  placeholder="Ask Zorvia Architect anything..."
                   className="bg-transparent border-none outline-none flex-grow font-heading font-black text-2xl placeholder:text-foreground/20 italic"
                 />
                 <button onClick={() => setIsOpen(false)} className="w-10 h-10 border-2 border-foreground rounded-xl flex items-center justify-center hover:bg-secondary hover:text-white transition-all shadow-pop-sm">
@@ -97,51 +140,65 @@ const CommandPalette = () => {
                 </button>
               </div>
 
-              <div className="p-4 max-h-[400px] overflow-y-auto custom-scrollbar">
-                {filteredActions.length === 0 ? (
-                  <div className="p-10 text-center space-y-4">
-                     <p className="font-heading font-black text-xl opacity-20">Zero Results Synchronized.</p>
-                  </div>
-                ) : (
-                  <div className="space-y-4">
-                    {['Navigation', 'Action'].map(category => {
-                      const categoryActions = filteredActions.filter(a => a.category === category);
-                      if (categoryActions.length === 0) return null;
-                      
-                      return (
-                        <div key={category} className="space-y-2">
-                           <div className="px-4 text-[10px] font-black uppercase tracking-[0.3em] text-foreground/30">{category}</div>
-                           <div className="grid grid-cols-1 gap-2">
-                             {categoryActions.map(action => (
-                               <button
-                                 key={action.id}
-                                 onClick={() => handleAction(action.url)}
-                                 className="flex items-center justify-between p-4 rounded-2xl border-2 border-transparent hover:border-foreground hover:bg-muted/50 transition-all group"
-                               >
-                                 <div className="flex items-center gap-4">
-                                   <div className="w-10 h-10 bg-white border-2 border-foreground rounded-xl flex items-center justify-center shadow-pop-sm group-hover:bg-primary group-hover:text-white transition-all group-hover:rotate-6">
-                                     {action.icon}
-                                   </div>
-                                   <span className="font-heading font-black text-lg tracking-tight">{action.title}</span>
-                                 </div>
-                                 <div className="flex items-center gap-3">
-                                   <kbd className="hidden sm:inline-block px-2 py-1 bg-white border-2 border-foreground rounded-lg text-[10px] font-black group-hover:bg-foreground group-hover:text-white transition-all">{action.shortcut}</kbd>
-                                   <ArrowRight className="opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" size={18} />
-                                 </div>
-                               </button>
-                             ))}
-                           </div>
-                        </div>
-                      )
-                    })}
-                  </div>
+              <div className="flex-grow p-4 overflow-y-auto custom-scrollbar flex flex-col gap-4 max-h-[450px]">
+                {messages.map((msg, idx) => (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, y: 10, x: msg.role === 'user' ? 10 : -10 }}
+                    animate={{ opacity: 1, y: 0, x: 0 }}
+                    className={`flex flex-col ${msg.role === 'user' ? 'items-end' : 'items-start'}`}
+                  >
+                    <div className={`max-w-[85%] p-4 rounded-2xl font-sans text-sm leading-relaxed border-2 ${
+                        msg.role === 'user' 
+                        ? 'bg-foreground text-white border-foreground rounded-tr-none shadow-pop-sm' 
+                        : 'bg-muted/50 text-foreground border-foreground rounded-tl-none'
+                    }`}>
+                      {msg.content}
+                    </div>
+                  </motion.div>
+                ))}
+
+                {isTyping && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="flex items-center gap-2 p-4 text-foreground/40 italic text-xs font-black uppercase tracking-widest"
+                  >
+                    <div className="flex gap-1">
+                        <motion.span animate={{ opacity: [0, 1, 0] }} transition={{ repeat: Infinity, duration: 1 }} className="w-1.5 h-1.5 bg-primary rounded-full" />
+                        <motion.span animate={{ opacity: [0, 1, 0] }} transition={{ repeat: Infinity, duration: 1, delay: 0.2 }} className="w-1.5 h-1.5 bg-primary rounded-full" />
+                        <motion.span animate={{ opacity: [0, 1, 0] }} transition={{ repeat: Infinity, duration: 1, delay: 0.4 }} className="w-1.5 h-1.5 bg-primary rounded-full" />
+                    </div>
+                    Architect is processing...
+                  </motion.div>
                 )}
+
+                {messages.length === 1 && !isTyping && (
+                    <div className="mt-4 space-y-3">
+                        <p className="px-2 text-[10px] font-black uppercase tracking-[0.3em] text-foreground/30">Suggested Navigation</p>
+                        <div className="flex flex-wrap gap-2">
+                            {actions.map(action => (
+                                <button
+                                    key={action.id}
+                                    onClick={() => handleAction(action.url)}
+                                    className="px-4 py-2 bg-white border-2 border-slate-200 rounded-full text-[10px] font-black uppercase tracking-widest hover:border-foreground hover:bg-muted transition-all shadow-pop-sm flex items-center gap-2"
+                                >
+                                    {action.icon}
+                                    {action.title}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                )}
+                <div ref={chatEndRef} />
               </div>
 
-              <div className="p-6 bg-muted/30 border-t-4 border-foreground flex justify-between items-center text-[10px] font-black uppercase tracking-widest text-foreground/40">
-                <div className="flex gap-4">
-                  <span>↓↑ Navigate</span>
-                  <span>↵ Select</span>
+              <div className="p-4 bg-muted/30 border-t-4 border-foreground flex justify-between items-center text-[10px] font-black uppercase tracking-widest text-foreground/40">
+                <div className="flex items-center gap-4">
+                  <span className="flex items-center gap-1.5">
+                    <Send size={12} /> ENTER to send
+                  </span>
+                  <span>ESC to close</span>
                 </div>
                 <span>ZORVIA // ARCHITECT MODE</span>
               </div>
