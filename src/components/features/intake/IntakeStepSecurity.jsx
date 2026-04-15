@@ -3,9 +3,9 @@ import { ShieldAlert } from 'lucide-react';
 
 const IntakeStepSecurity = ({ formData, setFormData, errors }) => {
   return (
-    <section className="bg-white border-4 border-foreground rounded-[2.5rem] p-12 shadow-pop relative overflow-hidden">
-      <h2 className="text-3xl font-heading font-black mb-10 flex items-center gap-4">
-        <span className="p-3 bg-secondary text-white rounded-2xl shadow-pop-sm">5</span>
+    <section className="bg-white border-[3px] border-foreground rounded-[2rem] p-8 shadow-pop relative overflow-hidden">
+      <h2 className="text-2xl font-heading font-black mb-6 flex items-center gap-4">
+        <span className="p-2 bg-secondary text-white rounded-xl shadow-pop-sm">5</span>
         Final Details / अंतिम विवरण
       </h2>
       

@@ -3,8 +3,8 @@ import { CheckCircle2 } from 'lucide-react';
 
 const IntakeStepPricing = ({ formData, setFormData }) => {
   return (
-    <section className="bg-white border-4 border-tertiary rounded-[2.5rem] p-12 shadow-pop relative overflow-hidden">
-      <h2 className="text-3xl font-heading font-black mb-10 flex items-center gap-4">
+    <section className="bg-white border-4 border-tertiary rounded-[2rem] p-8 shadow-pop relative overflow-hidden">
+      <h2 className="text-2xl font-heading font-black mb-6 flex items-center gap-4">
         <span className="p-3 bg-tertiary text-foreground rounded-2xl shadow-pop-sm">3</span>
         Consultation Tier / अपना प्लान चुनें
       </h2>
