@@ -100,7 +100,7 @@ const CommandPalette = () => {
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-10 left-10 z-[100] bg-white border-2 border-foreground shadow-pop p-4 rounded-2xl hover:bg-muted hover:shadow-pop-active transition-all group lg:flex hidden items-center gap-3"
+        className="fixed bottom-10 right-10 z-[100] bg-white border-2 border-foreground shadow-pop p-4 rounded-2xl hover:bg-muted hover:shadow-pop-active transition-all group lg:flex hidden items-center gap-3"
       >
         <div className="w-10 h-10 bg-primary text-white rounded-xl flex items-center justify-center shadow-pop-sm group-hover:rotate-12 transition-transform">
             <Zap size={20} fill="currentColor" />

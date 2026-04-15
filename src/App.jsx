@@ -11,6 +11,9 @@ import ProjectIntake from './pages/ProjectIntake';
 import DesignSelection from './pages/DesignSelection';
 import PortfolioPage from './pages/PortfolioPage';
 import EmployeeLogin from './pages/EmployeeLogin';
+import Terms from './pages/Terms';
+import Security from './pages/Security';
+import HelpDesk from './pages/HelpDesk';
 import ThreeBackground from './components/ui/ThreeBackground';
 import Footer from './components/layouts/Footer';
 import CommandPalette from './components/ui/CommandPalette';
@@ -41,6 +44,9 @@ function AppContent() {
             <Route path="/portfolio" element={<PageTransition><PortfolioPage /></PageTransition>} />
             <Route path="/designs" element={<PageTransition><DesignSelection /></PageTransition>} />
             <Route path="/start-project" element={<PageTransition><ProjectIntake /></PageTransition>} />
+            <Route path="/terms" element={<PageTransition><Terms /></PageTransition>} />
+            <Route path="/security" element={<PageTransition><Security /></PageTransition>} />
+            <Route path="/help-desk" element={<PageTransition><HelpDesk /></PageTransition>} />
             <Route path="/admin" element={<PageTransition><AdminDashboard /></PageTransition>} />
             <Route path="/employee-login" element={<PageTransition><EmployeeLogin /></PageTransition>} />
             <Route path="/zorvia-hq" element={<AdminDashboard />} />

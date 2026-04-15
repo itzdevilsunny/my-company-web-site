@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { Send, MapPin, Phone, Mail, Sparkles, MessageSquare, CheckCircle2, AlertCircle } from 'lucide-react';
 import { InstagramIcon, GithubIcon, LinkedinIcon, TwitterIcon } from '../ui/Icons';
 import { supabase } from '../../lib/supabaseClient';
@@ -12,7 +13,8 @@ const Contact = () => {
     whatsapp: '+91 ',
     project_type: 'Web Platform',
     project_description: '',
-    website_url: '' // Honeypot
+    website_url: '', // Honeypot
+    agreedToTerms: false
   });
   const [status, setStatus] = useState('idle'); // idle, submitting, success, error
 
@@ -23,6 +25,10 @@ const Contact = () => {
       return;
     }
     if(!formData.name || !formData.email || !formData.project_description) {
+      setStatus('error');
+      return;
+    }
+    if (!formData.agreedToTerms) {
       setStatus('error');
       return;
     }
@@ -210,6 +216,22 @@ const Contact = () => {
                   required
                   className="w-full bg-muted/30 border-2 border-foreground rounded-xl lg:rounded-2xl px-4 lg:px-6 py-2.5 font-bold focus:outline-none focus:bg-white focus:shadow-pop-sm transition-all text-sm"
                 ></textarea>
+              </div>
+
+              <div className="flex items-start gap-3 ml-2 min-h-[40px]">
+                 <div className="relative flex items-center mt-0.5">
+                    <input 
+                      type="checkbox" 
+                      required
+                      checked={formData.agreedToTerms}
+                      onChange={(e) => setFormData({...formData, agreedToTerms: e.target.checked})}
+                      className="peer h-5 w-5 cursor-pointer appearance-none rounded-md border-2 border-foreground bg-white transition-all checked:bg-primary checked:border-primary"
+                    />
+                    <CheckCircle2 className="absolute h-3.5 w-3.5 text-white opacity-0 peer-checked:opacity-100 left-0.5 transition-opacity" strokeWidth={4} />
+                 </div>
+                 <p className="text-[9px] lg:text-[10px] font-black uppercase tracking-widest text-muted-foreground leading-tight">
+                    I agree to the <Link to="/terms" className="text-foreground underline decoration-primary decoration-2 underline-offset-2">Terms of Service</Link> & <Link to="/privacy" className="text-foreground underline decoration-secondary decoration-2 underline-offset-2">Privacy Policy</Link>
+                 </p>
               </div>
 
               {status === 'success' ? (

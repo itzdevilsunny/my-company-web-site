@@ -44,7 +44,8 @@ const ProjectIntake = () => {
     website_url: '',
     additionalRequirements: '',
     contactMethod: 'email',
-    budget: 'entry'
+    budget: 'entry',
+    agreedToTerms: false
   });
 
   useEffect(() => {
@@ -81,6 +82,9 @@ const ProjectIntake = () => {
         if (step === 2) {
             if (!formData.projectType) newErrors.projectType = "Specify Project Type.";
             if (!formData.projectDescription) newErrors.projectDescription = "Provide Project Description.";
+        }
+        if (step === 5) {
+            if (!formData.agreedToTerms) newErrors.agreedToTerms = "Consent Required.";
         }
     } else {
         if (step === 1) {
@@ -136,6 +140,11 @@ const ProjectIntake = () => {
       return;
     }
     
+    if (!formData.agreedToTerms) {
+      setErrors({ agreedToTerms: "Protocol violation: Consent missing." });
+      return;
+    }
+
     setIsSubmitting(true);
     setErrors({});
     

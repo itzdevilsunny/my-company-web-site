@@ -16,34 +16,34 @@ const Privacy = () => {
           animate={{ opacity: 1, y: 0 }}
         >
           <h1 className="text-6xl font-heading font-black tracking-tighter uppercase italic mb-12">
-            Privacy <span className="text-secondary">Mesh.</span>
+            Privacy <span className="text-secondary">Policy.</span>
           </h1>
           
           <div className="space-y-12 font-sans">
             <section className="space-y-4">
               <h2 className="text-xl font-black uppercase tracking-widest flex items-center gap-3">
-                <Shield size={20} className="text-primary" /> 01 // Intelligence Collection
+                <Shield size={20} className="text-primary" /> 01 // Information Collection
               </h2>
               <p className="text-lg font-bold text-muted-foreground leading-relaxed">
-                We only synchronize data that is essential for the architectural development of your digital ecosystem. Your identity hash is protected by high-fidelity security protocols.
+                We only collect data that is essential for providing our digital services. Your personal information is protected by industry-standard security protocols and encryption.
               </p>
             </section>
-
+ 
             <section className="space-y-4">
               <h2 className="text-xl font-black uppercase tracking-widest flex items-center gap-3">
-                <Lock size={20} className="text-secondary" /> 02 // Data Sovereignty
+                <Lock size={20} className="text-secondary" /> 02 // Data Protection
               </h2>
               <p className="text-lg font-bold text-muted-foreground leading-relaxed">
-                Your strategic blueprints and project inquiries are stored in an encrypted vault. We do not distribute your intelligence to third-party nodes.
+                Your project details and business inquiries are stored in secure, encrypted environments. We do not sell or distribute your data to unauthorized third parties.
               </p>
             </section>
-
+ 
             <section className="space-y-4">
               <h2 className="text-xl font-black uppercase tracking-widest flex items-center gap-3">
-                <Eye size={20} className="text-tertiary" /> 03 // Transparency
+                <Eye size={20} className="text-tertiary" /> 03 // User Control
               </h2>
               <p className="text-lg font-bold text-muted-foreground leading-relaxed">
-                You have full control over your data. Request a complete purge of your records at any time through our command portal.
+                You have full control over your personal data. You may request a summary or a complete deletion of your records at any time through our support portal.
               </p>
             </section>
           </div>

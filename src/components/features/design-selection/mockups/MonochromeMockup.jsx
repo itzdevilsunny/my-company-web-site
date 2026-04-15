@@ -32,7 +32,7 @@ const MonochromeMockup = ({ theme }) => {
              animate={{ opacity: 1, x: 0 }}
              className="max-w-2xl space-y-8"
            >
-              <h2 className="text-7xl lg:text-[7rem] font-black leading-[0.85] tracking-tighter uppercase border-l-[12px] border-black pl-8">
+              <h2 className="text-5xl lg:text-[5.5rem] font-black leading-[0.85] tracking-tighter uppercase border-l-[12px] border-black pl-8 break-words">
                  Absolute <br />
                  Contrast.
               </h2>

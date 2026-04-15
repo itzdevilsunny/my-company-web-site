@@ -167,7 +167,7 @@ const DesignSelection = () => {
                  value={searchTerm}
                  onChange={(e) => setSearchTerm(e.target.value)}
                  placeholder="Search themes..." 
-                 className="bg-transparent border-none outline-none text-[9px] font-bold uppercase tracking-widest placeholder:text-slate-300 w-40 text-foreground"
+                 className="bg-transparent border-none outline-none text-xs font-bold uppercase tracking-widest placeholder:text-slate-300 w-40 text-foreground"
                />
             </div>
 

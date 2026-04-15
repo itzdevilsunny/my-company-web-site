@@ -47,7 +47,7 @@ const SwissMockup = ({ theme }) => {
                     <span className="text-xs font-black uppercase tracking-[0.2em] opacity-40">Section 01 / Abstract</span>
                  </div>
 
-                 <h2 className="text-8xl lg:text-[10rem] font-black leading-[0.8] tracking-[-0.06em] uppercase">
+                 <h2 className="text-5xl lg:text-7xl font-black leading-[0.8] tracking-[-0.06em] uppercase">
                     MODULAR <br />
                     PRECISION <br />
                     <span className="text-[#E6192E]">ABOVE ALL.</span>

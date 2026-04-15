@@ -138,10 +138,11 @@ const Footer = () => {
           </div>
         </div>
         
-        <div className="flex flex-wrap justify-center gap-6 lg:gap-12 text-[8px] lg:text-[10px] font-black uppercase tracking-[0.4em] text-foreground/40">
-          <Link to="/privacy" className="hover:text-primary transition-colors">Security</Link>
-          <Link to="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
-          <Link to="/careers" className="hover:text-primary transition-colors">Careers</Link>
+        <div className="flex flex-wrap justify-center gap-6 lg:gap-12 text-[8px] lg:text-[10px] font-black uppercase tracking-[0.4em] text-foreground/40 text-center">
+          <Link to="/security" className="hover:text-primary transition-colors">Security Profile</Link>
+          <Link to="/privacy" className="hover:text-secondary transition-colors">Privacy Policy</Link>
+          <Link to="/terms" className="hover:text-tertiary transition-colors">Terms of Service</Link>
+          <Link to="/help-desk" className="hover:text-quaternary transition-colors">Help Desk</Link>
         </div>
       </div>
     </footer>

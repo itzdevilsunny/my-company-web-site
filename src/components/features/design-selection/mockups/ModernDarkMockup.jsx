@@ -45,7 +45,7 @@ const ModernDarkMockup = ({ theme }) => {
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#3B82F6]/20 border border-[#3B82F6]/30 rounded-full text-[#3B82F6] text-xs font-semibold w-fit shadow-[0_0_15px_rgba(59,130,246,0.2)]">
                  <Lock size={12} /> Secure Connection Active
               </div>
-              <h2 className="text-6xl font-black leading-[1.1] tracking-tight">
+              <h2 className="text-4xl lg:text-5xl font-black leading-[1.1] tracking-tight">
                  Supercharge your <br />
                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3B82F6] to-cyan-400">digital infrastructure.</span>
               </h2>
