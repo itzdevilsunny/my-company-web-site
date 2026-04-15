@@ -3,8 +3,8 @@ import { ShieldAlert } from 'lucide-react';
 
 const IntakeStepSecurity = ({ formData, setFormData, errors }) => {
   return (
-    <section className="bg-white border-[3px] border-foreground rounded-[2rem] p-8 shadow-pop relative overflow-hidden">
-      <h2 className="text-2xl font-heading font-black mb-6 flex items-center gap-4">
+    <section className="bg-white border-2 border-foreground rounded-2xl p-6 shadow-pop relative overflow-hidden">
+      <h2 className="text-xl font-heading font-black mb-6 flex items-center gap-4">
         <span className="p-2 bg-secondary text-white rounded-xl shadow-pop-sm">5</span>
         Final Details / अंतिम विवरण
       </h2>
@@ -14,7 +14,7 @@ const IntakeStepSecurity = ({ formData, setFormData, errors }) => {
           <label className="font-heading font-black text-xs uppercase text-muted-foreground tracking-widest">Additional Instructions / अतिरिक्त जानकारी</label>
           <textarea 
             placeholder="Any specific fonts, colors, or technical needs not mentioned earlier..."
-            className="w-full bg-muted/20 border-2 border-foreground rounded-2xl px-6 py-4 font-sans font-bold shadow-pop hover:shadow-pop-active focus:shadow-none outline-none min-h-[100px]"
+            className="w-full bg-muted/20 border-2 border-foreground rounded-xl px-6 py-3 font-sans font-bold shadow-pop hover:shadow-pop-active focus:shadow-none outline-none min-h-[100px]"
             value={formData.additionalRequirements}
             onChange={(e) => setFormData({...formData, additionalRequirements: e.target.value})}
           />

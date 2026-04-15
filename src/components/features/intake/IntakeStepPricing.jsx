@@ -3,9 +3,9 @@ import { CheckCircle2 } from 'lucide-react';
 
 const IntakeStepPricing = ({ formData, setFormData }) => {
   return (
-    <section className="bg-white border-4 border-tertiary rounded-[2rem] p-8 shadow-pop relative overflow-hidden">
-      <h2 className="text-2xl font-heading font-black mb-6 flex items-center gap-4">
-        <span className="p-3 bg-tertiary text-foreground rounded-2xl shadow-pop-sm">3</span>
+    <section className="bg-white border-2 border-tertiary rounded-2xl p-6 shadow-pop relative overflow-hidden">
+      <h2 className="text-xl font-heading font-black mb-6 flex items-center gap-4">
+        <span className="p-2 bg-tertiary text-foreground rounded-2xl shadow-pop-sm">3</span>
         Consultation Tier / अपना प्लान चुनें
       </h2>
 
@@ -36,13 +36,13 @@ const IntakeStepPricing = ({ formData, setFormData }) => {
           <button
             key={plan.id}
             onClick={() => setFormData({...formData, pricingPlan: plan.id})}
-            className={`p-8 border-4 rounded-[2rem] text-left transition-all relative overflow-hidden group ${formData.pricingPlan === plan.id ? 'bg-tertiary border-foreground shadow-pop-active scale-[1.02]' : 'bg-white border-foreground/10 shadow-pop hover:shadow-pop-active opacity-70 hover:opacity-100'}`}
+            className={`p-6 border-2 rounded-2xl text-left transition-all relative overflow-hidden group ${formData.pricingPlan === plan.id ? 'bg-tertiary border-foreground shadow-pop-active scale-[1.02]' : 'bg-white border-foreground/10 shadow-pop hover:shadow-pop-active opacity-70 hover:opacity-100'}`}
           >
-            <div className="mb-6">
+            <div className="mb-4">
               <span className="text-[10px] font-black uppercase tracking-tighter opacity-60 bg-foreground/5 px-2 py-1 rounded">{plan.hindi}</span>
-              <h3 className="text-3xl font-black mt-2">{plan.name}</h3>
+              <h3 className="text-2xl font-black mt-2">{plan.name}</h3>
             </div>
-            <div className="text-4xl font-black text-foreground mb-6">{plan.price}</div>
+            <div className="text-3xl font-black text-foreground mb-6">{plan.price}</div>
             <ul className="space-y-3 mb-8">
               {plan.features.map(f => (
                 <li key={f} className="text-[10px] font-bold flex items-center gap-2 opacity-80">
@@ -50,8 +50,8 @@ const IntakeStepPricing = ({ formData, setFormData }) => {
                 </li>
               ))}
             </ul>
-            <div className={`w-10 h-10 rounded-full border-2 border-foreground flex items-center justify-center transition-all ${formData.pricingPlan === plan.id ? 'bg-foreground text-white' : 'bg-white'}`}>
-              {formData.pricingPlan === plan.id ? <CheckCircle2 size={24} /> : <div className="w-4 h-4 rounded-full border-2 border-foreground/20" />}
+            <div className={`w-8 h-8 rounded-full border-2 border-foreground flex items-center justify-center transition-all ${formData.pricingPlan === plan.id ? 'bg-foreground text-white' : 'bg-white'}`}>
+              {formData.pricingPlan === plan.id ? <CheckCircle2 size={20} /> : <div className="w-4 h-4 rounded-full border-2 border-foreground/20" />}
             </div>
           </button>
         ))}

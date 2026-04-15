@@ -31,26 +31,26 @@ const IntakeSuccess = ({ formData }) => {
         initial={{ y: 100, opacity: 0, rotateX: 20 }}
         animate={{ y: 0, opacity: 1, rotateX: 0 }}
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
-        className="max-w-3xl w-full bg-white border-4 border-foreground rounded-[4rem] p-12 lg:p-20 text-center shadow-pop-lg relative overflow-hidden perspective-1000 mt-12 lg:mt-0"
+        className="max-w-3xl w-full bg-white border-2 border-foreground rounded-[2rem] p-8 lg:p-12 text-center shadow-pop-lg relative overflow-hidden perspective-1000 mt-12 lg:mt-0"
       >
         {/* Decorative Ticket Perforation Appearance */}
-        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-6 h-12 bg-background border-r-4 border-foreground rounded-r-full -ml-1 shadow-inner" />
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-6 h-12 bg-background border-l-4 border-foreground rounded-l-full -mr-1 shadow-inner" />
+        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-8 bg-background border-r-2 border-foreground rounded-r-full -ml-1 shadow-inner" />
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-8 bg-background border-l-2 border-foreground rounded-l-full -mr-1 shadow-inner" />
         
         <motion.div 
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ delay: 0.3, type: "spring" }}
-          className="w-24 h-24 bg-primary text-white border-4 border-foreground rounded-3xl mx-auto mb-10 flex items-center justify-center shadow-pop rotate-12"
+          className="w-20 h-20 bg-primary text-white border-2 border-foreground rounded-3xl mx-auto mb-8 flex items-center justify-center shadow-pop rotate-12"
         >
-          <CheckCircle2 size={48} strokeWidth={3} />
+          <CheckCircle2 size={40} strokeWidth={3} />
         </motion.div>
 
-        <h2 className="text-5xl lg:text-7xl font-heading font-black mb-6 leading-none tracking-tighter uppercase italic">
+        <h2 className="text-4xl lg:text-5xl font-heading font-black mb-4 leading-none tracking-tighter uppercase italic">
           <AnimatedText text="Project Submitted." from="bottom" />
         </h2>
         
-        <p className="text-xl lg:text-2xl text-muted-foreground font-sans font-bold leading-tight max-w-xl mx-auto mb-12 tracking-tight">
+        <p className="text-lg lg:text-xl text-muted-foreground font-sans font-bold leading-tight max-w-xl mx-auto mb-10 tracking-tight">
           {formData.intakeMode === 'update' 
             ? "Your project update has been received. We'll be in touch soon."
             : "Your project details are being reviewed by our team. We'll be in touch soon."}
@@ -81,9 +81,9 @@ const IntakeSuccess = ({ formData }) => {
         <Magnetic strength={0.4}>
           <button 
             onClick={() => window.location.href = "/"}
-            className="flex items-center gap-4 bg-foreground text-white px-12 py-6 rounded-full font-heading font-black text-2xl uppercase tracking-widest shadow-pop hover:shadow-pop-active transition-all group mx-auto"
+            className="flex items-center gap-4 bg-foreground text-white px-8 py-4 rounded-full font-heading font-black text-lg uppercase tracking-widest shadow-pop hover:shadow-pop-active transition-all group mx-auto"
           >
-            <Home size={28} />
+            <Home size={24} />
             Back To Home
             <ArrowRight className="group-hover:translate-x-2 transition-transform" />
           </button>

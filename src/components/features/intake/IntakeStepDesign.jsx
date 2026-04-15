@@ -4,8 +4,8 @@ import { themes } from '../../../data/themes';
 
 const IntakeStepDesign = ({ formData, setFormData }) => {
   return (
-    <section className="bg-white border-[3px] border-foreground rounded-[2rem] p-8 shadow-pop relative overflow-hidden">
-      <h2 className="text-2xl font-heading font-black mb-6 flex items-center gap-4">
+    <section className="bg-white border-2 border-foreground rounded-2xl p-6 shadow-pop relative overflow-hidden">
+      <h2 className="text-xl font-heading font-black mb-6 flex items-center gap-4">
         <span className="p-2 bg-primary text-white rounded-xl shadow-pop-sm">4</span>
         Visual Identity / डिजाइन पसंद
       </h2>
@@ -38,13 +38,13 @@ const IntakeStepDesign = ({ formData, setFormData }) => {
 
           <div className="space-y-6">
             <label className="font-heading font-black text-xs uppercase text-muted-foreground tracking-widest">Reference Site? / रेफरेंस वेबसाइट?</label>
-            <div className="flex gap-6 mb-4">
+            <div className="flex gap-4 mb-4">
                 {['Yes', 'No'].map(o => (
-                  <label key={o} className="flex items-center gap-4 p-5 border-2 border-foreground/10 rounded-2xl cursor-pointer hover:bg-muted/30 transition-all flex-1 group">
+                  <label key={o} className="flex items-center gap-4 p-4 border-2 border-foreground/10 rounded-2xl cursor-pointer hover:bg-muted/30 transition-all flex-1 group">
                     <input 
                       type="radio" 
                       name="hasRef"
-                      className="w-6 h-6 accent-primary" 
+                      className="w-5 h-5 accent-primary" 
                       checked={formData.hasReference === o.toLowerCase()}
                       onChange={() => setFormData({...formData, hasReference: o.toLowerCase()})}
                     />
@@ -65,7 +65,7 @@ const IntakeStepDesign = ({ formData, setFormData }) => {
                   <input 
                     type="url"
                     placeholder="Paste the reference website URL here..."
-                    className="w-full bg-muted/20 border-2 border-foreground rounded-2xl px-6 py-4 font-sans font-bold shadow-pop-sm hover:shadow-pop focus:shadow-none outline-none"
+                    className="w-full bg-muted/20 border-2 border-foreground rounded-2xl px-6 py-3 font-sans font-bold shadow-pop-sm hover:shadow-pop focus:shadow-none outline-none"
                     value={formData.referenceUrl || ''}
                     onChange={(e) => setFormData({...formData, referenceUrl: e.target.value})}
                   />

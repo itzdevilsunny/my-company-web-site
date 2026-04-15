@@ -8,6 +8,8 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '+91 ',
+    whatsapp: '+91 ',
     project_type: 'Web Platform',
     project_description: '',
     website_url: '' // Honeypot
@@ -48,7 +50,7 @@ const Contact = () => {
   };
 
   return (
-    <section className="px-6 lg:px-12 py-16 lg:py-24 bg-background relative overflow-hidden" id="contact">
+    <section className="px-6 lg:px-12 py-12 lg:py-16 bg-background relative overflow-hidden" id="contact">
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-secondary to-tertiary" />
       
       <div className="max-w-7xl mx-auto relative z-10">
@@ -61,11 +63,11 @@ const Contact = () => {
             >
               // Reach Out
             </motion.div>
-            <h2 className="text-3xl sm:text-4xl lg:text-6xl font-heading text-foreground tracking-tighter leading-none mb-4 lg:mb-8">
+            <h2 className="text-2xl sm:text-3xl lg:text-5xl font-heading text-foreground tracking-tighter leading-none mb-4 lg:mb-8">
               Start your <br />
               <span className="text-secondary italic">Revolution.</span>
             </h2>
-            <p className="text-lg lg:text-xl text-muted-foreground font-sans font-medium mb-8 lg:mb-12 max-w-md leading-relaxed">
+            <p className="text-base lg:text-lg text-muted-foreground font-sans font-medium mb-8 lg:mb-12 max-w-md leading-relaxed">
               Have a visionary project in mind? We're ready to engineer it into reality.
             </p>
 
@@ -144,7 +146,7 @@ const Contact = () => {
                     onChange={(e) => setFormData({...formData, name: e.target.value})}
                     placeholder="John Doe" 
                     required
-                    className="w-full bg-muted/30 border-2 border-foreground rounded-xl lg:rounded-2xl px-4 lg:px-6 py-3 lg:py-4 font-bold focus:outline-none focus:bg-white focus:shadow-pop-sm transition-all text-sm lg:text-base"
+                    className="w-full bg-muted/30 border-2 border-foreground rounded-xl lg:rounded-2xl px-4 lg:px-6 py-2.5 font-bold focus:outline-none focus:bg-white focus:shadow-pop-sm transition-all text-sm"
                   />
                 </div>
                 <div>
@@ -155,7 +157,31 @@ const Contact = () => {
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
                     placeholder="john@example.com" 
                     required
-                    className="w-full bg-muted/30 border-2 border-foreground rounded-xl lg:rounded-2xl px-4 lg:px-6 py-3 lg:py-4 font-bold focus:outline-none focus:bg-white focus:shadow-pop-sm transition-all text-sm lg:text-base"
+                    className="w-full bg-muted/30 border-2 border-foreground rounded-xl lg:rounded-2xl px-4 lg:px-6 py-2.5 font-bold focus:outline-none focus:bg-white focus:shadow-pop-sm transition-all text-sm"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                <div>
+                  <label className="block text-[10px] font-black uppercase tracking-widest mb-2 ml-4">Phone Number</label>
+                  <input 
+                    type="tel" 
+                    value={formData.phone}
+                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                    placeholder="+91" 
+                    required
+                    className="w-full bg-muted/30 border-2 border-foreground rounded-xl lg:rounded-2xl px-4 lg:px-6 py-2.5 font-bold focus:outline-none focus:bg-white focus:shadow-pop-sm transition-all text-sm"
+                  />
+                </div>
+                <div>
+                  <label className="block text-[10px] font-black uppercase tracking-widest mb-2 ml-4">WhatsApp</label>
+                  <input 
+                    type="tel" 
+                    value={formData.whatsapp}
+                    onChange={(e) => setFormData({...formData, whatsapp: e.target.value})}
+                    placeholder="+91" 
+                    className="w-full bg-muted/30 border-2 border-foreground rounded-xl lg:rounded-2xl px-4 lg:px-6 py-2.5 font-bold focus:outline-none focus:bg-white focus:shadow-pop-sm transition-all text-sm"
                   />
                 </div>
               </div>
@@ -165,7 +191,7 @@ const Contact = () => {
                 <select 
                   value={formData.project_type}
                   onChange={(e) => setFormData({...formData, project_type: e.target.value})}
-                  className="w-full bg-muted/30 border-2 border-foreground rounded-xl lg:rounded-2xl px-4 lg:px-6 py-3 lg:py-4 font-bold focus:outline-none focus:bg-white focus:shadow-pop-sm transition-all appearance-none cursor-pointer text-sm lg:text-base"
+                  className="w-full bg-muted/30 border-2 border-foreground rounded-xl lg:rounded-2xl px-4 lg:px-6 py-2.5 font-bold focus:outline-none focus:bg-white focus:shadow-pop-sm transition-all appearance-none cursor-pointer text-sm"
                 >
                   <option>Web Platform</option>
                   <option>Mobile App</option>
@@ -177,12 +203,12 @@ const Contact = () => {
               <div>
                 <label className="block text-[10px] font-black uppercase tracking-widest mb-2 ml-4">Brief Description</label>
                 <textarea 
-                  rows="4" 
+                  rows="3" 
                   value={formData.project_description}
                   onChange={(e) => setFormData({...formData, project_description: e.target.value})}
                   placeholder="Tell us about the problem we're solving..." 
                   required
-                  className="w-full bg-muted/30 border-2 border-foreground rounded-xl lg:rounded-2xl px-4 lg:px-6 py-3 lg:py-4 font-bold focus:outline-none focus:bg-white focus:shadow-pop-sm transition-all text-sm lg:text-base"
+                  className="w-full bg-muted/30 border-2 border-foreground rounded-xl lg:rounded-2xl px-4 lg:px-6 py-2.5 font-bold focus:outline-none focus:bg-white focus:shadow-pop-sm transition-all text-sm"
                 ></textarea>
               </div>
 

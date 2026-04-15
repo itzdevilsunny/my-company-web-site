@@ -2,9 +2,9 @@ import React from 'react';
 
 const IntakeStepProject = ({ formData, setFormData, errors }) => {
   return (
-    <section className="bg-white border-4 border-secondary rounded-[2rem] p-8 shadow-pop relative overflow-hidden">
+    <section className="bg-white border-2 border-secondary rounded-2xl p-6 shadow-pop relative overflow-hidden">
       <div className="absolute bottom-0 left-0 w-40 h-40 bg-secondary/5 -ml-20 -mb-20 rounded-full" />
-      <h2 className="text-2xl font-heading font-black mb-6 flex items-center gap-4">
+      <h2 className="text-xl font-heading font-black mb-6 flex items-center gap-4">
         <span className="p-2 bg-secondary text-white rounded-xl shadow-pop-sm">2</span>
         Project Requirements / प्रोजेक्ट विवरण
       </h2>
@@ -35,7 +35,7 @@ const IntakeStepProject = ({ formData, setFormData, errors }) => {
           </label>
           <textarea 
             placeholder="Describe the modules, features, and functionality you need..."
-            className={`w-full bg-muted/20 border-2 rounded-2xl px-6 py-4 font-sans font-bold transition-all outline-none min-h-[150px] ${errors.projectDescription ? 'border-secondary shadow-pop' : 'border-foreground shadow-pop hover:shadow-pop-active focus:shadow-none'}`}
+            className={`w-full bg-muted/20 border-2 rounded-xl px-6 py-3 font-sans font-bold transition-all outline-none min-h-[150px] ${errors.projectDescription ? 'border-secondary shadow-pop' : 'border-foreground shadow-pop hover:shadow-pop-active focus:shadow-none'}`}
             value={formData.projectDescription}
             onChange={(e) => setFormData({...formData, projectDescription: e.target.value})}
           />
