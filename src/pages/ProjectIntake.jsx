@@ -209,9 +209,9 @@ ${browserInfo}
   }
 
   return (
-    <div className="min-h-screen bg-[#F8F9FA] pt-20 lg:pt-28 pb-12 px-4 lg:px-12 flex flex-col items-center">
+    <div className="min-h-screen bg-[#F8F9FA] pt-16 lg:pt-20 pb-12 px-4 lg:px-12 flex flex-col items-center">
       {/* Dynamic Progress Engine */}
-      <div className="w-full max-w-4xl mb-8 lg:mb-16 flex flex-col items-center gap-6 lg:gap-10">
+      <div className="w-full max-w-4xl mb-8 lg:mb-12 flex flex-col items-center gap-6 lg:gap-8">
         <div className="flex flex-col items-center gap-3 text-center">
           <motion.div 
             initial={{ scale: 0.9, opacity: 0 }}
@@ -220,7 +220,7 @@ ${browserInfo}
           >
             Project Setup
           </motion.div>
-          <h1 className="text-3xl lg:text-5xl font-heading font-black tracking-tighter italic uppercase leading-none">
+          <h1 className="text-2xl lg:text-4xl font-heading font-black tracking-tighter italic uppercase leading-none">
             {formData.intakeMode === 'new' ? 'Start Project' : 'Update Project'}
           </h1>
           <p className="text-[10px] lg:text-xs font-black uppercase tracking-[0.4em] text-muted-foreground opacity-60">Welcome to Zorvia</p>
@@ -239,13 +239,13 @@ ${browserInfo}
               <div key={step} className="relative z-10 flex flex-col items-center">
                  <motion.div 
                    animate={{ 
-                     scale: currentStep === step ? 1.15 : 1,
+                     scale: currentStep === step ? 1.1 : 1,
                      backgroundColor: currentStep >= step ? '#3b82f6' : '#fff',
                      color: currentStep >= step ? '#fff' : '#000'
                    }}
-                   className={`w-8 h-8 lg:w-12 lg:h-12 rounded-full border-2 lg:border-[3px] border-foreground flex items-center justify-center font-heading font-black text-xs lg:text-xl shadow-pop transition-colors duration-500`}
+                   className={`w-7 h-7 lg:w-10 lg:h-10 rounded-full border-2 border-foreground flex items-center justify-center font-heading font-black text-[10px] lg:text-lg shadow-pop transition-colors duration-500`}
                  >
-                    {currentStep > step ? <CheckCircle2 size={window.innerWidth < 1024 ? 16 : 24} strokeWidth={3} /> : step}
+                    {currentStep > step ? <CheckCircle2 size={window.innerWidth < 1024 ? 14 : 20} strokeWidth={3} /> : step}
                  </motion.div>
                  <span className={`hidden lg:block absolute -bottom-6 whitespace-nowrap text-[9px] font-black uppercase tracking-widest transition-opacity duration-300 ${currentStep === step ? 'opacity-100' : 'opacity-40'}`}>
                     {['Identity', 'Blueprint', 'Pricing', 'Design', 'Verify'][step-1]}
@@ -315,9 +315,9 @@ ${browserInfo}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={handleBack}
-                    className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 lg:px-8 py-3 lg:py-4 bg-white border-2 lg:border-[3px] border-foreground rounded-full font-black text-xs lg:text-sm uppercase shadow-pop hover:shadow-pop-active transition-all group"
+                    className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 lg:px-8 py-3 bg-white border-2 border-foreground rounded-full font-black text-xs lg:text-sm uppercase shadow-pop hover:shadow-pop-active transition-all group"
                   >
-                    <ArrowLeft size={16} strokeWidth={3} className="group-hover:-translate-x-1 transition-transform" />
+                    <ArrowLeft size={14} strokeWidth={3} className="group-hover:-translate-x-1 transition-transform" />
                     Back / वापस
                   </motion.button>
                 </Magnetic>
@@ -325,17 +325,17 @@ ${browserInfo}
               
               <div className="hidden sm:block flex-grow" />
 
-              {currentStep < totalSteps ? (
+               {currentStep < totalSteps ? (
                 <Magnetic strength={0.3}>
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={handleNext}
                     disabled={isSubmitting}
-                    className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 lg:px-12 py-3 lg:py-4 bg-foreground text-white border-2 lg:border-[3px] border-foreground rounded-full font-black text-xs lg:text-sm uppercase shadow-pop hover:shadow-pop-active transition-all group disabled:opacity-50"
+                    className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 lg:px-12 py-3 bg-foreground text-white border-2 border-foreground rounded-full font-black text-xs lg:text-sm uppercase shadow-pop hover:shadow-pop-active transition-all group disabled:opacity-50"
                   >
                     {isSubmitting ? 'Processing...' : (currentStep === 1 && !isEmailVerified) ? (isOtpSent ? 'Verify Code' : 'Send Verification') : 'Continue / आगे बढ़ें'}
-                    {!isSubmitting && <ArrowRight size={16} strokeWidth={3} className="group-hover:translate-x-1 transition-transform" />}
+                    {!isSubmitting && <ArrowRight size={14} strokeWidth={3} className="group-hover:translate-x-1 transition-transform" />}
                   </motion.button>
                 </Magnetic>
               ) : (
@@ -345,10 +345,10 @@ ${browserInfo}
                     whileTap={{ scale: 0.95 }}
                     onClick={handleSubmit}
                     disabled={isSubmitting}
-                    className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 lg:px-16 py-4 bg-secondary text-white border-2 lg:border-[3px] border-foreground rounded-full font-black text-lg lg:text-xl uppercase shadow-pop-lg hover:shadow-pop-active transition-all disabled:opacity-50 group"
+                    className="w-full sm:w-auto flex items-center justify-center gap-3 px-8 lg:px-12 py-3 lg:py-4 bg-secondary text-white border-2 border-foreground rounded-full font-black text-sm lg:text-base uppercase shadow-pop hover:shadow-pop-active transition-all disabled:opacity-50 group"
                   >
                     {isSubmitting ? 'Submitting...' : 'Submit / जमा करें'}
-                    <Send size={24} strokeWidth={3} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    <Send size={18} strokeWidth={3} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </motion.button>
                 </Magnetic>
               )}

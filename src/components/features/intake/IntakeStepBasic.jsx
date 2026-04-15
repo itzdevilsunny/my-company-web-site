@@ -3,9 +3,9 @@ import { AlertCircle, ShieldCheck } from 'lucide-react';
 
 const IntakeStepBasic = ({ formData, setFormData, errors, isOtpSent, verificationCode, setVerificationCode }) => {
   return (
-    <section className="bg-white border-[3px] border-foreground rounded-[2rem] p-8 shadow-pop relative overflow-hidden">
+    <section className="bg-white border-2 border-foreground rounded-[2rem] p-6 shadow-pop relative overflow-hidden">
       <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 -mr-16 -mt-16 rounded-full" />
-      <h2 className="text-2xl font-heading font-black mb-6 flex items-center gap-3">
+      <h2 className="text-xl font-heading font-black mb-6 flex items-center gap-3">
         <span className="p-2 bg-primary text-white rounded-xl shadow-pop-sm">1</span>
         Identity & Verification / पहचान
       </h2>
@@ -18,7 +18,7 @@ const IntakeStepBasic = ({ formData, setFormData, errors, isOtpSent, verificatio
                 type="text"
                 placeholder="Your Name"
                 disabled={isOtpSent}
-                className={`w-full bg-muted/20 border-2 rounded-xl px-4 py-3 font-sans font-bold transition-all outline-none disabled:opacity-50 ${errors.name ? 'border-secondary shadow-pop' : 'border-foreground shadow-pop hover:shadow-pop-active focus:shadow-none'}`}
+                className={`w-full bg-muted/20 border-2 rounded-xl px-4 py-2.5 font-sans font-bold transition-all outline-none disabled:opacity-50 ${errors.name ? 'border-secondary shadow-pop' : 'border-foreground shadow-pop hover:shadow-pop-active focus:shadow-none'}`}
                 value={formData.name}
                 onChange={(e) => setFormData({...formData, name: e.target.value})}
               />
@@ -30,7 +30,7 @@ const IntakeStepBasic = ({ formData, setFormData, errors, isOtpSent, verificatio
                 type="email"
                 placeholder="email@example.com"
                 disabled={isOtpSent}
-                className={`w-full bg-muted/20 border-2 rounded-xl px-4 py-3 font-sans font-bold transition-all outline-none disabled:opacity-50 ${errors.email ? 'border-secondary shadow-pop' : 'border-foreground shadow-pop hover:shadow-pop-active focus:shadow-none'}`}
+                className={`w-full bg-muted/20 border-2 rounded-xl px-4 py-2.5 font-sans font-bold transition-all outline-none disabled:opacity-50 ${errors.email ? 'border-secondary shadow-pop' : 'border-foreground shadow-pop hover:shadow-pop-active focus:shadow-none'}`}
                 value={formData.email}
                 onChange={(e) => setFormData({...formData, email: e.target.value})}
               />
@@ -42,7 +42,7 @@ const IntakeStepBasic = ({ formData, setFormData, errors, isOtpSent, verificatio
                 type="tel"
                 placeholder="+91"
                 disabled={isOtpSent}
-                className={`w-full bg-muted/20 border-2 rounded-xl px-4 py-3 font-sans font-bold transition-all outline-none disabled:opacity-50 ${errors.phone ? 'border-secondary shadow-pop' : 'border-foreground shadow-pop hover:shadow-pop-active focus:shadow-none'}`}
+                className={`w-full bg-muted/20 border-2 rounded-xl px-4 py-2.5 font-sans font-bold transition-all outline-none disabled:opacity-50 ${errors.phone ? 'border-secondary shadow-pop' : 'border-foreground shadow-pop hover:shadow-pop-active focus:shadow-none'}`}
                 value={formData.phone || ''}
                 onChange={(e) => setFormData({...formData, phone: e.target.value})}
               />
@@ -54,7 +54,7 @@ const IntakeStepBasic = ({ formData, setFormData, errors, isOtpSent, verificatio
                 type="tel"
                 placeholder="+91"
                 disabled={isOtpSent}
-                className={`w-full bg-muted/20 border-2 rounded-xl px-4 py-3 font-sans font-bold transition-all outline-none disabled:opacity-50 ${errors.whatsapp ? 'border-secondary shadow-pop' : 'border-foreground shadow-pop hover:shadow-pop-active focus:shadow-none'}`}
+                className={`w-full bg-muted/20 border-2 rounded-xl px-4 py-2.5 font-sans font-bold transition-all outline-none disabled:opacity-50 ${errors.whatsapp ? 'border-secondary shadow-pop' : 'border-foreground shadow-pop hover:shadow-pop-active focus:shadow-none'}`}
                 value={formData.whatsapp || ''}
                 onChange={(e) => setFormData({...formData, whatsapp: e.target.value})}
               />
@@ -75,7 +75,7 @@ const IntakeStepBasic = ({ formData, setFormData, errors, isOtpSent, verificatio
               type="text"
               maxLength={6}
               placeholder="ENTER CODE"
-              className={`w-full bg-white border-[3px] text-center text-3xl tracking-[0.5em] py-3 font-black rounded-xl outline-none transition-all ${errors.verification ? 'border-secondary shadow-pop' : 'border-foreground shadow-pop hover:shadow-pop-active focus:shadow-none'}`}
+              className={`w-full bg-white border-2 text-center text-2xl tracking-[0.5em] py-3 font-black rounded-xl outline-none transition-all ${errors.verification ? 'border-secondary shadow-pop' : 'border-foreground shadow-pop hover:shadow-pop-active focus:shadow-none'}`}
               value={verificationCode}
               onChange={(e) => setVerificationCode(e.target.value.replace(/\D/g, ''))}
             />

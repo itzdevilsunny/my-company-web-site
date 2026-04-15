@@ -28,19 +28,19 @@ const Navbar = () => {
       <motion.nav 
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className={`fixed top-4 lg:top-12 left-1/2 -translate-x-1/2 z-[100] w-[95%] lg:w-fit transition-all duration-500`}
+        className={`fixed top-4 lg:top-6 left-1/2 -translate-x-1/2 z-[100] w-[95%] lg:w-fit transition-all duration-500`}
       >
-        <div className={`bg-white/90 backdrop-blur-xl border-2 border-foreground shadow-pop rounded-full px-4 lg:px-10 py-2 lg:py-5 flex items-center justify-between lg:justify-start gap-4 lg:gap-16 transition-all ${scrolled ? 'scale-95 opacity-90' : 'scale-100'}`}>
+        <div className={`bg-white/90 backdrop-blur-xl border-2 border-foreground shadow-pop rounded-full px-4 lg:px-8 py-2 lg:py-3 flex items-center justify-between lg:justify-start gap-4 lg:gap-12 transition-all ${scrolled ? 'scale-95 opacity-90' : 'scale-100'}`}>
           {/* Playful Logo & Status */}
           <div className="flex items-center gap-8">
             <Link to="/" className="flex items-center gap-2 lg:gap-3 group cursor-pointer">
-              <div className="w-8 h-8 lg:w-10 lg:h-10 bg-black text-white rounded-lg lg:rounded-xl flex items-center justify-center font-black text-base lg:text-xl shadow-pop group-hover:-rotate-12 transition-transform duration-500">
+              <div className="w-8 h-8 lg:w-9 lg:h-9 bg-black text-white rounded-lg lg:rounded-xl flex items-center justify-center font-black text-base lg:text-lg shadow-pop group-hover:-rotate-12 transition-transform duration-500">
                 Z
               </div>
               <div className="flex flex-col">
-                <span className="font-heading font-black text-lg lg:text-3xl tracking-tighter text-foreground uppercase italic leading-none">ZORVIA</span>
+                <span className="font-heading font-black text-lg lg:text-2xl tracking-tighter text-foreground uppercase italic leading-none">ZORVIA</span>
                 <div className="hidden xs:flex items-center gap-2 mt-1">
-                   <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse shadow-[0_0_8px_#22c55e]" />
+                   <span className="w-1 h-1 bg-green-500 rounded-full animate-pulse shadow-[0_0_8px_#22c55e]" />
                    <span className="text-[8px] lg:text-[9px] font-black uppercase tracking-[0.2em] text-muted-foreground whitespace-nowrap">STATUS: SYNCED // BLR-SF</span>
                 </div>
               </div>
@@ -96,14 +96,14 @@ const Navbar = () => {
              {/* Background pattern */}
              <div className="absolute inset-0 bg-dot-grid opacity-20 pointer-events-none" />
              
-             <div className="flex justify-between items-center mb-24 relative z-10">
-                <span className="font-heading text-4xl font-black text-foreground italic uppercase underline decoration-primary decoration-8">Menu //</span>
+             <div className="flex justify-between items-center mb-16 relative z-10">
+                <span className="font-heading text-3xl font-black text-foreground italic uppercase underline decoration-primary decoration-4">Menu //</span>
                 <Magnetic strength={0.2}>
                   <button 
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="w-16 h-16 border-4 border-foreground rounded-full flex items-center justify-center bg-white shadow-pop"
+                    className="w-12 h-12 border-2 border-foreground rounded-full flex items-center justify-center bg-white shadow-pop"
                   >
-                    <X size={32} />
+                    <X size={24} />
                   </button>
                 </Magnetic>
              </div>
@@ -119,9 +119,9 @@ const Navbar = () => {
                     <Link 
                       to={link.url} 
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="font-heading font-black text-7xl text-foreground tracking-tighter flex items-center gap-6 group uppercase italic"
+                      className="font-heading font-black text-4xl lg:text-5xl text-foreground tracking-tighter flex items-center gap-4 group uppercase italic"
                     >
-                      <span className="text-xl font-sans text-muted-foreground opacity-30 mt-6">{String(i + 1).padStart(2, '0')}</span>
+                      <span className="text-lg font-sans text-muted-foreground opacity-30 mt-4">{String(i + 1).padStart(2, '0')}</span>
                       <span className="group-hover:text-primary transition-colors group-hover:translate-x-4 duration-500">{link.name}</span>
                     </Link>
                   </motion.div>
@@ -142,11 +142,11 @@ const Navbar = () => {
                    </div>
                    
                    <Link to="/start-project" onClick={() => setIsMobileMenuOpen(false)} className="w-full lg:w-fit">
-                      <button className="w-full lg:w-fit px-12 py-6 bg-secondary text-white border-4 border-foreground rounded-full font-heading font-black text-2xl uppercase tracking-tighter shadow-pop-lg hover:shadow-pop transition-all group overflow-hidden relative">
+                      <button className="w-full lg:w-fit px-10 py-5 bg-secondary text-white border-2 border-foreground rounded-full font-heading font-black text-xl uppercase tracking-tighter shadow-pop hover:shadow-pop-active transition-all group overflow-hidden relative">
                         <span className="relative z-10">Initialize Growth</span>
                         <div className="absolute inset-0 bg-foreground translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
                       </button>
-                   </Link>
+                    </Link>
                 </div>
              </div>
           </motion.div>
