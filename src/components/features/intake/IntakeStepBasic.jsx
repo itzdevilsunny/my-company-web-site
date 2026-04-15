@@ -36,6 +36,30 @@ const IntakeStepBasic = ({ formData, setFormData, errors, isOtpSent, verificatio
               />
               {errors.email && <p className="text-secondary text-xs font-bold mt-1 flex items-center gap-2"><AlertCircle size={12}/> {errors.email}</p>}
           </div>
+          <div className="space-y-4">
+              <label className="font-heading font-black text-xs uppercase text-muted-foreground tracking-widest">Phone Number / फ़ोन नंबर</label>
+              <input 
+                type="tel"
+                placeholder="+91"
+                disabled={isOtpSent}
+                className={`w-full bg-muted/20 border-2 rounded-xl px-6 py-4 font-sans font-bold transition-all outline-none disabled:opacity-50 ${errors.phone ? 'border-secondary shadow-pop' : 'border-foreground shadow-pop hover:shadow-pop-active focus:shadow-none'}`}
+                value={formData.phone || ''}
+                onChange={(e) => setFormData({...formData, phone: e.target.value})}
+              />
+              {errors.phone && <p className="text-secondary text-xs font-bold mt-1 flex items-center gap-2"><AlertCircle size={12}/> {errors.phone}</p>}
+          </div>
+          <div className="space-y-4">
+              <label className="font-heading font-black text-xs uppercase text-muted-foreground tracking-widest">WhatsApp Number / वट्सएप</label>
+              <input 
+                type="tel"
+                placeholder="+91"
+                disabled={isOtpSent}
+                className={`w-full bg-muted/20 border-2 rounded-xl px-6 py-4 font-sans font-bold transition-all outline-none disabled:opacity-50 ${errors.whatsapp ? 'border-secondary shadow-pop' : 'border-foreground shadow-pop hover:shadow-pop-active focus:shadow-none'}`}
+                value={formData.whatsapp || ''}
+                onChange={(e) => setFormData({...formData, whatsapp: e.target.value})}
+              />
+              {errors.whatsapp && <p className="text-secondary text-xs font-bold mt-1 flex items-center gap-2"><AlertCircle size={12}/> {errors.whatsapp}</p>}
+          </div>
         </div>
 
         {isOtpSent ? (

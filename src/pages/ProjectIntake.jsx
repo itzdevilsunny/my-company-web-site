@@ -30,6 +30,8 @@ const ProjectIntake = () => {
     intakeMode: 'new', // 'new' or 'update'
     name: '',
     email: '',
+    phone: '',
+    whatsapp: '',
     address: '',
     updateNote: '',
     projectType: '',
@@ -73,6 +75,8 @@ const ProjectIntake = () => {
         if (step === 1) {
             if (!formData.name) newErrors.name = "Name Required.";
             if (!formData.email || !/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = "Valid Email Required.";
+            if (!formData.phone) newErrors.phone = "Phone Number Required.";
+            if (!formData.whatsapp) newErrors.whatsapp = "WhatsApp Number Required.";
         }
         if (step === 2) {
             if (!formData.projectType) newErrors.projectType = "Specify Project Type.";
@@ -157,6 +161,10 @@ Screen: ${window.screen.width}x${window.screen.height}
             aesthetic: formData.designPreference, // Mapping to aesthetic column
             reference_url: formData.referenceUrl,
             additional_requirements: `
+Contact Info:
+Phone: ${formData.phone || 'N/A'}
+WhatsApp: ${formData.whatsapp || 'N/A'}
+
 ${formData.additionalRequirements}
 
 --- SYSTEM_METADATA ---
