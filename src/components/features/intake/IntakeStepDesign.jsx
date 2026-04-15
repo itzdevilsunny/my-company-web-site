@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { themes } from '../../../data/themes';
 
 const IntakeStepDesign = ({ formData, setFormData }) => {
   return (
@@ -12,16 +13,24 @@ const IntakeStepDesign = ({ formData, setFormData }) => {
       <div className="space-y-12">
           <div className="space-y-4">
             <label className="font-heading font-black text-xs uppercase text-muted-foreground tracking-widest">
-                Visual Style / डिजाइन का प्रकार?
+                Select a Design Theme / डिजाइन का प्रकार चुनें ({themes.length} Available)
             </label>
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-              {['Modern', 'Minimal', '3D / Glass', 'Professional', 'Creative'].map(d => (
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-h-[500px] overflow-y-auto p-2 border-2 border-dashed border-foreground/10 rounded-2xl custom-scrollbar">
+              {themes.map(t => (
                 <button
-                  key={d}
-                  onClick={() => setFormData({...formData, designPreference: d.toLowerCase()})}
-                  className={`px-4 py-4 border-2 rounded-xl font-heading font-black text-[10px] uppercase transition-all ${formData.designPreference === d.toLowerCase() ? 'bg-primary text-white border-primary shadow-pop-active' : 'bg-muted/10 border-foreground shadow-pop hover:shadow-pop-active'}`}
+                  key={t.id}
+                  type="button"
+                  onClick={() => setFormData({...formData, designPreference: t.id})}
+                  className={`p-4 border-2 rounded-2xl text-left transition-all relative overflow-hidden group ${formData.designPreference === t.id ? 'bg-primary text-white border-primary shadow-pop-sm scale-95' : 'bg-white border-foreground/20 hover:border-foreground shadow-sm hover:shadow-pop-sm'}`}
                 >
-                  {d}
+                  <div className="flex justify-between items-start mb-2">
+                    <span className="text-xl">{t.icon}</span>
+                    {formData.designPreference === t.id && (
+                      <CheckCircle2 size={16} className="text-white" />
+                    )}
+                  </div>
+                  <h3 className="font-heading font-black text-xs mb-1 uppercase tracking-tight truncate">{t.name}</h3>
+                  <p className={`text-[8px] font-bold uppercase tracking-widest opacity-60 ${formData.designPreference === t.id ? 'text-white' : 'text-muted-foreground'}`}>{t.mode}</p>
                 </button>
               ))}
             </div>
@@ -56,8 +65,8 @@ const IntakeStepDesign = ({ formData, setFormData }) => {
                   <input 
                     type="url"
                     placeholder="Paste the reference website URL here..."
-                    className="w-full bg-muted/20 border-2 border-foreground rounded-2xl px-6 py-4 font-sans font-bold shadow-pop hover:shadow-pop-active focus:shadow-none outline-none"
-                    value={formData.referenceUrl}
+                    className="w-full bg-muted/20 border-2 border-foreground rounded-2xl px-6 py-4 font-sans font-bold shadow-pop-sm hover:shadow-pop focus:shadow-none outline-none"
+                    value={formData.referenceUrl || ''}
                     onChange={(e) => setFormData({...formData, referenceUrl: e.target.value})}
                   />
                 </motion.div>
@@ -65,8 +74,31 @@ const IntakeStepDesign = ({ formData, setFormData }) => {
             </AnimatePresence>
           </div>
       </div>
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 10px; }
+      `}} />
     </section>
   );
 };
+
+const CheckCircle2 = ({ size, className }) => (
+  <svg 
+    width={size} 
+    height={size} 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth="3" 
+    strokeLinecap="round" 
+    strokeLinejoin="round" 
+    className={className}
+  >
+    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+    <polyline points="22 4 12 14.01 9 11.01" />
+  </svg>
+);
 
 export default IntakeStepDesign;

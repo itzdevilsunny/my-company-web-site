@@ -1,13 +1,35 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { ArrowRight, Sparkles } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import AnimatedText from '../ui/AnimatedText';
+import Magnetic from '../ui/Magnetic';
 
 const Hero = () => {
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePos({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  // Parallax effects
+  const calcX = (amount) => (mousePos.x - window.innerWidth / 2) * amount;
+  const calcY = (amount) => (mousePos.y - window.innerHeight / 2) * amount;
+
   return (
     <section className="relative min-h-[90vh] flex flex-col lg:flex-row items-center justify-between px-6 lg:px-24 py-20 overflow-hidden">
-      {/* Massive Yellow Circle Decoration */}
-      <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-tertiary rounded-full z-0 opacity-80" />
+      {/* Massive Yellow Circle Decoration with Parallax */}
+      <motion.div 
+        animate={{ 
+          x: calcX(0.02),
+          y: calcY(0.02)
+        }}
+        className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-tertiary rounded-full z-0 opacity-80" 
+      />
       
       <div className="relative z-10 w-full lg:w-1/2 flex flex-col items-start gap-8">
         <motion.div 
@@ -57,23 +79,31 @@ const Hero = () => {
         </motion.p>
         
         <div className="flex flex-col sm:flex-row gap-6 mt-4">
-          <motion.button 
-            whileHover={{ scale: 1.05, x: -2, y: -2 }}
-            whileTap={{ scale: 0.95, x: 2, y: 2 }}
-            className="group relative bg-primary text-white px-10 py-5 rounded-full font-extrabold text-xl border-2 border-foreground shadow-pop-lg hover:shadow-[10px_10px_0px_0px_#1E293B] transition-all flex items-center gap-4 active:shadow-pop"
-          >
-            Start Your Project
-            <div className="bg-white text-primary rounded-full p-1 group-hover:rotate-45 transition-transform duration-300">
-              <ArrowRight size={24} />
-            </div>
-          </motion.button>
+          <Magnetic strength={0.3}>
+            <Link to="/start-project">
+              <motion.button 
+                whileHover={{ scale: 1.05, x: -2, y: -2 }}
+                whileTap={{ scale: 0.95, x: 2, y: 2 }}
+                className="group relative bg-primary text-white px-10 py-5 rounded-full font-extrabold text-xl border-2 border-foreground shadow-pop-lg hover:shadow-[10px_10px_0px_0px_#1E293B] transition-all flex items-center gap-4 active:shadow-pop"
+              >
+                Start Your Project
+                <div className="bg-white text-primary rounded-full p-1 group-hover:rotate-45 transition-transform duration-300">
+                  <ArrowRight size={24} />
+                </div>
+              </motion.button>
+            </Link>
+          </Magnetic>
           
-          <motion.button 
-            whileHover={{ scale: 1.05, bg: "#FBBF24" }}
-            className="px-10 py-5 border-2 border-foreground rounded-full font-bold text-xl hover:shadow-pop transition-all"
-          >
-            View Work
-          </motion.button>
+          <Magnetic strength={0.2}>
+            <Link to="/portfolio">
+              <motion.button 
+                whileHover={{ scale: 1.05, bg: "#FBBF24" }}
+                className="px-10 py-5 border-2 border-foreground rounded-full font-bold text-xl hover:shadow-pop transition-all bg-white h-full"
+              >
+                View Work
+              </motion.button>
+            </Link>
+          </Magnetic>
         </div>
       </div>
 
@@ -84,8 +114,18 @@ const Hero = () => {
         <motion.div 
           className="relative z-10 w-full h-full bg-quaternary blob-mask border-4 border-foreground shadow-pop-lg overflow-hidden"
           initial={{ scale: 0.5, opacity: 0, rotate: -10 }}
-          animate={{ scale: 1, opacity: 1, rotate: 0 }}
-          transition={{ type: "spring", stiffness: 100, delay: 0.4 }}
+          animate={{ 
+            scale: 1, 
+            opacity: 1, 
+            rotate: 0,
+            borderRadius: ["40% 60% 70% 30% / 40% 50% 60% 60%", "60% 40% 30% 70% / 60% 40% 60% 40%", "40% 60% 70% 30% / 40% 50% 60% 60%"]
+          }}
+          transition={{ 
+            type: "spring", 
+            stiffness: 100, 
+            delay: 0.4,
+            borderRadius: { repeat: Infinity, duration: 8, ease: "easeInOut" }
+          }}
         >
           <img 
             src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop" 
@@ -94,16 +134,28 @@ const Hero = () => {
           />
         </motion.div>
         
-        {/* Floating Confetti Shapes */}
+        {/* Floating Confetti Shapes with Parallax */}
         <motion.div 
+          animate={{ 
+            y: [0, -20, 0],
+            x: calcX(0.05),
+            translateY: calcY(0.05)
+          }}
+          transition={{ 
+            y: { repeat: Infinity, duration: 4 },
+          }}
           className="absolute -top-10 -right-10 w-24 h-24 bg-tertiary rounded-full border-2 border-foreground shadow-pop"
-          animate={{ y: [0, -20, 0] }}
-          transition={{ repeat: Infinity, duration: 4 }}
         />
         <motion.div 
+          animate={{ 
+            rotate: [12, 0, 12],
+            x: calcX(-0.04),
+            y: calcY(-0.04)
+          }}
+          transition={{ 
+            rotate: { repeat: Infinity, duration: 5 },
+          }}
           className="absolute -bottom-10 -left-10 w-20 h-20 bg-secondary rotate-12 border-2 border-foreground shadow-pop"
-          animate={{ rotate: [12, 0, 12] }}
-          transition={{ repeat: Infinity, duration: 5 }}
         />
       </div>
     </section>

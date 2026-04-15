@@ -5,6 +5,7 @@ import WhyUs from '../components/features/WhyUs';
 import Pricing from '../components/features/Pricing';
 import Portfolio from '../components/features/Portfolio';
 import Team from '../components/features/Team';
+import Testimonials from '../components/features/Testimonials';
 import Contact from '../components/features/Contact';
 
 const Home = () => {
@@ -16,6 +17,7 @@ const Home = () => {
       <WhyUs />
       <Portfolio teaser={true} />
       <Team teaser={true} />
+      <Testimonials />
       <Contact />
     </div>
   );

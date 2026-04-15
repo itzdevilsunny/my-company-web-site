@@ -44,8 +44,19 @@ const ProjectIntake = () => {
 
   useEffect(() => {
     const savedProgress = localStorage.getItem('zorvia_intake_v3_progress');
+    const selectedTheme = localStorage.getItem('zorvia_selected_theme');
+    
     if (savedProgress) {
-        setFormData(JSON.parse(savedProgress));
+        const parsed = JSON.parse(savedProgress);
+        // If we came from theme selection page, override the preference
+        if (selectedTheme) {
+          parsed.designPreference = selectedTheme;
+          localStorage.removeItem('zorvia_selected_theme');
+        }
+        setFormData(parsed);
+    } else if (selectedTheme) {
+        setFormData(prev => ({ ...prev, designPreference: selectedTheme }));
+        localStorage.removeItem('zorvia_selected_theme');
     }
   }, []);
 
@@ -257,42 +268,48 @@ const ProjectIntake = () => {
             )}
 
             {/* Navigation Buttons */}
-            <div className="flex justify-between items-center mt-12 gap-8">
+            <div className="flex justify-between items-center mt-20 gap-8">
               {currentStep > 1 && (
-                <motion.button
-                  whileHover={{ scale: 1.05, x: -5 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={handleBack}
-                  className="flex items-center gap-3 px-10 py-5 bg-white border-4 border-foreground rounded-full font-black text-sm uppercase shadow-pop hover:shadow-pop-active transition-all"
-                >
-                  <ArrowLeft size={18} strokeWidth={3} />
-                  Back / वापस
-                </motion.button>
+                <Magnetic strength={0.2}>
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={handleBack}
+                    className="flex items-center gap-3 px-12 py-5 bg-white border-4 border-foreground rounded-full font-black text-sm uppercase shadow-pop hover:shadow-pop-active transition-all group"
+                  >
+                    <ArrowLeft size={18} strokeWidth={3} className="group-hover:-translate-x-1 transition-transform" />
+                    Back / वापस
+                  </motion.button>
+                </Magnetic>
               )}
               
               <div className="flex-grow" />
 
               {currentStep < totalSteps ? (
-                <motion.button
-                  whileHover={{ scale: 1.05, x: 5 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={handleNext}
-                  className="flex items-center gap-3 px-12 py-5 bg-foreground text-white border-4 border-foreground rounded-full font-black text-sm uppercase shadow-pop hover:shadow-pop-active transition-all"
-                >
-                  Continue / आगे बढ़ें
-                  <ArrowRight size={18} strokeWidth={3} />
-                </motion.button>
+                <Magnetic strength={0.3}>
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={handleNext}
+                    className="flex items-center gap-3 px-14 py-5 bg-foreground text-white border-4 border-foreground rounded-full font-black text-sm uppercase shadow-pop hover:shadow-pop-active transition-all group"
+                  >
+                    Continue / आगे बढ़ें
+                    <ArrowRight size={18} strokeWidth={3} className="group-hover:translate-x-1 transition-transform" />
+                  </motion.button>
+                </Magnetic>
               ) : (
-                <motion.button
-                  whileHover={{ scale: 1.05, rotate: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={handleSubmit}
-                  disabled={isSubmitting}
-                  className="flex items-center gap-4 px-16 py-6 bg-secondary text-white border-4 border-foreground rounded-full font-black text-xl uppercase shadow-pop-lg hover:shadow-pop-active transition-all disabled:opacity-50"
-                >
-                  {isSubmitting ? 'Architecting...' : 'Sync Strategy / सिंक करें'}
-                  <Send size={24} strokeWidth={3} />
-                </motion.button>
+                <Magnetic strength={0.5}>
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={handleSubmit}
+                    disabled={isSubmitting}
+                    className="flex items-center gap-4 px-20 py-6 bg-secondary text-white border-4 border-foreground rounded-full font-black text-2xl uppercase shadow-pop-lg hover:shadow-pop-active transition-all disabled:opacity-50 group"
+                  >
+                    {isSubmitting ? 'Architecting...' : 'Sync Strategy / सिंक करें'}
+                    <Send size={28} strokeWidth={3} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  </motion.button>
+                </Magnetic>
               )}
             </div>
           </motion.div>

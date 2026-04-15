@@ -1,81 +1,84 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import Magnetic from '../ui/Magnetic';
 
 const technologies = [
-  { name: 'React', level: 'Core', color: 'bg-primary', icon: 'https://cdn.simpleicons.org/react/ffffff' },
-  { name: 'Node.js', level: 'Runtime', color: 'bg-quaternary', icon: 'https://cdn.simpleicons.org/nodedotjs/ffffff' },
-  { name: 'MongoDB', level: 'Database', color: 'bg-secondary', icon: 'https://cdn.simpleicons.org/mongodb/ffffff' },
-  { name: 'AWS', level: 'Cloud', color: 'bg-tertiary', icon: 'https://cdn.simpleicons.org/amazonwebservices/ffffff' },
-  { name: 'Python', level: 'AI/DL', color: 'bg-foreground', icon: 'https://cdn.simpleicons.org/python/ffffff' }
+  { name: 'React', level: 'Core', color: 'bg-primary', icon: 'https://cdn.simpleicons.org/react/ffffff', delay: 0 },
+  { name: 'Node.js', level: 'Runtime', color: 'bg-quaternary', icon: 'https://cdn.simpleicons.org/nodedotjs/ffffff', delay: 0.1 },
+  { name: 'MongoDB', level: 'Database', color: 'bg-secondary', icon: 'https://cdn.simpleicons.org/mongodb/ffffff', delay: 0.2 },
+  { name: 'Next.js', level: 'Framework', color: 'bg-foreground', icon: 'https://cdn.simpleicons.org/nextdotjs/ffffff', delay: 0.3 },
+  { name: 'AWS', level: 'Cloud', color: 'bg-tertiary', icon: 'https://cdn.simpleicons.org/amazonwebservices/ffffff', delay: 0.4 },
+  { name: 'Python', level: 'AI/DL', color: 'bg-[#3776AB]', icon: 'https://cdn.simpleicons.org/python/ffffff', delay: 0.5 }
 ];
 
 const TechStack = () => {
   return (
-    <section className="px-6 lg:px-24 py-32 bg-background relative overflow-hidden" id="tech-stack">
+    <section className="px-6 lg:px-24 py-40 bg-white relative overflow-hidden" id="tech-stack">
       {/* Background neon glow */}
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute left-0 top-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] pointer-events-none -translate-x-1/2 -translate-y-1/2" />
+      <div className="absolute right-0 bottom-0 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-[120px] pointer-events-none translate-x-1/2 translate-y-1/2" />
       
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-          <div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+          <div className="relative">
             <motion.div 
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              className="text-quaternary font-black text-xs uppercase tracking-[0.4em] mb-4"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              className="text-primary font-black text-sm uppercase tracking-[0.5em] mb-6 flex items-center gap-4"
             >
-              // The Innovation Stack
-          </motion.div>
-            <h2 className="text-5xl lg:text-7xl font-heading text-foreground tracking-tighter leading-none mb-8">
-              Engineered <br />
-              <span className="text-secondary italic">for Performance.</span>
+              <span className="w-12 h-1 bg-primary" /> The Innovation Stack
+            </motion.div>
+            <h2 className="text-6xl lg:text-8xl font-heading text-foreground tracking-tighter leading-[0.85] mb-10">
+              Future-Proof <br />
+              <span className="text-secondary italic underline decoration-foreground decoration-8 underline-offset-8">Architectures.</span>
             </h2>
-            <p className="text-xl text-muted-foreground font-sans font-medium mb-12 max-w-lg leading-relaxed">
-              We leverage cloud-native technologies to build systems that are fast, secure, and inherently scalable.
+            <p className="text-2xl text-muted-foreground font-sans font-medium mb-12 max-w-xl leading-relaxed">
+              We leverage cloud-native technologies to build systems that aren't just fast, they're <span className="text-foreground font-black italic underline decoration-quaternary/40 underline-offset-4 decoration-8">unstoppable.</span>
             </p>
             
             <div className="flex flex-wrap gap-4">
-              {['Scalable', 'Cloud-Native', 'AI-Ready', 'High Performance'].map((tag) => (
-                <span key={tag} className="px-5 py-2 bg-white border-2 border-foreground rounded-full text-xs font-black uppercase tracking-widest shadow-pop-sm">
-                  {tag}
-                </span>
+              {['Scalable', 'Cloud-Native', 'AI-Ready', 'Edge Computing'].map((tag) => (
+                <Magnetic key={tag} strength={0.1}>
+                  <span className="px-6 py-3 bg-white border-2 border-foreground rounded-full text-xs font-black uppercase tracking-widest shadow-pop-sm hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all cursor-default">
+                    {tag}
+                  </span>
+                </Magnetic>
               ))}
             </div>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-8">
             {technologies.map((tech, i) => (
-              <motion.div
-                key={tech.name}
-                initial={{ opacity: 0, scale: 0.5, y: 20 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ 
-                   delay: i * 0.1,
-                   duration: 0.5,
-                   type: "spring",
-                   bounce: 0.4
-                }}
-                whileHover={{ y: -10, rotate: i % 2 === 0 ? 5 : -5 }}
-                className="group relative"
-              >
-                <div className={`p-8 bg-white border-4 border-foreground rounded-[2rem] shadow-pop hover:shadow-pop-lg transition-all flex flex-col items-center justify-center text-center`}>
-                  <div className={`w-16 h-16 ${tech.color} border-2 border-foreground rounded-2xl flex items-center justify-center mb-6 shadow-pop transform -rotate-3 group-hover:rotate-0 transition-transform`}>
-                    <img src={tech.icon} alt={tech.name} className="w-8 h-8 object-contain" />
+              <Magnetic key={tech.name} strength={0.4}>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8, y: 30 }}
+                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                  transition={{ delay: tech.delay, type: "spring", stiffness: 100 }}
+                  className="group relative"
+                >
+                  <div className={`p-8 bg-white border-4 border-foreground rounded-[2.5rem] shadow-pop hover:shadow-pop-lg transition-all flex flex-col items-center justify-center text-center h-full relative overflow-hidden`}>
+                    <div className="absolute top-0 right-0 p-4 opacity-10 font-mono text-[10px] uppercase font-black">{tech.level}</div>
+                    <div className={`w-20 h-20 ${tech.color} border-4 border-foreground rounded-3xl flex items-center justify-center mb-6 shadow-pop transform -rotate-6 group-hover:rotate-0 transition-all duration-500`}>
+                      <img src={tech.icon} alt={tech.name} className="w-10 h-10 object-contain" />
+                    </div>
+                    <h3 className="font-heading font-black text-2xl mb-1 tracking-tighter">{tech.name}</h3>
+                    <div className="w-8 h-1 bg-foreground/10 rounded-full group-hover:w-16 transition-all" />
                   </div>
-                  <h3 className="font-heading font-black text-xl mb-1">{tech.name}</h3>
-                  <span className="text-[10px] font-black uppercase tracking-widest opacity-40">{tech.level}</span>
-                </div>
-              </motion.div>
+                </motion.div>
+              </Magnetic>
             ))}
             
-            {/* Playful placeholder for "And More" */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.5 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              className="p-8 border-4 border-foreground border-dashed rounded-[2rem] flex flex-col items-center justify-center text-center hover:bg-muted transition-colors cursor-help"
-            >
-              <span className="text-4xl mb-2">⚡</span>
-              <span className="text-[10px] font-black uppercase tracking-widest opacity-60">+ 20 More</span>
-            </motion.div>
+            <Magnetic strength={0.4}>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.6 }}
+                className="p-8 border-4 border-foreground border-dashed rounded-[2.5rem] flex flex-col items-center justify-center text-center hover:bg-quaternary/10 transition-colors cursor-help group h-full shadow-pop-sm hover:shadow-pop transition-all"
+              >
+                <div className="text-5xl mb-4 group-hover:rotate-12 transition-transform">🚀</div>
+                <span className="text-[12px] font-black uppercase tracking-widest text-foreground">+ 24 More</span>
+              </motion.div>
+            </Magnetic>
           </div>
         </div>
       </div>

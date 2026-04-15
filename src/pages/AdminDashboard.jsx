@@ -90,6 +90,9 @@ const AdminDashboard = () => {
       
       if (error) throw error;
       fetchData();
+      if (selectedItem && selectedItem.id === id) {
+        setSelectedItem({ ...selectedItem, status: newStatus });
+      }
     } catch (err) {
       alert("Status synchronization failed.");
     }
@@ -311,6 +314,7 @@ const AdminDashboard = () => {
             <textarea placeholder="Bio" required value={teamForm.bio} onChange={(e)=>setTeamForm({...teamForm, bio: e.target.value})} className="col-span-2 p-4 border-2 border-foreground rounded-xl" rows="3"></textarea>
             <input type="text" placeholder="LinkedIn URL" value={teamForm.linkedin} onChange={(e)=>setTeamForm({...teamForm, linkedin: e.target.value})} className="p-4 border-2 border-foreground rounded-xl" />
             <input type="text" placeholder="GitHub URL" value={teamForm.github} onChange={(e)=>setTeamForm({...teamForm, github: e.target.value})} className="p-4 border-2 border-foreground rounded-xl" />
+            <input type="text" placeholder="Twitter URL" value={teamForm.twitter} onChange={(e)=>setTeamForm({...teamForm, twitter: e.target.value})} className="p-4 border-2 border-foreground rounded-xl" />
             <select value={teamForm.theme_color} onChange={(e)=>setTeamForm({...teamForm, theme_color: e.target.value})} className="p-4 border-2 border-foreground rounded-xl appearance-none">
               <option value="border-primary">Primary Color</option>
               <option value="border-secondary">Secondary Color</option>
@@ -378,11 +382,11 @@ const AdminDashboard = () => {
                          onClick={() => activeTab === 'inquiries' || activeTab === 'updates' ? setSelectedItem(item) : null}
                        >
                           <td className="px-8 py-6">
-                             <p className="font-heading font-black tracking-tight">{item.name || "Strategic Update"}</p>
+                             <p className="font-heading font-black tracking-tight">{item.client_name || item.name || (activeTab === 'updates' ? "Strategic Update" : "N/A")}</p>
                           </td>
                           <td className="px-8 py-6">
                              <p className="font-sans font-bold text-sm text-muted-foreground whitespace-nowrap">
-                               {activeTab === 'team' ? item.role : activeTab === 'portfolio' ? item.category : item.email}
+                               {activeTab === 'team' ? item.role : activeTab === 'portfolio' ? item.category : (item.client_email || item.email)}
                              </p>
                           </td>
                           <td className="px-8 py-6">
@@ -459,8 +463,12 @@ const AdminDashboard = () => {
                      <div className="flex justify-between items-start mb-12">
                         <div>
                            <p className="text-primary font-black text-[10px] uppercase tracking-[0.4em] mb-4">// Intelligence Detail</p>
-                           <h2 className="text-4xl font-heading font-black tracking-tighter leading-none">{selectedItem.name || "System Update"}</h2>
-                           <p className="text-lg font-sans font-bold text-muted-foreground mt-4">{selectedItem.email}</p>
+                           <h2 className="text-4xl font-heading font-black tracking-tighter leading-none">{selectedItem.client_name || selectedItem.name || "System Update"}</h2>
+                           <p className="text-lg font-sans font-bold text-muted-foreground mt-4">{selectedItem.client_email || selectedItem.email}</p>
+                           <div className="flex gap-4 mt-2">
+                              <span className="text-[10px] font-black uppercase opacity-40">ID: {selectedItem.id}</span>
+                              <span className="text-[10px] font-black uppercase opacity-40">Timestamp: {new Date(selectedItem.created_at).toLocaleString()}</span>
+                           </div>
                         </div>
                         <button 
                           onClick={() => setSelectedItem(null)}
@@ -476,16 +484,18 @@ const AdminDashboard = () => {
                               <div className="space-y-8">
                                  <div>
                                     <label className="block text-[8px] font-black uppercase text-secondary tracking-widest mb-2">Project Vision</label>
-                                    <p className="font-sans font-medium leading-relaxed bg-muted/30 p-6 border-2 border-foreground/5 rounded-2xl">{selectedItem.project_description}</p>
+                                    <p className="font-sans font-medium leading-relaxed bg-muted/30 p-6 border-2 border-foreground/5 rounded-2xl">
+                                       {selectedItem.project_description || "No project blueprint provided."}
+                                    </p>
                                  </div>
                                  <div className="grid grid-cols-2 gap-4">
                                     <div className="p-4 bg-muted/20 border-2 border-foreground rounded-2xl shadow-pop-sm">
                                        <label className="block text-[8px] font-black uppercase opacity-40 mb-1">Timeline</label>
-                                       <p className="text-xs font-black uppercase">{selectedItem.project_timeline}</p>
+                                       <p className="text-xs font-black uppercase">{selectedItem.project_timeline || "TBD"}</p>
                                     </div>
                                     <div className="p-4 bg-muted/20 border-2 border-foreground rounded-2xl shadow-pop-sm">
                                        <label className="block text-[8px] font-black uppercase opacity-40 mb-1">Pricing Tier</label>
-                                       <p className="text-xs font-black uppercase">{selectedItem.pricing_plan}</p>
+                                       <p className="text-xs font-black uppercase">{selectedItem.pricing_plan || "Custom"}</p>
                                     </div>
                                  </div>
                               </div>
@@ -499,31 +509,33 @@ const AdminDashboard = () => {
                                        </div>
                                        <div>
                                           <p className="text-[10px] uppercase font-black opacity-60">Design Style</p>
-                                          <p className="font-sans font-bold text-sm">{selectedItem.design_preference || "N/A"}</p>
+                                          <p className="font-sans font-bold text-sm italic">{selectedItem.design_preference || "Standard Protocol"}</p>
                                        </div>
-                                       {selectedItem.reference_url && (
-                                          <div>
-                                             <p className="text-[10px] uppercase font-black opacity-60">Reference URL</p>
+                                       <div>
+                                          <p className="text-[10px] uppercase font-black opacity-60">Reference URL</p>
+                                          {selectedItem.reference_url ? (
                                              <a href={selectedItem.reference_url} target="_blank" rel="noopener noreferrer" className="font-sans font-bold text-sm text-primary underline underline-offset-4 overflow-hidden break-all">
                                                 {selectedItem.reference_url}
                                              </a>
-                                          </div>
-                                       )}
-                                       {selectedItem.additional_requirements && (
-                                          <div>
-                                             <p className="text-[10px] uppercase font-black opacity-60">Additional Requirements</p>
-                                             <p className="font-sans text-sm p-3 bg-muted/20 rounded-xl leading-relaxed">{selectedItem.additional_requirements}</p>
-                                          </div>
-                                       )}
+                                          ) : (
+                                             <p className="font-sans font-bold text-sm opacity-40 italic">None Provided</p>
+                                          )}
+                                       </div>
+                                       <div>
+                                          <p className="text-[10px] uppercase font-black opacity-60">Additional Requirements</p>
+                                          <p className="font-sans text-sm p-3 bg-muted/20 rounded-xl leading-relaxed">
+                                             {selectedItem.additional_requirements || "No specific overrides requested."}
+                                          </p>
+                                       </div>
                                     </div>
                                  </div>
 
                                  <div className="p-6 border-2 border-foreground rounded-2xl">
                                     <label className="block text-[8px] font-black uppercase opacity-40 mb-4">Targeting Details</label>
                                     <div className="space-y-3 font-sans text-xs font-bold">
-                                       <p className="flex justify-between"><span>Phone:</span> <span>{selectedItem.phone}</span></p>
-                                       <p className="flex justify-between"><span>Method:</span> <span>{selectedItem.contact_method}</span></p>
-                                       <p className="flex justify-start items-start gap-4"><span>Address:</span> <span className="text-right opacity-60">{selectedItem.address}</span></p>
+                                       <p className="flex justify-between"><span>Phone:</span> <span>{selectedItem.client_phone || selectedItem.phone || "N/A"}</span></p>
+                                       <p className="flex justify-between"><span>Method:</span> <span>{selectedItem.contact_method || "Email"}</span></p>
+                                       <p className="flex justify-between items-start gap-4"><span>Address:</span> <span className="text-right opacity-60">{selectedItem.client_address || selectedItem.address || "Digital Nomad"}</span></p>
                                     </div>
                                  </div>
 

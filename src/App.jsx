@@ -1,32 +1,48 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/layouts/Navbar';
 import Home from './pages/Home';
 import About from './pages/About';
 import AdminDashboard from './pages/AdminDashboard';
 import ProjectIntake from './pages/ProjectIntake';
+import DesignSelection from './pages/DesignSelection';
+import PortfolioPage from './pages/PortfolioPage';
+import EmployeeLogin from './pages/EmployeeLogin';
 import ThreeBackground from './components/ui/ThreeBackground';
 import Footer from './components/layouts/Footer';
+import CommandPalette from './components/ui/CommandPalette';
+import ScrollProgress from './components/ui/ScrollProgress';
+import PageTransition from './components/ui/PageTransition';
+import CustomCursor from './components/ui/CustomCursor';
 
 function AppContent() {
   const location = useLocation();
-  const isAdminPage = ['/admin', '/dashboard', '/zorvia-hq'].includes(location.pathname);
+  const isNoChromePage = ['/admin', '/dashboard', '/zorvia-hq', '/designs', '/employee-login'].includes(location.pathname);
 
   return (
     <div className="app-container">
+      <CustomCursor />
+      <ScrollProgress />
       <ThreeBackground />
-      {!isAdminPage && <Navbar />}
+      <CommandPalette />
+      {!isNoChromePage && <Navbar />}
       <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/admin" element={<AdminDashboard />} />
-          <Route path="/zorvia-hq" element={<AdminDashboard />} />
-          <Route path="/dashboard" element={<AdminDashboard />} />
-          <Route path="/start-project" element={<ProjectIntake />} />
-        </Routes>
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<PageTransition><Home /></PageTransition>} />
+            <Route path="/about" element={<PageTransition><About /></PageTransition>} />
+            <Route path="/portfolio" element={<PageTransition><PortfolioPage /></PageTransition>} />
+            <Route path="/designs" element={<PageTransition><DesignSelection /></PageTransition>} />
+            <Route path="/start-project" element={<PageTransition><ProjectIntake /></PageTransition>} />
+            <Route path="/admin" element={<PageTransition><AdminDashboard /></PageTransition>} />
+            <Route path="/employee-login" element={<PageTransition><EmployeeLogin /></PageTransition>} />
+            <Route path="/zorvia-hq" element={<AdminDashboard />} />
+            <Route path="/dashboard" element={<AdminDashboard />} />
+          </Routes>
+        </AnimatePresence>
       </main>
-      {!isAdminPage && <Footer />}
+      {!isNoChromePage && <Footer />}
     </div>
   );
 }
