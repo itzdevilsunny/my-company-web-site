@@ -71,17 +71,17 @@ const ProjectIntake = () => {
     const newErrors = {};
     if (formData.intakeMode === 'new') {
         if (step === 1) {
-            if (!formData.name) newErrors.name = "Architect Identity Required.";
-            if (!formData.email || !/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = "Valid Communication Protocol Required.";
+            if (!formData.name) newErrors.name = "Name Required.";
+            if (!formData.email || !/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = "Valid Email Required.";
         }
         if (step === 2) {
-            if (!formData.projectType) newErrors.projectType = "Specify Target Architecture.";
-            if (!formData.projectDescription) newErrors.projectDescription = "Provide System Blueprint Overview.";
+            if (!formData.projectType) newErrors.projectType = "Specify Project Type.";
+            if (!formData.projectDescription) newErrors.projectDescription = "Provide Project Description.";
         }
     } else {
         if (step === 1) {
-            if (!formData.email) newErrors.email = "Identity Hash Required.";
-            if (!formData.updateNote) newErrors.updateNote = "Update Package Cannot Be Empty.";
+            if (!formData.email) newErrors.email = "Email Required.";
+            if (!formData.updateNote) newErrors.updateNote = "Update Note Cannot Be Empty.";
         }
     }
     setErrors(newErrors);
@@ -179,12 +179,12 @@ ${browserInfo}
         if (error) throw error;
       }
 
-      console.log('Strategy Synchronized with Cloud');
+      console.log('Project Submitted Successfully to Cloud');
       localStorage.removeItem('zorvia_intake_v3_progress');
       setIsSuccess(true);
     } catch (err) {
       console.error('Supabase Sync Error:', err);
-      setErrors({ global: "Technological synchronization failed. Please verify your connection and retry. If this persists, our engineering team has been notified." });
+      setErrors({ global: "Submission failed. Please verify your connection and retry. If this persists, our engineering team has been notified." });
     } finally {
       setIsSubmitting(false);
     }
@@ -210,12 +210,12 @@ ${browserInfo}
             animate={{ scale: 1, opacity: 1 }}
             className="px-4 py-1.5 bg-primary text-white border-2 border-foreground rounded-full text-[10px] font-black uppercase tracking-widest shadow-pop-sm"
           >
-            Project Blueprint Engine v3.0
+            Project Setup
           </motion.div>
           <h1 className="text-4xl lg:text-7xl font-heading font-black tracking-tighter italic uppercase leading-none">
-            {formData.intakeMode === 'new' ? 'Initialize Strategy' : 'Strategic Update'}
+            {formData.intakeMode === 'new' ? 'Start Project' : 'Update Project'}
           </h1>
-          <p className="text-[10px] lg:text-xs font-black uppercase tracking-[0.4em] text-muted-foreground opacity-60">System Synchronized // Node: BLR-01</p>
+          <p className="text-[10px] lg:text-xs font-black uppercase tracking-[0.4em] text-muted-foreground opacity-60">Welcome to Zorvia</p>
         </div>
 
         <div className="w-full flex justify-between items-center relative gap-2">
@@ -339,7 +339,7 @@ ${browserInfo}
                     disabled={isSubmitting}
                     className="w-full sm:w-auto flex items-center justify-center gap-4 px-10 lg:px-20 py-5 lg:py-6 bg-secondary text-white border-4 border-foreground rounded-full font-black text-xl lg:text-2xl uppercase shadow-pop-lg hover:shadow-pop-active transition-all disabled:opacity-50 group"
                   >
-                    {isSubmitting ? 'Architecting...' : 'Sync Strategy / सिंक करें'}
+                    {isSubmitting ? 'Submitting...' : 'Submit / जमा करें'}
                     <Send size={24} strokeWidth={3} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </motion.button>
                 </Magnetic>
