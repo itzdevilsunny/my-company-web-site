@@ -7,7 +7,7 @@ export const themes = [
     icon: '⚪', 
     description: 'Clean, high-contrast, and timeless. Perfect for brands that want to communicate clarity and sophistication.',
     features: ['High Contrast', 'Focus on Clarity', 'Timeless Aesthetic'],
-    styles: { primary: '#000000', bg: '#ffffff', border: 'border-2 border-black', font: 'font-sans', shadow: 'shadow-pop-sm', visualType: 'modern' }
+    styles: { primary: '#000000', bg: '#ffffff', border: 'border-2 border-black', font: 'font-sans', shadow: 'shadow-pop-sm', visualType: 'monochrome' }
   },
   { 
     id: 'bauhaus', 
@@ -36,7 +36,7 @@ export const themes = [
     icon: '🔵', 
     description: 'A sleek, contemporary dark mode with vibrant blue accents and smooth gradients.',
     features: ['Vibrant Accents', 'Smooth Gradients', 'Sleek Layout'],
-    styles: { primary: '#3B82F6', bg: '#0F172A', border: 'border border-white/10', font: 'font-sans', shadow: 'shadow-xl', visualType: 'modern' }
+    styles: { primary: '#3B82F6', bg: '#0F172A', border: 'border border-white/10', font: 'font-sans', shadow: 'shadow-xl', visualType: 'moderndark' }
   },
   { 
     id: 'newsprint', 
@@ -112,7 +112,7 @@ export const themes = [
     type: 'Sans', 
     icon: '🔴', 
     description: 'The pinnacle of objective design. Grids, sans-serifs, and absolute functional clarity.',
-    styles: { primary: '#FF0000', bg: '#ffffff', border: 'border-none', font: 'font-sans font-bold', shadow: 'shadow-none', visualType: 'modern' }
+    styles: { primary: '#FF0000', bg: '#ffffff', border: 'border-none', font: 'font-sans font-bold', shadow: 'shadow-none', visualType: 'swiss' }
   },
   { 
     id: 'kinetic', 
@@ -140,7 +140,7 @@ export const themes = [
     type: 'Sans', 
     icon: '🔵', 
     description: 'Simple, 2D aesthetic with vibrant colors and clear iconography. Easy to read and fast to load.',
-    styles: { primary: '#3498DB', bg: '#ECF0F1', border: 'border-none', font: 'font-sans', shadow: 'shadow-none', radius: 'rounded-none', visualType: 'modern' }
+    styles: { primary: '#3498DB', bg: '#ECF0F1', border: 'border-none', font: 'font-sans', shadow: 'shadow-none', radius: 'rounded-none', visualType: 'flatdesign' }
   },
   { 
     id: 'art-deco', 
@@ -149,7 +149,7 @@ export const themes = [
     type: 'Serif', 
     icon: '🟡', 
     description: 'Geometric patterns and glamorous gold-on-black typography. Sophisticated and decorative.',
-    styles: { primary: '#D4AF37', bg: '#1A1A1A', border: 'border-double border-4 border-[#D4AF37]', font: 'font-serif', shadow: 'shadow-2xl', visualType: 'luxury' }
+    styles: { primary: '#D4AF37', bg: '#1A1A1A', border: 'border-double border-4 border-[#D4AF37]', font: 'font-serif', shadow: 'shadow-2xl', visualType: 'artdeco' }
   },
   { 
     id: 'material-design', 
@@ -158,7 +158,7 @@ export const themes = [
     type: 'Sans', 
     icon: '🟣', 
     description: 'Google-inspired hierarchy with subtle shadows and responsive interactions.',
-    styles: { primary: '#6200EE', bg: '#ffffff', border: 'border-none', font: 'font-sans', shadow: 'shadow-lg', radius: 'rounded-sm', visualType: 'modern' }
+    styles: { primary: '#6200EE', bg: '#ffffff', border: 'border-none', font: 'font-sans', shadow: 'shadow-lg', radius: 'rounded-sm', visualType: 'material' }
   },
   { 
     id: 'neo-brutalism', 
@@ -176,7 +176,7 @@ export const themes = [
     type: 'Sans', 
     icon: '🟠', 
     description: 'Type-first design. Massive headlines and minimalist backgrounds for high impact.',
-    styles: { primary: '#ffffff', bg: '#000000', border: 'border-none', font: 'font-black uppercase italic', shadow: 'shadow-none', visualType: 'modern' }
+    styles: { primary: '#ffffff', bg: '#000000', border: 'border-none', font: 'font-black uppercase italic', shadow: 'shadow-none', visualType: 'boldtypography' }
   },
   { 
     id: 'academia', 
@@ -185,7 +185,7 @@ export const themes = [
     type: 'Serif', 
     icon: '🟤', 
     description: 'Warm, scholarly, and elegant. Features serif typography and paper-like backgrounds.',
-    styles: { primary: '#4A3728', bg: '#FDFBF7', border: 'border border-[#E5E1D8]', font: 'font-serif', shadow: 'shadow-sm', visualType: 'newspaper' }
+    styles: { primary: '#4A3728', bg: '#FDFBF7', border: 'border border-[#E5E1D8]', font: 'font-serif', shadow: 'shadow-sm', visualType: 'academia' }
   },
   { 
     id: 'cyberpunk', 
@@ -203,7 +203,7 @@ export const themes = [
     type: 'Mono', 
     icon: '🟠', 
     description: 'Decentralized aesthetic. Glassmorphism, neon outlines, and data-heavy visuals.',
-    styles: { primary: '#F59E0B', bg: '#030712', border: 'border border-white/10 backdrop-blur-md', font: 'font-mono', shadow: 'shadow-2xl', visualType: 'modern' }
+    styles: { primary: '#F59E0B', bg: '#030712', border: 'border border-white/10 backdrop-blur-md', font: 'font-mono', shadow: 'shadow-2xl', visualType: 'web3' }
   },
   { 
     id: 'playful-geometric', 
@@ -212,7 +212,7 @@ export const themes = [
     type: 'Sans', 
     icon: '🟣', 
     description: 'The core Zorvia aesthetic. Vibrant, rounded, and full of interactive energy.',
-    styles: { primary: '#8B5CF6', bg: '#ffffff', border: 'border-4 border-foreground', font: 'font-heading font-black', shadow: 'shadow-pop', visualType: 'brutalist' }
+    styles: { primary: '#8B5CF6', bg: '#ffffff', border: 'border-4 border-foreground', font: 'font-heading font-black', shadow: 'shadow-pop', visualType: 'playful' }
   },
   { 
     id: 'minimal-dark', 
@@ -221,7 +221,7 @@ export const themes = [
     type: 'Sans', 
     icon: '🟡', 
     description: 'Pure focus. Deep blacks and subtle gold highlights for a refined dark experience.',
-    styles: { primary: '#EAB308', bg: '#000000', border: 'border-none', font: 'font-light tracking-widest', shadow: 'shadow-none', visualType: 'modern' }
+    styles: { primary: '#EAB308', bg: '#000000', border: 'border-none', font: 'font-light tracking-widest', shadow: 'shadow-none', visualType: 'minimaldark' }
   },
   { 
     id: 'claymorphism', 
@@ -239,7 +239,7 @@ export const themes = [
     type: 'Sans', 
     icon: '🟡', 
     description: 'Corporate excellence. Balanced, trustworthy, and designed for enterprise results.',
-    styles: { primary: '#1E40AF', bg: '#ffffff', border: 'border-t-4 border-blue-800', font: 'font-sans', shadow: 'shadow-sm', visualType: 'modern' }
+    styles: { primary: '#1E40AF', bg: '#ffffff', border: 'border-t-4 border-blue-800', font: 'font-sans', shadow: 'shadow-sm', visualType: 'professional' }
   },
   { 
     id: 'botanical', 
@@ -257,7 +257,7 @@ export const themes = [
     type: 'Sans', 
     icon: '🟣', 
     description: '80s nostalgia. Pink gradients, palm tree silhouettes, and retro-futuristic vibes.',
-    styles: { primary: '#FF71CE', bg: '#01CDFE', accent: '#05FFA1', border: 'border-2 border-[#B967FF]', font: 'font-bold italic', shadow: 'shadow-[5px_5px_0px_#B967FF]', visualType: 'cyberpunk' }
+    styles: { primary: '#FF71CE', bg: '#01CDFE', accent: '#05FFA1', border: 'border-2 border-[#B967FF]', font: 'font-bold italic', shadow: 'shadow-[5px_5px_0px_#B967FF]', visualType: 'vaporwave' }
   },
   { 
     id: 'enterprise', 
@@ -266,7 +266,7 @@ export const themes = [
     type: 'Sans', 
     icon: '🔵', 
     description: 'Built for scale. Robust navigation and data-dense layouts for complex platforms.',
-    styles: { primary: '#0F172A', bg: '#ffffff', border: 'border border-slate-200', font: 'font-sans', shadow: 'shadow-sm', radius: 'rounded-none', visualType: 'modern' }
+    styles: { primary: '#0F172A', bg: '#ffffff', border: 'border border-slate-200', font: 'font-sans', shadow: 'shadow-sm', radius: 'rounded-none', visualType: 'enterprise' }
   },
   { 
     id: 'sketch', 
@@ -284,7 +284,7 @@ export const themes = [
     type: 'Mono', 
     icon: '🟠', 
     description: 'Rugged and functional. Steel-like grays and bold, monospaced instructional type.',
-    styles: { primary: '#374151', bg: '#D1D5DB', border: 'border-4 border-slate-700 font-bold', font: 'font-mono', shadow: 'shadow-none', visualType: 'modern' }
+    styles: { primary: '#374151', bg: '#D1D5DB', border: 'border-4 border-slate-700 font-bold', font: 'font-mono', shadow: 'shadow-none', visualType: 'industrial' }
   },
   { 
     id: 'neumorphism', 
@@ -321,6 +321,6 @@ export const themes = [
     type: 'Sans', 
     icon: '🟣', 
     description: '70s and 80s inspired. Warm color palettes and groovy, rounded typography.',
-    styles: { primary: '#EA580C', bg: '#FEF3C7', border: 'border-4 border-[#EA580C]', font: 'font-heading', shadow: 'shadow-pop-sm', visualType: 'modern' }
+    styles: { primary: '#EA580C', bg: '#FEF3C7', border: 'border-4 border-black', font: 'font-sans', shadow: 'shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]', visualType: 'retro' }
   }
 ];

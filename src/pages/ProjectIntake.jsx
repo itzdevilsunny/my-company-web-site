@@ -124,21 +124,35 @@ const ProjectIntake = () => {
     
     try {
       if (formData.intakeMode === 'new') {
+        const browserInfo = `
+Browser: ${navigator.userAgent}
+Language: ${navigator.language}
+Platform: ${navigator.platform}
+Screen: ${window.screen.width}x${window.screen.height}
+        `.trim();
+
         const { error } = await supabase
           .from('project_inquiries')
           .insert([{
-            client_name: formData.name,
-            client_email: formData.email,
-            client_phone: formData.phone,
-            client_address: formData.address,
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            address: formData.address,
             project_type: formData.projectType,
             project_description: formData.projectDescription,
             project_timeline: formData.timeline,
             pricing_plan: formData.pricingPlan,
-            design_preference: formData.designPreference,
+            aesthetic: formData.designPreference, // Mapping to aesthetic column
             reference_url: formData.referenceUrl,
-            additional_requirements: formData.additionalRequirements,
-            contact_method: formData.contactMethod
+            additional_requirements: `
+${formData.additionalRequirements}
+
+--- SYSTEM_METADATA ---
+${browserInfo}
+            `.trim(),
+            contact_method: formData.contactMethod,
+            budget: formData.budget,
+            timeline: formData.timeline // Sending to both timeline columns for safety
           }]);
         
         if (error) throw error;

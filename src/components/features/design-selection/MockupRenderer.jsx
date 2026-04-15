@@ -14,7 +14,24 @@ const NeumorphicMockup = lazy(() => import('./mockups/NeumorphicMockup'));
 const OrganicMockup = lazy(() => import('./mockups/OrganicMockup'));
 const ModernMockup = lazy(() => import('./mockups/ModernMockup'));
 const KineticMockup = lazy(() => import('./mockups/KineticMockup'));
+const RetroMockup = lazy(() => import('./mockups/RetroMockup'));
 const MaximalismMockup = lazy(() => import('./mockups/MaximalismMockup'));
+const VaporwaveMockup = lazy(() => import('./mockups/VaporwaveMockup'));
+const IndustrialMockup = lazy(() => import('./mockups/IndustrialMockup'));
+const SwissMockup = lazy(() => import('./mockups/SwissMockup'));
+const ArtDecoMockup = lazy(() => import('./mockups/ArtDecoMockup'));
+const AcademiaMockup = lazy(() => import('./mockups/AcademiaMockup'));
+const MaterialMockup = lazy(() => import('./mockups/MaterialMockup'));
+
+const MinimalDarkMockup = lazy(() => import('./mockups/MinimalDarkMockup'));
+const ProfessionalMockup = lazy(() => import('./mockups/ProfessionalMockup'));
+const EnterpriseMockup = lazy(() => import('./mockups/EnterpriseMockup'));
+const MonochromeMockup = lazy(() => import('./mockups/MonochromeMockup'));
+const ModernDarkMockup = lazy(() => import('./mockups/ModernDarkMockup'));
+const FlatDesignMockup = lazy(() => import('./mockups/FlatDesignMockup'));
+const BoldTypographyMockup = lazy(() => import('./mockups/BoldTypographyMockup'));
+const Web3Mockup = lazy(() => import('./mockups/Web3Mockup'));
+const PlayfulMockup = lazy(() => import('./mockups/PlayfulMockup'));
 
 const mockupMap = {
   terminal: TerminalMockup,
@@ -30,6 +47,22 @@ const mockupMap = {
   modern: ModernMockup,
   kinetic: KineticMockup,
   maximalism: MaximalismMockup,
+  retro: RetroMockup,
+  vaporwave: VaporwaveMockup,
+  industrial: IndustrialMockup,
+  swiss: SwissMockup,
+  artdeco: ArtDecoMockup,
+  academia: AcademiaMockup,
+  material: MaterialMockup,
+  minimaldark: MinimalDarkMockup,
+  professional: ProfessionalMockup,
+  enterprise: EnterpriseMockup,
+  monochrome: MonochromeMockup,
+  moderndark: ModernDarkMockup,
+  flatdesign: FlatDesignMockup,
+  boldtypography: BoldTypographyMockup,
+  web3: Web3Mockup,
+  playful: PlayfulMockup,
 };
 
 const MockupRenderer = ({ theme }) => {

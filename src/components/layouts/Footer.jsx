@@ -108,7 +108,10 @@ const Footer = () => {
                 placeholder="ACCESS_EMAIL" 
                 className="w-full bg-white border-4 border-foreground rounded-full px-8 py-5 font-black text-xs uppercase tracking-widest focus:outline-none focus:shadow-pop-lg transition-all"
               />
-              <button className="absolute right-3 top-3 bottom-3 bg-foreground text-white px-6 rounded-full hover:bg-primary transition-all shadow-pop active:shadow-none font-black text-xs">
+              <button 
+                onClick={() => alert("Synchronizing with Core intelligence feed...")}
+                className="absolute right-3 top-3 bottom-3 bg-foreground text-white px-6 rounded-full hover:bg-primary transition-all shadow-pop active:shadow-none font-black text-xs"
+              >
                 SYNC
               </button>
            </div>
@@ -134,9 +137,9 @@ const Footer = () => {
         </div>
         
         <div className="flex gap-12 text-[10px] font-black uppercase tracking-[0.4em] text-foreground/40">
-          <a href="#" className="hover:text-primary transition-colors">Security Profile</a>
-          <a href="#" className="hover:text-primary transition-colors">Privacy Mesh</a>
-          <a href="#" className="hover:text-primary transition-colors">Terminals</a>
+          <Link to="/privacy" className="hover:text-primary transition-colors">Security Profile</Link>
+          <Link to="/privacy" className="hover:text-primary transition-colors">Privacy Mesh</Link>
+          <Link to="/careers" className="hover:text-primary transition-colors">Terminals</Link>
         </div>
       </div>
     </footer>

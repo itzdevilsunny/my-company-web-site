@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, Sparkles, Layout, CheckCircle2, Search, Monitor, Smartphone, Tablet } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -15,6 +15,16 @@ const DesignSelection = () => {
   const [typeFilter, setTypeFilter] = useState('All');
   const [searchTerm, setSearchTerm] = useState('');
   const [previewDevice, setPreviewDevice] = useState('desktop');
+  const scrollContainerRef = useRef(null);
+
+  useEffect(() => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+  }, [selectedThemeId]);
 
   const selectedTheme = useMemo(() => 
     themes.find(t => t.id === selectedThemeId) || themes[0],
@@ -168,7 +178,10 @@ const DesignSelection = () => {
               ))}
           </div>
 
-          <div className="flex-grow p-12 lg:p-20 overflow-y-auto custom-scrollbar flex flex-col items-center">
+          <div 
+            ref={scrollContainerRef}
+            className="flex-grow p-12 lg:p-20 overflow-y-auto custom-scrollbar flex flex-col items-center"
+          >
             <AnimatePresence mode="wait">
               <motion.div
                 key={selectedTheme.id}

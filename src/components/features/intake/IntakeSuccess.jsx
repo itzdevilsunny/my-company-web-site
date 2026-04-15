@@ -1,10 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { CheckCircle2, Home, ArrowRight, Star, Sparkles, Rocket } from 'lucide-react';
+import { CheckCircle2, Home, ArrowRight, Star, Sparkles, Rocket, Layout } from 'lucide-react';
 import Magnetic from '../../ui/Magnetic';
 import AnimatedText from '../../ui/AnimatedText';
+import { themes } from '../../../data/themes';
 
 const IntakeSuccess = ({ formData }) => {
+  const selectedThemeName = themes.find(t => t.id === formData.designPreference)?.name;
+
   return (
     <div className="min-h-screen flex items-center justify-center p-6 bg-transparent relative overflow-hidden">
       {/* Celebration Background Elements */}
@@ -62,6 +65,17 @@ const IntakeSuccess = ({ formData }) => {
               <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground block mb-2">Architect //</span>
               <p className="font-heading font-black text-lg truncate">{formData.name || formData.email}</p>
            </div>
+           {formData.intakeMode === 'new' && (
+             <div className="p-6 bg-muted/30 border-2 border-foreground/10 rounded-3xl text-left col-span-1 md:col-span-2 flex items-center justify-between">
+                <div>
+                  <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground block mb-2">Visual Archetype //</span>
+                  <p className="font-heading font-black text-lg">{selectedThemeName || formData.designPreference || 'Standard Protocol'}</p>
+                </div>
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary border-2 border-primary/20 shadow-pop-sm">
+                   <Layout size={24} />
+                </div>
+             </div>
+           )}
         </div>
 
         <Magnetic strength={0.4}>

@@ -20,12 +20,52 @@ const MaximalismMockup = ({ theme }) => {
     { Icon: Rocket, color: accents[0], size: 44, top: '60%', left: '5%', delay: 2.5 },
   ];
 
+  // Particle System
+  const particles = [...Array(30)].map((_, i) => ({
+    id: i,
+    size: Math.random() * 4 + 2,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    duration: Math.random() * 10 + 5,
+    delay: Math.random() * 5,
+    color: accents[i % accents.length]
+  }));
+
   return (
     <div className="h-full w-full relative bg-max-bg font-dm-sans overflow-hidden max-selection">
       {/* Texture Layering System */}
       <div className="absolute inset-0 pattern-max-dots opacity-20 pointer-events-none" />
       <div className="absolute inset-0 pattern-max-stripes opacity-10 pointer-events-none" />
       <div className="absolute inset-0 pattern-max-mesh opacity-30 pointer-events-none" />
+
+      {/* Dynamic Particles */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {particles.map(p => (
+          <motion.div
+            key={p.id}
+            className="absolute rounded-full"
+            style={{ 
+              width: p.size, 
+              height: p.size, 
+              left: `${p.x}%`, 
+              top: `${p.y}%`, 
+              backgroundColor: p.color,
+              filter: `blur(1px) drop-shadow(0 0 5px ${p.color})` 
+            }}
+            animate={{
+              y: [0, -100, 0],
+              opacity: [0, 0.8, 0],
+              scale: [0, 1.5, 0]
+            }}
+            transition={{
+              duration: p.duration,
+              repeat: Infinity,
+              delay: p.delay,
+              ease: "linear"
+            }}
+          />
+        ))}
+      </div>
 
       {/* Massive Background Typography */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden select-none">

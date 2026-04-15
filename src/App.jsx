@@ -4,6 +4,8 @@ import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/layouts/Navbar';
 import Home from './pages/Home';
 import About from './pages/About';
+import Careers from './pages/Careers';
+import Privacy from './pages/Privacy';
 import AdminDashboard from './pages/AdminDashboard';
 import ProjectIntake from './pages/ProjectIntake';
 import DesignSelection from './pages/DesignSelection';
@@ -15,6 +17,7 @@ import CommandPalette from './components/ui/CommandPalette';
 import ScrollProgress from './components/ui/ScrollProgress';
 import PageTransition from './components/ui/PageTransition';
 import CustomCursor from './components/ui/CustomCursor';
+import ScrollToTop from './components/ui/ScrollToTop';
 
 function AppContent() {
   const location = useLocation();
@@ -22,6 +25,7 @@ function AppContent() {
 
   return (
     <div className="app-container">
+      <ScrollToTop />
       <CustomCursor />
       <ScrollProgress />
       <ThreeBackground />
@@ -32,6 +36,8 @@ function AppContent() {
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<PageTransition><Home /></PageTransition>} />
             <Route path="/about" element={<PageTransition><About /></PageTransition>} />
+            <Route path="/careers" element={<PageTransition><Careers /></PageTransition>} />
+            <Route path="/privacy" element={<PageTransition><Privacy /></PageTransition>} />
             <Route path="/portfolio" element={<PageTransition><PortfolioPage /></PageTransition>} />
             <Route path="/designs" element={<PageTransition><DesignSelection /></PageTransition>} />
             <Route path="/start-project" element={<PageTransition><ProjectIntake /></PageTransition>} />

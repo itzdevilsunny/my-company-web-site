@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { supabaseAdmin as supabase } from '../lib/supabaseAdminClient';
+import { themes } from '../data/themes';
 import { 
   BarChart3, 
   Users, 
@@ -9,14 +10,14 @@ import {
   Trash2, 
   ChevronRight, 
   ShieldCheck, 
-  Briefcase,
-  ExternalLink,
-  MessageSquare,
-  Search,
-  Filter,
-  CheckCircle2,
-  Clock,
-  AlertCircle,
+  Briefcase, 
+  ExternalLink, 
+  MessageSquare, 
+  Search, 
+  Filter, 
+  CheckCircle2, 
+  Clock, 
+  AlertCircle, 
   Plus
 } from 'lucide-react';
 
@@ -26,6 +27,7 @@ const AdminDashboard = () => {
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [accessKey, setAccessKey] = useState("");
   const [activeTab, setActiveTab] = useState('inquiries'); // inquiries, updates, team, portfolio
+  const [employeeId, setEmployeeId] = useState(null);
   
   const [inquiries, setInquiries] = useState([]);
   const [updates, setUpdates] = useState([]);
@@ -36,6 +38,15 @@ const AdminDashboard = () => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [showAddForm, setShowAddForm] = useState(false);
+
+  useEffect(() => {
+    const isEmployeeAuth = localStorage.getItem('zorvia_employee_auth') === 'true';
+    const storedId = localStorage.getItem('zorvia_employee_id');
+    if (isEmployeeAuth) {
+      setIsAuthorized(true);
+      setEmployeeId(storedId);
+    }
+  }, []);
 
   // Form states
   const [teamForm, setTeamForm] = useState({ name: '', role: '', bio: '', image_url: '', theme_color: 'border-primary', linkedin: '', github: '', twitter: '' });
@@ -209,8 +220,8 @@ const AdminDashboard = () => {
                  <ShieldCheck size={24} />
               </div>
               <div>
-                 <h1 className="font-heading font-black text-lg tracking-tight">Admin Portal</h1>
-                 <p className="text-[10px] font-black text-primary uppercase tracking-widest">Active Station</p>
+                 <h1 className="font-heading font-black text-lg tracking-tight">{employeeId ? "Staff Portal" : "Admin Portal"}</h1>
+                 <p className="text-[10px] font-black text-primary uppercase tracking-widest">{employeeId || "Master Control"}</p>
               </div>
            </div>
 
@@ -238,6 +249,18 @@ const AdminDashboard = () => {
                 className={`w-full flex items-center gap-3 px-6 py-4 rounded-2xl font-heading font-black text-xs uppercase transition-all ${activeTab === 'portfolio' ? 'bg-foreground text-white shadow-pop' : 'hover:bg-muted'}`}
               >
                 <Briefcase size={18} /> Portfolio Assets
+              </button>
+              
+              <button 
+                onClick={() => {
+                  localStorage.removeItem('zorvia_employee_auth');
+                  localStorage.removeItem('zorvia_employee_id');
+                  setIsAuthorized(false);
+                }}
+                className="w-full flex items-center gap-3 px-6 py-4 rounded-2xl font-heading font-black text-[10px] uppercase text-red-500 hover:bg-red-500 hover:text-white transition-all border-2 border-dashed border-red-500/20 mt-12 group"
+              >
+                <Trash size={16} className="group-hover:rotate-12 transition-transform" /> 
+                Decommission Session
               </button>
            </nav>
         </div>
@@ -382,11 +405,11 @@ const AdminDashboard = () => {
                          onClick={() => activeTab === 'inquiries' || activeTab === 'updates' ? setSelectedItem(item) : null}
                        >
                           <td className="px-8 py-6">
-                             <p className="font-heading font-black tracking-tight">{item.client_name || item.name || (activeTab === 'updates' ? "Strategic Update" : "N/A")}</p>
+                             <p className="font-heading font-black tracking-tight">{item.name || (activeTab === 'updates' ? "Strategic Update" : "N/A")}</p>
                           </td>
                           <td className="px-8 py-6">
                              <p className="font-sans font-bold text-sm text-muted-foreground whitespace-nowrap">
-                               {activeTab === 'team' ? item.role : activeTab === 'portfolio' ? item.category : (item.client_email || item.email)}
+                               {activeTab === 'team' ? item.role : activeTab === 'portfolio' ? item.category : item.email}
                              </p>
                           </td>
                           <td className="px-8 py-6">
@@ -463,8 +486,8 @@ const AdminDashboard = () => {
                      <div className="flex justify-between items-start mb-12">
                         <div>
                            <p className="text-primary font-black text-[10px] uppercase tracking-[0.4em] mb-4">// Intelligence Detail</p>
-                           <h2 className="text-4xl font-heading font-black tracking-tighter leading-none">{selectedItem.client_name || selectedItem.name || "System Update"}</h2>
-                           <p className="text-lg font-sans font-bold text-muted-foreground mt-4">{selectedItem.client_email || selectedItem.email}</p>
+                           <h2 className="text-4xl font-heading font-black tracking-tighter leading-none">{selectedItem.name || "System Update"}</h2>
+                           <p className="text-lg font-sans font-bold text-muted-foreground mt-4">{selectedItem.email}</p>
                            <div className="flex gap-4 mt-2">
                               <span className="text-[10px] font-black uppercase opacity-40">ID: {selectedItem.id}</span>
                               <span className="text-[10px] font-black uppercase opacity-40">Timestamp: {new Date(selectedItem.created_at).toLocaleString()}</span>
@@ -497,6 +520,10 @@ const AdminDashboard = () => {
                                        <label className="block text-[8px] font-black uppercase opacity-40 mb-1">Pricing Tier</label>
                                        <p className="text-xs font-black uppercase">{selectedItem.pricing_plan || "Custom"}</p>
                                     </div>
+                                    <div className="p-4 bg-muted/20 border-2 border-foreground rounded-2xl shadow-pop-sm">
+                                       <label className="block text-[8px] font-black uppercase opacity-40 mb-1">Budget Bracket</label>
+                                       <p className="text-xs font-black uppercase">{selectedItem.budget || "N/A"}</p>
+                                    </div>
                                  </div>
                               </div>
                               <div className="space-y-6">
@@ -509,7 +536,9 @@ const AdminDashboard = () => {
                                        </div>
                                        <div>
                                           <p className="text-[10px] uppercase font-black opacity-60">Design Style</p>
-                                          <p className="font-sans font-bold text-sm italic">{selectedItem.design_preference || "Standard Protocol"}</p>
+                                          <p className="font-sans font-bold text-sm italic">
+                                             {themes.find(t => t.id === (selectedItem.aesthetic || selectedItem.design_preference))?.name || selectedItem.aesthetic || selectedItem.design_preference || "Standard Protocol"}
+                                          </p>
                                        </div>
                                        <div>
                                           <p className="text-[10px] uppercase font-black opacity-60">Reference URL</p>
@@ -522,8 +551,8 @@ const AdminDashboard = () => {
                                           )}
                                        </div>
                                        <div>
-                                          <p className="text-[10px] uppercase font-black opacity-60">Additional Requirements</p>
-                                          <p className="font-sans text-sm p-3 bg-muted/20 rounded-xl leading-relaxed">
+                                          <p className="text-[10px] uppercase font-black opacity-60">Additional Requirements & Meta</p>
+                                          <p className="font-sans text-sm p-3 bg-muted/20 rounded-xl leading-relaxed whitespace-pre-wrap">
                                              {selectedItem.additional_requirements || "No specific overrides requested."}
                                           </p>
                                        </div>
@@ -533,9 +562,9 @@ const AdminDashboard = () => {
                                  <div className="p-6 border-2 border-foreground rounded-2xl">
                                     <label className="block text-[8px] font-black uppercase opacity-40 mb-4">Targeting Details</label>
                                     <div className="space-y-3 font-sans text-xs font-bold">
-                                       <p className="flex justify-between"><span>Phone:</span> <span>{selectedItem.client_phone || selectedItem.phone || "N/A"}</span></p>
+                                       <p className="flex justify-between"><span>Phone:</span> <span>{selectedItem.phone || "N/A"}</span></p>
                                        <p className="flex justify-between"><span>Method:</span> <span>{selectedItem.contact_method || "Email"}</span></p>
-                                       <p className="flex justify-between items-start gap-4"><span>Address:</span> <span className="text-right opacity-60">{selectedItem.client_address || selectedItem.address || "Digital Nomad"}</span></p>
+                                       <p className="flex justify-between items-start gap-4"><span>Address:</span> <span className="text-right opacity-60">{selectedItem.address || "Digital Nomad"}</span></p>
                                     </div>
                                  </div>
 
@@ -552,15 +581,43 @@ const AdminDashboard = () => {
                                     >
                                        Activate Project
                                     </button>
+                                    <button 
+                                      onClick={() => {
+                                        if (window.confirm("Permanent deletion of intelligence record?")) {
+                                          handleDelete(selectedItem.id);
+                                          setSelectedItem(null);
+                                        }
+                                      }}
+                                      className="p-4 border-4 border-foreground rounded-2xl hover:bg-red-500 hover:text-white transition-all"
+                                      title="Purge Record"
+                                    >
+                                       <Trash2 size={20} />
+                                    </button>
                                  </div>
                               </div>
                            </>
                         ) : (
-                           <div className="col-span-2">
-                              <label className="block text-[8px] font-black uppercase text-secondary tracking-widest mb-4">Update Log</label>
-                              <p className="text-xl font-sans font-medium leading-relaxed p-8 bg-muted border-2 border-foreground/5 rounded-3xl whitespace-pre-wrap">
-                                 {selectedItem.update_note}
-                              </p>
+                           <div className="col-span-2 flex flex-col gap-8">
+                              <div>
+                                 <label className="block text-[8px] font-black uppercase text-secondary tracking-widest mb-4">Update Log</label>
+                                 <p className="text-xl font-sans font-medium leading-relaxed p-8 bg-muted border-2 border-foreground/5 rounded-3xl whitespace-pre-wrap">
+                                    {selectedItem.update_note}
+                                 </p>
+                              </div>
+                              <div className="flex justify-end">
+                                 <button 
+                                   onClick={() => {
+                                     if (window.confirm("Purge strategic update?")) {
+                                       handleDelete(selectedItem.id);
+                                       setSelectedItem(null);
+                                     }
+                                   }}
+                                   className="flex items-center gap-3 px-8 py-4 bg-red-50 text-red-600 border-4 border-red-200 rounded-2xl font-heading font-black text-[10px] uppercase tracking-widest hover:bg-red-600 hover:text-white hover:border-red-600 transition-all shadow-pop-sm"
+                                 >
+                                    <Trash2 size={16} />
+                                    Purge Update
+                                 </button>
+                              </div>
                            </div>
                         )}
                      </div>
