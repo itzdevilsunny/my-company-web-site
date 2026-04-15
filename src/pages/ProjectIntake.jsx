@@ -30,8 +30,8 @@ const ProjectIntake = () => {
     intakeMode: 'new', // 'new' or 'update'
     name: '',
     email: '',
-    phone: '',
-    whatsapp: '',
+    phone: '+91 ',
+    whatsapp: '+91 ',
     address: '',
     updateNote: '',
     projectType: '',
