@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Star, Zap, Coffee, Music, Camera, Heart, Sun, CloudRainbow } from 'lucide-react';
+import { Star, Zap, Coffee, Music, Camera, Heart, Sun, Rainbow } from 'lucide-react';
 
 const RetroMockup = ({ theme }) => {
   return (
@@ -76,7 +76,7 @@ const RetroMockup = ({ theme }) => {
                
                <div className="w-full h-64 bg-[#FEF3C7] border-4 border-black rounded-[2rem] mb-6 flex items-center justify-center overflow-hidden relative">
                   <div className="absolute inset-0 bg-gradient-to-br from-[#EA580C]/20 to-transparent" />
-                  <CloudRainbow size={120} className="text-[#991B1B] relative z-10" />
+                  <Rainbow size={120} className="text-[#991B1B] relative z-10" />
                </div>
 
                <div className="space-y-4">

@@ -30,6 +30,7 @@ const AdminDashboard = () => {
   const [employeeId, setEmployeeId] = useState(null);
   
   const [inquiries, setInquiries] = useState([]);
+  const [applications, setApplications] = useState([]);
   const [updates, setUpdates] = useState([]);
   const [team, setTeam] = useState([]);
   const [portfolio, setPortfolio] = useState([]);
@@ -61,14 +62,16 @@ const AdminDashboard = () => {
   const fetchData = async () => {
     setIsLoading(true);
     try {
-      const [inqRes, updRes, teamRes, portRes] = await Promise.all([
+      const [inqRes, appRes, updRes, teamRes, portRes] = await Promise.all([
         supabase.from('project_inquiries').select('*').order('created_at', { ascending: false }),
+        supabase.from('job_applications').select('*').order('created_at', { ascending: false }),
         supabase.from('strategic_updates').select('*').order('created_at', { ascending: false }),
         supabase.from('team_members').select('*').order('created_at', { ascending: false }),
         supabase.from('portfolio_projects').select('*').order('created_at', { ascending: false })
       ]);
 
       setInquiries(inqRes.data || []);
+      setApplications(appRes.data || []);
       setUpdates(updRes.data || []);
       setTeam(teamRes.data || []);
       setPortfolio(portRes.data || []);
@@ -200,6 +203,7 @@ const AdminDashboard = () => {
 
   const getActiveData = () => {
     if (activeTab === 'inquiries') return inquiries;
+    if (activeTab === 'applications') return applications;
     if (activeTab === 'updates') return updates;
     if (activeTab === 'team') return team;
     if (activeTab === 'portfolio') return portfolio;
@@ -231,6 +235,12 @@ const AdminDashboard = () => {
                 className={`w-full flex items-center gap-3 px-6 py-4 rounded-2xl font-heading font-black text-xs uppercase transition-all ${activeTab === 'inquiries' ? 'bg-foreground text-white shadow-pop' : 'hover:bg-muted'}`}
               >
                 <Layers size={18} /> Project Inquiries
+              </button>
+              <button 
+                onClick={() => { setActiveTab('applications'); setShowAddForm(false); }}
+                className={`w-full flex items-center gap-3 px-6 py-4 rounded-2xl font-heading font-black text-xs uppercase transition-all ${activeTab === 'applications' ? 'bg-foreground text-white shadow-pop' : 'hover:bg-muted'}`}
+              >
+                <Briefcase size={18} /> Job Applications
               </button>
               <button 
                 onClick={() => { setActiveTab('updates'); setShowAddForm(false); }}
@@ -377,16 +387,16 @@ const AdminDashboard = () => {
                  <thead>
                     <tr className="bg-muted/30 border-b-2 border-foreground">
                        <th className="px-8 py-6 font-heading font-black text-[10px] uppercase tracking-widest">
-                         {activeTab === 'team' || activeTab === 'portfolio' ? 'Identifier' : 'Technological Lead'}
+                         {activeTab === 'team' || activeTab === 'portfolio' ? 'Identifier' : activeTab === 'applications' ? 'Candidate' : 'Technological Lead'}
                        </th>
                        <th className="px-8 py-6 font-heading font-black text-[10px] uppercase tracking-widest">
-                         {activeTab === 'team' ? 'Role' : activeTab === 'portfolio' ? 'Category' : 'Contact Identity'}
+                         {activeTab === 'team' ? 'Role' : activeTab === 'portfolio' ? 'Category' : activeTab === 'applications' ? 'Role Applied' : 'Contact Identity'}
                        </th>
                        <th className="px-8 py-6 font-heading font-black text-[10px] uppercase tracking-widest">
-                         {activeTab === 'team' || activeTab === 'portfolio' ? 'Details' : 'Category'}
+                         {activeTab === 'team' || activeTab === 'portfolio' ? 'Details' : activeTab === 'applications' ? 'Team' : 'Category'}
                        </th>
                        <th className="px-8 py-6 font-heading font-black text-[10px] uppercase tracking-widest min-w-[150px]">
-                         {activeTab === 'team' || activeTab === 'portfolio' ? 'Links' : 'Deployment Status'}
+                         {activeTab === 'team' || activeTab === 'portfolio' ? 'Links' : activeTab === 'applications' ? 'Phone' : 'Deployment Status'}
                        </th>
                        <th className="px-8 py-6 font-heading font-black text-[10px] uppercase tracking-widest">Time Sync</th>
                        <th className="px-8 py-6 font-heading font-black text-[10px] uppercase tracking-widest">Actions</th>
@@ -402,19 +412,23 @@ const AdminDashboard = () => {
                          animate={{ opacity: 1 }}
                          exit={{ opacity: 0, scale: 0.95 }}
                          className="border-b border-foreground/5 hover:bg-muted/20 transition-colors group cursor-pointer"
-                         onClick={() => activeTab === 'inquiries' || activeTab === 'updates' ? setSelectedItem(item) : null}
+                         onClick={() => activeTab === 'inquiries' || activeTab === 'updates' || activeTab === 'applications' ? setSelectedItem(item) : null}
                        >
                           <td className="px-8 py-6">
                              <p className="font-heading font-black tracking-tight">{item.name || (activeTab === 'updates' ? "Strategic Update" : "N/A")}</p>
                           </td>
                           <td className="px-8 py-6">
                              <p className="font-sans font-bold text-sm text-muted-foreground whitespace-nowrap">
-                               {activeTab === 'team' ? item.role : activeTab === 'portfolio' ? item.category : item.email}
+                               {activeTab === 'team' ? item.role : activeTab === 'portfolio' ? item.category : activeTab === 'applications' ? item.role : item.email}
                              </p>
                           </td>
                           <td className="px-8 py-6">
                              {activeTab === 'team' || activeTab === 'portfolio' ? (
                                 <p className="text-xs font-medium text-muted-foreground line-clamp-1 max-w-[200px]">{item.bio || item.description}</p>
+                             ) : activeTab === 'applications' ? (
+                                <span className="px-4 py-1.5 bg-secondary border-2 border-foreground/10 rounded-full text-[9px] font-black uppercase tracking-widest whitespace-nowrap text-white">
+                                   {item.team || "N/A"}
+                                </span>
                              ) : (
                                 <span className="px-4 py-1.5 bg-quaternary border-2 border-foreground/10 rounded-full text-[9px] font-black uppercase tracking-widest whitespace-nowrap">
                                    {item.project_type || "Update"}
@@ -427,6 +441,8 @@ const AdminDashboard = () => {
                                    <div className={`w-2 h-2 rounded-full ${item.status === 'contacted' ? 'bg-secondary' : item.status === 'active' ? 'bg-primary' : 'bg-muted-foreground'}`} />
                                    <p className="text-[10px] font-black uppercase opacity-60">{item.status || 'new'}</p>
                                 </div>
+                             ) : activeTab === 'applications' ? (
+                                <p className="text-xs font-bold opacity-60">{item.phone}</p>
                              ) : activeTab === 'team' || activeTab === 'portfolio' ? (
                                 <span className="text-xs font-bold text-primary max-w-xs block truncate pr-4 text-ellipsis overflow-hidden">Active</span>
                              ) : (
@@ -442,7 +458,7 @@ const AdminDashboard = () => {
                              <button 
                                onClick={(e) => { 
                                  e.stopPropagation(); 
-                                 const tableMapping = { 'inquiries': 'project_inquiries', 'updates': 'strategic_updates', 'team': 'team_members', 'portfolio': 'portfolio_projects' };
+                                 const tableMapping = { 'inquiries': 'project_inquiries', 'applications': 'job_applications', 'updates': 'strategic_updates', 'team': 'team_members', 'portfolio': 'portfolio_projects' };
                                  handleDelete(tableMapping[activeTab], item.id); 
                                }}
                                className="p-2 text-muted-foreground hover:text-secondary hover:bg-secondary/10 rounded-lg transition-colors border-2 border-transparent hover:border-secondary"
@@ -465,9 +481,9 @@ const AdminDashboard = () => {
         </div>
       </main>
 
-      {/* Detail View Modal for Inquiries & Updates Only */}
+      {/* Detail View Modal for Inquiries, Applications & Updates */}
       <AnimatePresence>
-         {selectedItem && (activeTab === 'inquiries' || activeTab === 'updates') && (
+         {selectedItem && (activeTab === 'inquiries' || activeTab === 'updates' || activeTab === 'applications') && (
             <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 lg:p-12">
                <motion.div 
                  initial={{ opacity: 0 }}
@@ -486,7 +502,7 @@ const AdminDashboard = () => {
                      <div className="flex justify-between items-start mb-12">
                         <div>
                            <p className="text-primary font-black text-[10px] uppercase tracking-[0.4em] mb-4">// Intelligence Detail</p>
-                           <h2 className="text-4xl font-heading font-black tracking-tighter leading-none">{selectedItem.name || "System Update"}</h2>
+                           <h2 className="text-4xl font-heading font-black tracking-tighter leading-none">{selectedItem.name || (activeTab === 'updates' ? "System Update" : "Candidate")}</h2>
                            <p className="text-lg font-sans font-bold text-muted-foreground mt-4">{selectedItem.email}</p>
                            <div className="flex gap-4 mt-2">
                               <span className="text-[10px] font-black uppercase opacity-40">ID: {selectedItem.id}</span>
@@ -507,7 +523,7 @@ const AdminDashboard = () => {
                               <div className="space-y-8">
                                  <div>
                                     <label className="block text-[8px] font-black uppercase text-secondary tracking-widest mb-2">Project Vision</label>
-                                    <p className="font-sans font-medium leading-relaxed bg-muted/30 p-6 border-2 border-foreground/5 rounded-2xl">
+                                    <p className="font-sans font-medium leading-relaxed bg-muted/30 p-6 border-2 border-foreground/5 rounded-2xl whitespace-pre-wrap">
                                        {selectedItem.project_description || "No project blueprint provided."}
                                     </p>
                                  </div>
@@ -584,7 +600,7 @@ const AdminDashboard = () => {
                                     <button 
                                       onClick={() => {
                                         if (window.confirm("Permanent deletion of intelligence record?")) {
-                                          handleDelete(selectedItem.id);
+                                          handleDelete('project_inquiries', selectedItem.id);
                                           setSelectedItem(null);
                                         }
                                       }}
@@ -592,6 +608,81 @@ const AdminDashboard = () => {
                                       title="Purge Record"
                                     >
                                        <Trash2 size={20} />
+                                    </button>
+                                 </div>
+                              </div>
+                           </>
+                        ) : activeTab === 'applications' ? (
+                           <>
+                              <div className="space-y-8">
+                                 <div>
+                                    <label className="block text-[8px] font-black uppercase text-secondary tracking-widest mb-2">Cover Note</label>
+                                    <p className="font-sans font-medium leading-relaxed bg-muted/30 p-6 border-2 border-foreground/5 rounded-2xl whitespace-pre-wrap">
+                                       {selectedItem.message || "No cover note provided."}
+                                    </p>
+                                 </div>
+                                 <div className="grid grid-cols-2 gap-4">
+                                    <div className="p-4 bg-muted/20 border-2 border-foreground rounded-2xl shadow-pop-sm">
+                                       <label className="block text-[8px] font-black uppercase opacity-40 mb-1">Role Applied</label>
+                                       <p className="text-xs font-black uppercase">{selectedItem.role || "TBD"}</p>
+                                    </div>
+                                    <div className="p-4 bg-muted/20 border-2 border-foreground rounded-2xl shadow-pop-sm">
+                                       <label className="block text-[8px] font-black uppercase opacity-40 mb-1">Team</label>
+                                       <p className="text-xs font-black uppercase">{selectedItem.team || "N/A"}</p>
+                                    </div>
+                                    <div className="p-4 bg-muted/20 border-2 border-foreground rounded-2xl shadow-pop-sm">
+                                       <label className="block text-[8px] font-black uppercase opacity-40 mb-1">Location</label>
+                                       <p className="text-xs font-black uppercase">{selectedItem.location || "Remote"}</p>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div className="space-y-6">
+                                 <div className="p-6 bg-muted/10 border-2 border-foreground/10 rounded-2xl">
+                                    <label className="block text-[8px] font-black uppercase opacity-40 mb-3">Professional Assets</label>
+                                    <div className="space-y-4">
+                                       <div>
+                                          <p className="text-[10px] uppercase font-black opacity-60">Portfolio URL</p>
+                                          {selectedItem.portfolio_url ? (
+                                             <a href={selectedItem.portfolio_url} target="_blank" rel="noopener noreferrer" className="font-sans font-bold text-sm text-primary underline underline-offset-4 overflow-hidden break-all flex items-center gap-2">
+                                                {selectedItem.portfolio_url} <ExternalLink size={12} />
+                                             </a>
+                                          ) : (
+                                             <p className="font-sans font-bold text-sm opacity-40 italic">None Provided</p>
+                                          )}
+                                       </div>
+                                       <div>
+                                          <p className="text-[10px] uppercase font-black opacity-60">Resume / LinkedIn</p>
+                                          {selectedItem.resume_url ? (
+                                             <a href={selectedItem.resume_url} target="_blank" rel="noopener noreferrer" className="font-sans font-bold text-sm text-primary underline underline-offset-4 overflow-hidden break-all flex items-center gap-2">
+                                                {selectedItem.resume_url} <ExternalLink size={12} />
+                                             </a>
+                                          ) : (
+                                             <p className="font-sans font-bold text-sm opacity-40 italic">None Provided</p>
+                                          )}
+                                       </div>
+                                    </div>
+                                 </div>
+
+                                 <div className="p-6 border-2 border-foreground rounded-2xl">
+                                    <label className="block text-[8px] font-black uppercase opacity-40 mb-4">Candidate Contact</label>
+                                    <div className="space-y-3 font-sans text-xs font-bold">
+                                       <p className="flex justify-between"><span>Phone:</span> <span>{selectedItem.phone || "N/A"}</span></p>
+                                       <p className="flex justify-between"><span>Email:</span> <span>{selectedItem.email || "N/A"}</span></p>
+                                    </div>
+                                 </div>
+
+                                 <div className="flex justify-end">
+                                    <button 
+                                      onClick={() => {
+                                        if (window.confirm("Purge job application record?")) {
+                                          handleDelete('job_applications', selectedItem.id);
+                                          setSelectedItem(null);
+                                        }
+                                      }}
+                                      className="flex items-center gap-3 px-8 py-4 bg-red-50 text-red-600 border-4 border-red-200 rounded-2xl font-heading font-black text-[10px] uppercase tracking-widest hover:bg-red-600 hover:text-white hover:border-red-600 transition-all shadow-pop-sm"
+                                    >
+                                       <Trash2 size={16} />
+                                       Purge Application
                                     </button>
                                  </div>
                               </div>
@@ -608,7 +699,7 @@ const AdminDashboard = () => {
                                  <button 
                                    onClick={() => {
                                      if (window.confirm("Purge strategic update?")) {
-                                       handleDelete(selectedItem.id);
+                                       handleDelete('strategic_updates', selectedItem.id);
                                        setSelectedItem(null);
                                      }
                                    }}

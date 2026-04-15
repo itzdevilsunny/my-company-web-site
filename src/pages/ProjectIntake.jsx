@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Send, ArrowRight, ArrowLeft, CheckCircle2, AlertCircle } from 'lucide-react';
 import AnimatedText from '../components/ui/AnimatedText';
 import { supabase } from '../lib/supabaseClient';
+import Magnetic from '../components/ui/Magnetic';
+import { themes } from '../data/themes';
 
 // Step Components
 import IntakeStepBasic from '../components/features/intake/IntakeStepBasic';

@@ -68,6 +68,32 @@ serve(async (req) => {
           </blockquote>
         </div>
       `
+    } else if (table === 'job_applications') {
+      subject = `[CAREER] New Job Application: ${record.name || 'Unknown Candidate'}`
+      htmlContent = `
+        <div style="font-family: Arial, sans-serif; background-color: #f8f9fa; padding: 20px;">
+          <div style="max-w-xl p-8 bg-white border border-gray-200 rounded-xl shadow-lg">
+            <h2 style="color: #0e0a17; border-bottom: 2px solid #3b82f6; padding-bottom: 10px; margin-bottom: 20px;">💼 New Job Application</h2>
+            
+            <p><strong>Candidate:</strong> ${record.name || 'N/A'}</p>
+            <p><strong>Role Applied:</strong> ${record.role || 'N/A'}</p>
+            <p><strong>Team:</strong> ${record.team || 'N/A'}</p>
+            <p><strong>Email:</strong> ${record.email || 'N/A'}</p>
+            <p><strong>Phone:</strong> ${record.phone || 'N/A'}</p>
+            
+            <h3 style="color: #3b82f6; margin-top: 30px;">Professional Assets</h3>
+            <p><strong>Portfolio:</strong> <a href="${record.portfolio_url || '#'}">${record.portfolio_url || 'None'}</a></p>
+            <p><strong>Resume/LinkedIn:</strong> <a href="${record.resume_url || '#'}">${record.resume_url || 'None'}</a></p>
+            
+            <div style="background-color: #f1f5f9; padding: 15px; border-radius: 8px; margin-top: 20px;">
+              <p style="margin:0; font-weight: bold; color: #334155;">Cover Note:</p>
+              <p style="margin-top:5px; color: #0a0a0a;">${record.message || 'N/A'}</p>
+            </div>
+            
+            <p style="margin-top:30px; font-size: 12px; color: #9ca3af;">Please check the <a href="https://zorvia.agency/zorvia-hq">Zorvia Command Center</a> for full details.</p>
+          </div>
+        </div>
+      `
     } else {
       return new Response(JSON.stringify({ message: "Table not supported for emails." }), {
         headers: { "Content-Type": "application/json" },
