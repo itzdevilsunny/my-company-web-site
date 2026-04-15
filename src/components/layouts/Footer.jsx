@@ -63,12 +63,12 @@ const Footer = () => {
 
         <div className="grid grid-cols-2 lg:grid-cols-2 gap-8 lg:gap-12 lg:col-span-1">
           <div className="flex flex-col gap-4 lg:gap-6">
-            <h4 className="font-heading font-black text-[10px] lg:text-sm text-foreground uppercase tracking-[0.3em] mb-2 lg:mb-4 opacity-30">Nodes //</h4>
+            <h4 className="font-heading font-black text-[10px] lg:text-sm text-foreground uppercase tracking-[0.3em] mb-2 lg:mb-4 opacity-30">Explore //</h4>
             {[
-              { name: 'Solutions', url: '/#services' },
-              { name: 'Ecosystems', url: '/portfolio' },
-              { name: 'Designs', url: '/designs' },
-              { name: 'Pricing', url: '/#pricing' }
+              { name: 'Services', url: '/#services' },
+              { name: 'Portfolio', url: '/portfolio' },
+              { name: 'Themes', url: '/designs' },
+              { name: 'Plans', url: '/#pricing' }
             ].map((link) => (
               <Link key={link.name} to={link.url} className="text-foreground hover:text-primary font-black text-xs lg:text-sm uppercase tracking-widest transition-colors flex items-center gap-2 group">
                 <span className="w-0 group-hover:w-4 transition-all overflow-hidden text-primary">→</span>
@@ -78,12 +78,12 @@ const Footer = () => {
           </div>
 
           <div className="flex flex-col gap-4 lg:gap-6">
-            <h4 className="font-heading font-black text-[10px] lg:text-sm text-foreground uppercase tracking-[0.3em] mb-2 lg:mb-4 opacity-30">Identity //</h4>
+            <h4 className="font-heading font-black text-[10px] lg:text-sm text-foreground uppercase tracking-[0.3em] mb-2 lg:mb-4 opacity-30">Company //</h4>
             {[
-              { name: 'Collective', url: '/about' },
-              { name: 'Command', url: '/#contact' },
+              { name: 'About Us', url: '/about' },
+              { name: 'Contact', url: '/#contact' },
               { name: 'Careers', url: '/careers' },
-              { name: 'Employee Portal', url: '/employee-login' }
+              { name: 'Team Portal', url: '/employee-login' }
             ].map((link) => (
               <Link key={link.name} to={link.url} className="text-foreground hover:text-secondary font-black text-xs lg:text-sm uppercase tracking-widest transition-colors flex items-center gap-2 group">
                 <span className="w-0 group-hover:w-4 transition-all overflow-hidden text-secondary">→</span>
@@ -99,22 +99,22 @@ const Footer = () => {
            </div>
            
            <div>
-              <h4 className="text-xl lg:text-2xl font-heading font-black mb-2 uppercase italic leading-none">Join Core //</h4>
+              <h4 className="text-xl lg:text-2xl font-heading font-black mb-2 uppercase italic leading-none">Stay Updated //</h4>
               <p className="text-xs lg:text-sm font-bold text-muted-foreground leading-relaxed">
-                Synchronize with our intelligence feed.
+                Get the latest news and design insights from Zorvia.
               </p>
            </div>
            <div className="relative z-10 flex flex-col gap-3">
               <input 
                 type="email" 
-                placeholder="ACCESS_EMAIL" 
+                placeholder="your@email.com" 
                 className="w-full bg-white border-2 border-foreground rounded-full px-6 lg:px-8 py-3 lg:py-4 font-black text-[10px] lg:text-xs uppercase tracking-widest focus:outline-none focus:shadow-pop transition-all"
               />
               <button 
-                onClick={() => alert("Synchronizing with Core intelligence feed...")}
+                onClick={() => alert("Subscribing to Zorvia updates...")}
                 className="w-full bg-foreground text-white py-4 rounded-full hover:bg-primary transition-all shadow-pop active:shadow-none font-black text-xs uppercase tracking-widest"
               >
-                SYNCHRONIZE
+                SUBSCRIBE
               </button>
            </div>
         </div>
@@ -123,7 +123,7 @@ const Footer = () => {
       <div className="mt-16 lg:mt-24 pt-8 lg:pt-10 border-t-2 border-foreground/10 flex flex-col lg:flex-row justify-between items-center gap-10 relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12 text-center">
           <p className="text-[10px] lg:text-xs font-black uppercase tracking-[0.3em] text-muted-foreground">
-            © 2026 ZORVIA ARCHITECTS. HAND-WELDED IN BLR.
+            © 2026 ZORVIA ARCHITECTS. CRAFTED IN BENGALURU.
           </p>
           <div className="flex items-center gap-4 lg:gap-8 bg-muted/30 px-4 lg:px-6 py-2 rounded-full border border-foreground/5 shadow-inner">
              <div className="flex items-center gap-2">
@@ -139,9 +139,9 @@ const Footer = () => {
         </div>
         
         <div className="flex flex-wrap justify-center gap-6 lg:gap-12 text-[8px] lg:text-[10px] font-black uppercase tracking-[0.4em] text-foreground/40">
-          <Link to="/privacy" className="hover:text-primary transition-colors">Security Profile</Link>
-          <Link to="/privacy" className="hover:text-primary transition-colors">Privacy Mesh</Link>
-          <Link to="/careers" className="hover:text-primary transition-colors">Terminals</Link>
+          <Link to="/privacy" className="hover:text-primary transition-colors">Security</Link>
+          <Link to="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
+          <Link to="/careers" className="hover:text-primary transition-colors">Careers</Link>
         </div>
       </div>
     </footer>
