@@ -8,7 +8,7 @@ const CommandPalette = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [messages, setMessages] = useState([
-    { role: 'assistant', content: 'Greeting. I am the Zorvia Architect. How can I assist your digital evolution today?' }
+    { role: 'assistant', content: 'Namaste! I am the Zorvia Architect. I help visionary clients build the future. Need to see our work or start your own revolution?' }
   ]);
   const [isTyping, setIsTyping] = useState(false);
   const navigate = useNavigate();
