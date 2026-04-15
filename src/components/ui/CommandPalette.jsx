@@ -61,7 +61,9 @@ const CommandPalette = () => {
         if (response.error) {
             setMessages(prev => [...prev, { role: 'assistant', content: `System Error: ${response.error}` }]);
         } else {
-            setMessages(prev => [...prev, response]);
+            // Sanitize response to remove markdown artifacts (asterisks)
+            const cleanContent = response.content.replace(/\*\*/g, '').replace(/\*/g, '');
+            setMessages(prev => [...prev, { ...response, content: cleanContent }]);
         }
     } catch (error) {
         setMessages(prev => [...prev, { role: 'assistant', content: 'Apologies, my synaptic link is flickering. Please try again.' }]);
