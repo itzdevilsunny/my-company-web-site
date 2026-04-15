@@ -63,7 +63,7 @@ const Careers = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white pt-40 pb-20 px-6 lg:px-24">
+    <div className="min-h-screen bg-white pt-24 lg:pt-32 pb-16 px-6 lg:px-12">
       <div className="max-w-4xl mx-auto">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -71,10 +71,10 @@ const Careers = () => {
           className="mb-20"
         >
           <span className="inline-block px-4 py-1 bg-black text-white font-black uppercase mb-6 shadow-pop-sm">Hiring // v4.2</span>
-          <h1 className="text-7xl lg:text-9xl font-heading font-black tracking-tighter uppercase italic leading-none mb-8">
+          <h1 className="text-4xl sm:text-6xl lg:text-8xl font-heading font-black tracking-tighter uppercase italic leading-none mb-6 lg:mb-8">
             Join the <br/> <span className="text-primary">Collective.</span>
           </h1>
-          <p className="text-2xl font-bold text-muted-foreground leading-tight max-w-2xl">
+          <p className="text-xl lg:text-2xl font-bold text-muted-foreground leading-tight max-w-2xl">
             We are looking for wildly optimistic individuals who want to architect the future of digital infrastructure.
           </p>
         </motion.div>
@@ -86,7 +86,7 @@ const Careers = () => {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: i * 0.1 }}
-              className="p-8 border-4 border-foreground rounded-[2rem] flex flex-col md:flex-row justify-between items-start md:items-center gap-6 group hover:bg-slate-50 transition-all cursor-pointer shadow-pop-sm hover:shadow-pop"
+              className="p-6 lg:p-8 border-2 border-foreground rounded-2xl lg:rounded-3xl flex flex-col md:flex-row justify-between items-start md:items-center gap-6 group hover:bg-slate-50 transition-all cursor-pointer shadow-pop-sm hover:shadow-pop"
             >
               <div>
                 <div className="flex items-center gap-3 mb-2">
@@ -94,7 +94,7 @@ const Careers = () => {
                   <span className="w-1 h-1 rounded-full bg-slate-300" />
                   <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">{pos.type}</span>
                 </div>
-                <h3 className="text-3xl font-heading font-black uppercase italic">{pos.title}</h3>
+                <h3 className="text-2xl lg:text-3xl font-heading font-black uppercase italic">{pos.title}</h3>
                 <p className="text-sm font-bold opacity-40 uppercase tracking-widest mt-1">{pos.location}</p>
               </div>
               
@@ -105,22 +105,23 @@ const Careers = () => {
                 >
                   Apply Now
                   <ArrowRight size={16} />
+                  <ArrowRight size={14} />
                 </button>
               </Magnetic>
             </motion.div>
           ))}
         </div>
 
-        <div className="mt-32 p-12 bg-secondary/10 border-4 border-foreground rounded-[3rem] text-center relative overflow-hidden">
+        <div className="mt-12 lg:mt-16 p-6 lg:p-10 bg-secondary/10 border border-foreground rounded-2xl lg:rounded-[2rem] text-center relative overflow-hidden">
            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(#ec4899_1px,transparent_1px)] bg-[size:20px_20px] opacity-10" />
            <div className="relative z-10">
-              <h4 className="text-4xl font-heading font-black mb-6 uppercase italic">Don't see your role?</h4>
-              <p className="text-lg font-bold text-muted-foreground mb-10 max-w-xl mx-auto">
+              <h4 className="text-xl lg:text-3xl font-heading font-black mb-3 uppercase italic">Don't see your role?</h4>
+              <p className="text-base font-bold text-muted-foreground mb-8 max-w-xl mx-auto">
                 We're always looking for exceptional talent. Send your portfolio to our intelligence unit.
               </p>
               <button 
                 onClick={() => handleApply({ title: 'General Inquiry', team: 'Talent', type: 'Open', location: 'Remote' })}
-                className="px-12 py-6 bg-white border-4 border-foreground rounded-full font-black uppercase tracking-widest shadow-pop hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all"
+                className="px-8 lg:px-12 py-4 lg:py-6 bg-white border-2 border-foreground rounded-full font-black uppercase tracking-widest shadow-pop hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all"
               >
                 General Inquiry
               </button>
@@ -140,9 +141,9 @@ const Careers = () => {
               initial={{ scale: 0.9, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
-              className="bg-white border-4 border-foreground rounded-[3rem] w-full max-w-2xl overflow-hidden shadow-pop-lg flex flex-col max-h-[90vh]"
+              className="bg-white border-2 border-foreground rounded-3xl lg:rounded-[3rem] w-full max-w-2xl overflow-hidden shadow-pop-lg flex flex-col max-h-[90vh]"
             >
-              <div className="p-8 border-b-4 border-foreground flex justify-between items-center bg-primary text-white sticky top-0 z-20">
+              <div className="p-6 border-b-2 border-foreground flex justify-between items-center bg-primary text-white sticky top-0 z-20">
                 <div>
                   <h2 className="text-xl lg:text-3xl font-heading font-black uppercase italic leading-none">Apply // {selectedPosition.title}</h2>
                   <p className="text-[8px] lg:text-[10px] font-black uppercase tracking-[0.3em] mt-2 opacity-80">{selectedPosition.team} // {selectedPosition.location}</p>

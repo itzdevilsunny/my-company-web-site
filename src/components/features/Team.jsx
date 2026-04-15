@@ -33,7 +33,7 @@ const Team = ({ teaser = false }) => {
   const displayTeam = teaser ? team.slice(0, 3) : team;
 
   return (
-    <section className="px-6 lg:px-24 py-32 bg-white relative overflow-hidden" id="team">
+    <section className="px-6 lg:px-12 py-16 lg:py-24 bg-white relative overflow-hidden" id="team">
       <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -mr-32 -mt-32" />
       
       <div className="max-w-7xl mx-auto relative z-10">
@@ -45,7 +45,7 @@ const Team = ({ teaser = false }) => {
           >
             // Human Intelligence
           </motion.div>
-          <h2 className="text-5xl lg:text-7xl font-heading text-foreground tracking-tighter leading-none mb-6">
+          <h2 className="text-3xl lg:text-5xl font-heading text-foreground tracking-tighter leading-none mb-4">
             Meet the <span className="text-primary italic">Zorvians.</span>
           </h2>
           <p className="text-muted-foreground font-sans max-w-xl mx-auto font-medium">
@@ -74,12 +74,12 @@ const Team = ({ teaser = false }) => {
                 whileHover={{ y: -10 }}
                 className="group relative"
               >
-                <div className={`p-8 bg-white border-4 border-foreground rounded-[2.5rem] shadow-pop hover:shadow-pop-lg transition-all flex flex-col items-center text-center h-full`}>
-                  <div className={`w-32 h-32 rounded-3xl border-4 ${member.theme_color} shadow-pop mb-8 overflow-hidden group-hover:rotate-6 transition-transform flex-shrink-0 bg-muted`}>
+                <div className={`p-6 bg-white border-2 border-foreground rounded-3xl shadow-pop hover:shadow-pop transition-all flex flex-col items-center text-center h-full`}>
+                  <div className={`w-24 h-24 rounded-2xl border-2 ${member.theme_color} shadow-pop mb-6 overflow-hidden group-hover:rotate-6 transition-transform flex-shrink-0 bg-muted`}>
                     <img src={member.image_url} alt={member.name} className="w-full h-full object-cover" />
                   </div>
                   
-                  <h3 className="text-2xl font-heading font-black mb-1">{member.name}</h3>
+                  <h3 className="text-xl font-heading font-black mb-1">{member.name}</h3>
                   <p className="text-primary font-black text-[10px] uppercase tracking-widest mb-4">
                     {member.role}
                   </p>
@@ -117,7 +117,7 @@ const Team = ({ teaser = false }) => {
               >
                 <button 
                   onClick={() => window.location.href = '/about'}
-                  className="w-full p-8 border-4 border-foreground border-dashed rounded-[2.5rem] flex flex-col items-center justify-center text-center hover:bg-muted transition-all group h-full"
+                  className="w-full p-6 border-2 border-foreground border-dashed rounded-3xl flex flex-col items-center justify-center text-center hover:bg-muted transition-all group h-full"
                 >
                   <div className="w-16 h-16 bg-muted rounded-2xl flex items-center justify-center mb-6 border-2 border-foreground group-hover:bg-primary group-hover:text-white transition-colors">
                     <Mail size={32} />

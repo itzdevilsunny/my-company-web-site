@@ -12,11 +12,11 @@ const reasons = [
 
 const WhyUs = () => {
   return (
-    <section id="why-us" className="px-6 lg:px-24 py-20 lg:py-40 border-t-2 border-foreground bg-white relative overflow-hidden">
+    <section id="why-us" className="px-6 lg:px-12 py-16 lg:py-24 border-t-2 border-foreground bg-white relative overflow-hidden">
       {/* Background polka pattern */}
       <div className="absolute inset-0 opacity-5 bg-[radial-gradient(#1E293B_1px,transparent_1px)] bg-[size:20px_20px]" />
       
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center relative z-10">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center relative z-10">
         <div>
           <motion.div 
             initial={{ opacity: 0 }}
@@ -27,7 +27,7 @@ const WhyUs = () => {
           </motion.div>
           
           <motion.h2 
-            className="text-4xl sm:text-6xl lg:text-8xl font-heading text-foreground tracking-tighter leading-none mb-6 lg:mb-10"
+            className="text-3xl sm:text-4xl lg:text-6xl font-heading text-foreground tracking-tighter leading-none mb-4 lg:mb-8"
           >
             <AnimatedText 
               text="Why Partners" 
@@ -42,7 +42,7 @@ const WhyUs = () => {
             />
           </motion.h2>
           
-          <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-lg mb-8 lg:mb-12 font-sans">
+          <p className="text-base lg:text-lg text-muted-foreground leading-relaxed max-w-lg mb-6 lg:mb-10 font-sans">
             We deliver high-performance digital infrastructure designed for enterprise reliability and long-term business growth.
           </p>
           
@@ -64,13 +64,13 @@ const WhyUs = () => {
               initial={{ scale: 0, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
               transition={{ type: "spring", delay: i * 0.1 }}
-              whileHover={{ y: -10, rotate: i % 2 === 0 ? 2 : -2 }}
-              className="p-8 bg-white border-2 border-foreground rounded-2xl shadow-pop hover:shadow-pop-lg transition-all"
+              whileHover={{ y: -5, rotate: i % 2 === 0 ? 1 : -1 }}
+              className="p-6 bg-white border-2 border-foreground rounded-xl shadow-pop hover:shadow-pop transition-all"
             >
-              <div className={`w-14 h-14 ${r.color} text-white rounded-xl border-2 border-foreground flex items-center justify-center mb-6 shadow-pop transform rotate-3`}>
-                {r.icon}
+              <div className={`w-12 h-12 ${r.color} text-white rounded-lg border-2 border-foreground flex items-center justify-center mb-4 shadow-pop transform rotate-3`}>
+                {React.cloneElement(r.icon, { size: 20 })}
               </div>
-              <h3 className="text-2xl font-heading font-extrabold mb-3 text-foreground">{r.title}</h3>
+              <h3 className="text-xl font-heading font-extrabold mb-2 text-foreground">{r.title}</h3>
               <p className="text-muted-foreground text-sm leading-relaxed">{r.desc}</p>
             </motion.div>
           ))}

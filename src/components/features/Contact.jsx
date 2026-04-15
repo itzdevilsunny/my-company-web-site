@@ -48,11 +48,11 @@ const Contact = () => {
   };
 
   return (
-    <section className="px-6 lg:px-24 py-20 lg:py-32 bg-background relative overflow-hidden" id="contact">
+    <section className="px-6 lg:px-12 py-16 lg:py-24 bg-background relative overflow-hidden" id="contact">
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-secondary to-tertiary" />
       
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
           <div>
             <motion.div 
               initial={{ opacity: 0 }}
@@ -61,7 +61,7 @@ const Contact = () => {
             >
               // Reach Out
             </motion.div>
-            <h2 className="text-4xl sm:text-6xl lg:text-7xl font-heading text-foreground tracking-tighter leading-none mb-6 lg:mb-10">
+            <h2 className="text-3xl sm:text-4xl lg:text-6xl font-heading text-foreground tracking-tighter leading-none mb-4 lg:mb-8">
               Start your <br />
               <span className="text-secondary italic">Revolution.</span>
             </h2>
@@ -70,8 +70,8 @@ const Contact = () => {
             </p>
 
             <div className="space-y-6 lg:space-y-8 mb-12 lg:mb-16">
-              <div className="flex items-center gap-4 lg:gap-6 group">
-                <div className="w-12 h-12 lg:w-14 lg:h-14 bg-white border-4 border-foreground rounded-xl lg:rounded-2xl flex items-center justify-center shadow-pop group-hover:bg-primary group-hover:text-white transition-all">
+              <div className="flex items-center gap-3 lg:gap-4 group">
+                <div className="w-10 h-10 lg:w-12 lg:h-12 bg-white border-2 border-foreground rounded-xl lg:rounded-2xl flex items-center justify-center shadow-pop group-hover:bg-primary group-hover:text-white transition-all">
                   <Mail size={20} lg:size={24} />
                 </div>
                 <div>
@@ -80,8 +80,8 @@ const Contact = () => {
                 </div>
               </div>
               
-              <div className="flex items-center gap-4 lg:gap-6 group">
-                <div className="w-12 h-12 lg:w-14 lg:h-14 bg-white border-4 border-foreground rounded-xl lg:rounded-2xl flex items-center justify-center shadow-pop group-hover:bg-secondary group-hover:text-white transition-all">
+              <div className="flex items-center gap-3 lg:gap-4 group">
+                <div className="w-10 h-10 lg:w-12 lg:h-12 bg-white border-2 border-foreground rounded-xl lg:rounded-2xl flex items-center justify-center shadow-pop group-hover:bg-secondary group-hover:text-white transition-all">
                   <Phone size={20} lg:size={24} />
                 </div>
                 <div>
@@ -90,8 +90,8 @@ const Contact = () => {
                 </div>
               </div>
 
-              <div className="flex items-center gap-4 lg:gap-6 group">
-                <div className="w-12 h-12 lg:w-14 lg:h-14 bg-white border-4 border-foreground rounded-xl lg:rounded-2xl flex items-center justify-center shadow-pop group-hover:bg-tertiary group-hover:text-white transition-all">
+              <div className="flex items-center gap-3 lg:gap-4 group">
+                <div className="w-10 h-10 lg:w-12 lg:h-12 bg-white border-2 border-foreground rounded-xl lg:rounded-2xl flex items-center justify-center shadow-pop group-hover:bg-tertiary group-hover:text-white transition-all">
                   <MapPin size={20} lg:size={24} />
                 </div>
                 <div>
@@ -112,7 +112,7 @@ const Contact = () => {
                   key={i}
                   whileHover={{ y: -5, rotate: 10 }}
                   href="#"
-                  className={`w-10 h-10 lg:w-12 lg:h-12 bg-white border-2 border-foreground rounded-lg lg:rounded-xl flex items-center justify-center shadow-pop-sm transition-all ${social.color} hover:text-white`}
+                  className={`w-8 h-8 lg:w-10 lg:h-10 bg-white border-2 border-foreground rounded-lg lg:rounded-xl flex items-center justify-center shadow-pop-sm transition-all ${social.color} hover:text-white`}
                 >
                   {social.icon}
                 </motion.a>
@@ -123,7 +123,7 @@ const Contact = () => {
           <motion.div 
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            className="p-6 lg:p-10 bg-white border-4 border-foreground rounded-[2rem] lg:rounded-[3rem] shadow-pop-lg relative overflow-hidden"
+            className="p-5 lg:p-7 bg-white border-2 border-foreground rounded-2xl lg:rounded-3xl shadow-pop relative overflow-hidden"
           >
             <form onSubmit={handleSubmit} className="space-y-6 lg:space-y-8">
               {/* Honeypot */}

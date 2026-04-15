@@ -52,21 +52,21 @@ const PricingCard = ({ plan, i }) => {
         </Magnetic>
       )}
 
-      <div className={`h-full bg-white border-4 ${plan.color} rounded-[3rem] p-12 flex flex-col shadow-pop group-hover:shadow-pop-lg transition-all relative overflow-hidden`}>
-        <div className="mb-10 text-center flex flex-col items-center">
-          <div className={`w-24 h-24 ${plan.accent} bg-white border-4 border-foreground rounded-[2rem] flex items-center justify-center mb-8 shadow-pop group-hover:-rotate-12 transition-transform duration-500`}>
-             {plan.icon}
+      <div className={`h-full bg-white border-2 ${plan.color} rounded-3xl p-8 lg:p-10 flex flex-col shadow-pop hover:shadow-pop transition-all relative overflow-hidden`}>
+        <div className="mb-8 text-center flex flex-col items-center">
+          <div className={`w-16 h-16 ${plan.accent} bg-white border-2 border-foreground rounded-2xl flex items-center justify-center mb-6 shadow-pop group-hover:-rotate-12 transition-transform duration-500`}>
+             {React.cloneElement(plan.icon, { size: 28 })}
           </div>
-          <h3 className="text-4xl font-heading font-black text-foreground mb-4 tracking-tighter uppercase italic">{plan.name}</h3>
-          <p className="text-muted-foreground font-sans text-base font-medium leading-snug">{plan.desc}</p>
+          <h3 className="text-2xl lg:text-3xl font-heading font-black text-foreground mb-3 tracking-tighter uppercase italic">{plan.name}</h3>
+          <p className="text-muted-foreground font-sans text-sm font-medium leading-snug">{plan.desc}</p>
         </div>
 
-        <div className="flex flex-col items-center mb-12">
+        <div className="flex flex-col items-center mb-10">
           <div className="flex items-baseline gap-1">
-            <span className="text-6xl font-heading font-black text-foreground tracking-tighter">{plan.price}</span>
-            <span className="text-muted-foreground font-black text-base uppercase opacity-40">/ FLAT</span>
+            <span className="text-4xl lg:text-5xl font-heading font-black text-foreground tracking-tighter">{plan.price}</span>
+            <span className="text-muted-foreground font-black text-xs uppercase opacity-40">/ FLAT</span>
           </div>
-          <div className="h-1 w-20 bg-foreground/5 rounded-full mt-4" />
+          <div className="h-1 w-16 bg-foreground/5 rounded-full mt-3" />
         </div>
 
         <ul className="space-y-5 mb-12 flex-grow">
@@ -82,8 +82,8 @@ const PricingCard = ({ plan, i }) => {
 
         <Magnetic strength={0.3}>
           <Link to="/start-project" className="w-full">
-            <button className={`w-full py-6 rounded-full font-heading font-black text-2xl uppercase tracking-widest border-4 border-foreground shadow-pop hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all flex items-center justify-center gap-4 ${plan.featured ? 'bg-secondary text-white' : 'bg-white text-foreground'}`}>
-              Select Plan <ArrowRight size={28} />
+            <button className={`w-full py-4 rounded-full font-heading font-black text-xl lg:text-2xl uppercase tracking-widest border-2 border-foreground shadow-pop hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all flex items-center justify-center gap-3 ${plan.featured ? 'bg-secondary text-white' : 'bg-white text-foreground'}`}>
+              Select Plan <ArrowRight size={20} />
             </button>
           </Link>
         </Magnetic>
@@ -94,18 +94,18 @@ const PricingCard = ({ plan, i }) => {
 
 const Pricing = () => {
   return (
-    <section id="pricing" className="px-6 lg:px-24 py-56 bg-white relative overflow-hidden">
+    <section id="pricing" className="px-6 lg:px-16 py-32 lg:py-40 bg-white relative overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[600px] bg-secondary/5 rotate-[-5deg] z-0 blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[400px] bg-secondary/5 rotate-[-5deg] z-0 blur-3xl pointer-events-none" />
       
-      <div className="relative z-10 flex flex-col items-center text-center mb-32">
-        <h2 className="text-6xl lg:text-9xl font-heading text-foreground tracking-tighter leading-[0.8]">
+      <div className="relative z-10 flex flex-col items-center text-center mb-24">
+        <h2 className="text-4xl lg:text-7xl font-heading text-foreground tracking-tighter leading-[0.8]">
           Transparent <br />
-          <span className="text-secondary italic underline decoration-foreground decoration-8 underline-offset-8">Investments.</span>
+          <span className="text-secondary italic underline decoration-foreground decoration-4 underline-offset-4">Investments.</span>
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-16 max-w-7xl mx-auto items-center relative z-10">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-12 max-w-7xl mx-auto items-center relative z-10">
         {plans.map((plan, i) => (
           <PricingCard key={i} plan={plan} i={i} />
         ))}

@@ -42,13 +42,13 @@ const testimonials = [
 
 const Testimonials = () => {
   return (
-    <section className="px-6 lg:px-24 py-32 bg-tertiary relative overflow-hidden" id="testimonials">
+    <section className="px-6 lg:px-12 py-20 lg:py-24 bg-tertiary relative overflow-hidden" id="testimonials">
       {/* Decorative shapes */}
       <div className="absolute top-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -ml-32 -mt-32" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-[100px] -mr-48 -mb-48" />
       
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center mb-24">
+        <div className="text-center mb-16">
           <motion.div 
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -56,13 +56,13 @@ const Testimonials = () => {
           >
             // Internal Voices
           </motion.div>
-          <h2 className="text-5xl lg:text-7xl font-heading text-foreground tracking-tighter leading-none mb-6">
+          <h2 className="text-3xl lg:text-6xl font-heading text-foreground tracking-tighter leading-none mb-4">
             Insights from <br />
             <span className="text-white">Our Architects.</span>
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
           {testimonials.map((t, i) => (
             <motion.div
               key={i}
@@ -72,23 +72,23 @@ const Testimonials = () => {
               className="relative flex flex-col"
             >
               {/* Speech Bubble */}
-              <div className="bg-white border-4 border-foreground rounded-[2.5rem] p-10 shadow-pop relative mb-12 min-h-[220px] flex items-center">
-                <p className="text-xl font-heading font-black leading-tight text-foreground italic">
+              <div className="bg-white border-2 border-foreground rounded-3xl p-6 lg:p-8 shadow-pop relative mb-8 min-h-[160px] flex items-center">
+                <p className="text-base lg:text-lg font-heading font-black leading-tight text-foreground italic">
                   "{t.quote}"
                 </p>
                 
                 {/* Bubble Tip */}
-                <div className="absolute -bottom-6 left-12 w-10 h-10 bg-white border-r-4 border-b-4 border-foreground transform rotate-45" />
+                <div className="absolute -bottom-4 left-12 w-8 h-8 bg-white border-r-2 border-b-2 border-foreground transform rotate-45" />
               </div>
 
               {/* User Identity */}
-              <div className="flex items-center gap-6 pl-4">
-                <div className="w-16 h-16 rounded-full border-4 border-foreground overflow-hidden shadow-pop-sm flex-shrink-0 bg-muted">
+              <div className="flex items-center gap-4 pl-4">
+                <div className="w-12 h-12 rounded-full border-2 border-foreground overflow-hidden shadow-pop-sm flex-shrink-0 bg-muted">
                   <img src={t.avatar} alt={t.name} className="w-full h-full object-cover" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-heading font-black text-foreground leading-tight">{t.name}</h3>
-                  <p className="text-xs font-bold text-foreground/60 uppercase tracking-widest">{t.role}</p>
+                  <h3 className="text-lg font-heading font-black text-foreground leading-tight">{t.name}</h3>
+                  <p className="text-[10px] font-bold text-foreground/60 uppercase tracking-widest">{t.role}</p>
                 </div>
               </div>
             </motion.div>

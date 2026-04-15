@@ -41,7 +41,7 @@ const Portfolio = ({ teaser = false }) => {
       : projects.filter(p => p.category === filter);
 
   return (
-    <section className="px-4 lg:px-24 py-20 lg:py-32 bg-white relative overflow-hidden" id="portfolio">
+    <section className="px-4 lg:px-12 py-16 lg:py-24 bg-white relative overflow-hidden" id="portfolio">
       <div className="absolute inset-0 opacity-5 bg-[radial-gradient(#1E293B_1px,transparent_1px)] bg-[size:24px_24px]" />
 
       <div className="relative z-10 max-w-7xl mx-auto">
@@ -54,7 +54,7 @@ const Portfolio = ({ teaser = false }) => {
             >
               // Case Studies & Proofs
             </motion.div>
-            <h2 className="text-4xl lg:text-7xl font-heading text-foreground tracking-tighter leading-none">
+            <h2 className="text-3xl lg:text-5xl font-heading text-foreground tracking-tighter leading-none">
               Strategic <span className="text-secondary italic">Portfolio.</span>
             </h2>
           </div>
@@ -87,7 +87,7 @@ const Portfolio = ({ teaser = false }) => {
         ) : (
           <motion.div
             layout
-            className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12"
+            className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"
           >
             <AnimatePresence mode="popLayout">
               {filteredProjects.map((p) => (
@@ -99,27 +99,27 @@ const Portfolio = ({ teaser = false }) => {
                   exit={{ opacity: 0, scale: 0.9 }}
                   className="group relative"
                 >
-                  <div className={`p-6 lg:p-10 border-4 border-foreground rounded-[2rem] lg:rounded-[2.5rem] bg-white shadow-pop hover:shadow-pop-lg transition-all h-full flex flex-col`}>
+                  <div className={`p-5 lg:p-7 border-2 border-foreground rounded-2xl lg:rounded-3xl bg-white shadow-pop hover:shadow-pop transition-all h-full flex flex-col`}>
                     <div className="flex justify-between items-start mb-6 lg:mb-8">
-                      <div className={`p-3 lg:p-4 ${p.theme_color} border-2 border-foreground rounded-xl lg:rounded-2xl shadow-pop transform -rotate-6 group-hover:rotate-0 transition-transform`}>
-                        {p.category === 'AI' ? <Cpu className="text-white" size={20} lg:size={24} /> : p.category === 'Web' ? <Globe className="text-white" size={20} lg:size={24} /> : <Smartphone className="text-white" size={20} lg:size={24} />}
+                      <div className={`p-2 lg:p-3 ${p.theme_color} border-2 border-foreground rounded-lg lg:rounded-xl shadow-pop transform -rotate-3 group-hover:rotate-0 transition-transform`}>
+                        {p.category === 'AI' ? <Cpu className="text-white" size={18} lg:size={20} /> : p.category === 'Web' ? <Globe className="text-white" size={18} lg:size={20} /> : <Smartphone className="text-white" size={18} lg:size={20} />}
                       </div>
-                      <div className="flex gap-2 lg:gap-4">
+                      <div className="flex gap-2 lg:gap-3">
                         {p.github_url && p.github_url !== '#' && (
-                          <a href={p.github_url} className="w-10 h-10 lg:w-12 lg:h-12 border-2 border-foreground rounded-lg lg:rounded-xl flex items-center justify-center hover:bg-muted transition-colors shadow-pop">
-                            <GithubIcon size={18} lg:size={20} />
+                          <a href={p.github_url} className="w-8 h-8 lg:w-10 lg:h-10 border-2 border-foreground rounded-lg flex items-center justify-center hover:bg-muted transition-colors shadow-pop">
+                            <GithubIcon size={16} lg:size={18} />
                           </a>
                         )}
                         {p.demo_url && p.demo_url !== '#' && (
-                          <a href={p.demo_url} className="w-10 h-10 lg:w-12 lg:h-12 border-2 border-foreground rounded-lg lg:rounded-xl flex items-center justify-center bg-foreground text-white hover:bg-primary transition-colors shadow-pop">
-                            <ExternalLink size={18} lg:size={20} />
+                          <a href={p.demo_url} className="w-8 h-8 lg:w-10 lg:h-10 border-2 border-foreground rounded-lg flex items-center justify-center bg-foreground text-white hover:bg-primary transition-colors shadow-pop">
+                            <ExternalLink size={16} lg:size={18} />
                           </a>
                         )}
                       </div>
                     </div>
 
-                    <h3 className="text-2xl lg:text-3xl font-heading font-black mb-3 lg:mb-4 tracking-tight group-hover:text-primary transition-colors">{p.name}</h3>
-                    <p className="text-sm lg:text-base text-muted-foreground font-sans font-medium mb-6 lg:mb-8 leading-relaxed">
+                    <h3 className="text-xl lg:text-2xl font-heading font-black mb-2 lg:mb-3 tracking-tight group-hover:text-primary transition-colors">{p.name}</h3>
+                    <p className="text-xs lg:text-sm text-muted-foreground font-sans font-medium mb-4 lg:mb-6 leading-relaxed">
                       {p.description}
                     </p>
 

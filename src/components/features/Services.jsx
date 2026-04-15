@@ -44,18 +44,18 @@ const ServiceCard = ({ s, i }) => {
       whileHover={{ scale: 1.02, rotate: i % 2 === 0 ? 1 : -1 }}
       className={`${s.className} group h-full`}
     >
-      <div className="relative h-full p-8 lg:p-10 bg-white border-2 border-foreground rounded-2xl shadow-pop hover:shadow-pop-lg transition-all duration-300">
-        <div className={`absolute top-0 left-8 lg:left-10 -translate-y-1/2 w-12 h-12 lg:w-16 lg:h-16 ${s.color} text-white rounded-full border-2 border-foreground flex items-center justify-center shadow-pop group-hover:rotate-12 transition-transform`}>
+      <div className="relative h-full p-6 lg:p-8 bg-white border-2 border-foreground rounded-xl shadow-pop hover:shadow-pop transition-all duration-300">
+        <div className={`absolute top-0 left-6 lg:left-8 -translate-y-1/2 w-10 h-10 lg:w-12 lg:h-12 ${s.color} text-white rounded-full border-2 border-foreground flex items-center justify-center shadow-pop group-hover:rotate-12 transition-transform`}>
           {React.cloneElement(s.icon, { size: window.innerWidth < 1024 ? 24 : 32 })}
         </div>
         
-        <div className="mt-6 lg:mt-8">
-          <h3 className="text-2xl lg:text-3xl font-heading font-extrabold mb-3 lg:mb-4 text-foreground">{s.title}</h3>
-          <p className="text-base lg:text-lg text-muted-foreground leading-relaxed font-sans">{s.desc}</p>
+        <div className="mt-4 lg:mt-6">
+          <h3 className="text-xl lg:text-2xl font-heading font-extrabold mb-2 lg:mb-3 text-foreground">{s.title}</h3>
+          <p className="text-sm lg:text-base text-muted-foreground leading-relaxed font-sans">{s.desc}</p>
         </div>
         
-        <div className="mt-8 lg:mt-10 flex items-center gap-2 font-bold text-primary group-hover:translate-x-2 transition-transform text-sm lg:text-base">
-          Learn More <ArrowUpRight size={18} className="lg:size-[20px]" />
+        <div className="mt-6 lg:mt-8 flex items-center gap-2 font-bold text-primary group-hover:translate-x-1 transition-transform text-xs lg:text-sm">
+          Learn More <ArrowUpRight size={16} className="lg:size-[18px]" />
         </div>
 
         {/* Squiggle Decoration inside card */}
@@ -71,8 +71,8 @@ const ServiceCard = ({ s, i }) => {
 
 const Services = () => {
   return (
-    <section id="services" className="px-6 lg:px-24 py-32 bg-transparent relative">
-      <div className="flex flex-col items-center mb-24 text-center">
+    <section id="services" className="px-6 lg:px-16 py-20 lg:py-24 bg-transparent relative">
+      <div className="flex flex-col items-center mb-12 text-center">
         <motion.span 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -81,7 +81,7 @@ const Services = () => {
           Visual Spectrum
         </motion.span>
         <motion.h2 
-          className="text-4xl sm:text-5xl lg:text-7xl font-heading text-foreground tracking-tight max-w-4xl"
+          className="text-3xl sm:text-4xl lg:text-6xl font-heading text-foreground tracking-tight max-w-3xl"
         >
           <AnimatedText 
             text="Engineering Excellence" 
@@ -97,7 +97,7 @@ const Services = () => {
         </motion.h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
         {services.map((s, i) => (
           <ServiceCard key={i} s={s} i={i} />
         ))}
