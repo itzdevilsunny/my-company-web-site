@@ -28,20 +28,20 @@ const Navbar = () => {
       <motion.nav 
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className={`fixed top-8 left-1/2 -translate-x-1/2 z-50 w-[95%] lg:w-fit transition-all duration-500`}
+        className={`fixed top-4 lg:top-8 left-1/2 -translate-x-1/2 z-50 w-[95%] lg:w-fit transition-all duration-500`}
       >
-        <div className={`bg-white/90 backdrop-blur-xl border-2 border-foreground shadow-pop rounded-full px-6 lg:px-10 py-3 lg:py-5 flex items-center justify-between lg:justify-start gap-4 lg:gap-16 transition-all ${scrolled ? 'scale-95 opacity-90' : 'scale-100'}`}>
+        <div className={`bg-white/90 backdrop-blur-xl border-2 border-foreground shadow-pop rounded-full px-4 lg:px-10 py-2 lg:py-5 flex items-center justify-between lg:justify-start gap-4 lg:gap-16 transition-all ${scrolled ? 'scale-95 opacity-90' : 'scale-100'}`}>
           {/* Playful Logo & Status */}
           <div className="flex items-center gap-8">
-            <Link to="/" className="flex items-center gap-3 group cursor-pointer">
-              <div className="w-10 h-10 bg-black text-white rounded-xl flex items-center justify-center font-black text-xl shadow-pop group-hover:-rotate-12 transition-transform duration-500">
+            <Link to="/" className="flex items-center gap-2 lg:gap-3 group cursor-pointer">
+              <div className="w-8 h-8 lg:w-10 lg:h-10 bg-black text-white rounded-lg lg:rounded-xl flex items-center justify-center font-black text-base lg:text-xl shadow-pop group-hover:-rotate-12 transition-transform duration-500">
                 Z
               </div>
               <div className="flex flex-col">
-                <span className="font-heading font-black text-xl lg:text-3xl tracking-tighter text-foreground uppercase italic leading-none">ZORVIA</span>
-                <div className="flex items-center gap-2 mt-1">
+                <span className="font-heading font-black text-lg lg:text-3xl tracking-tighter text-foreground uppercase italic leading-none">ZORVIA</span>
+                <div className="hidden xs:flex items-center gap-2 mt-1">
                    <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse shadow-[0_0_8px_#22c55e]" />
-                   <span className="text-[9px] font-black uppercase tracking-[0.2em] text-muted-foreground whitespace-nowrap">STATUS: SYNCED // BLR-SF</span>
+                   <span className="text-[8px] lg:text-[9px] font-black uppercase tracking-[0.2em] text-muted-foreground whitespace-nowrap">STATUS: SYNCED // BLR-SF</span>
                 </div>
               </div>
             </Link>
@@ -57,15 +57,15 @@ const Navbar = () => {
             ))}
           </div>
 
-          <div className="flex items-center gap-4">
-            <Link to="/start-project" className="hidden sm:block">
+          <div className="flex items-center gap-2 lg:gap-4">
+            <Link to="/start-project" className="hidden xs:block">
               <Magnetic strength={0.3}>
                 <motion.button 
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-foreground text-white px-8 py-3 rounded-full font-black shadow-pop hover:shadow-none hover:translate-x-1 hover:translate-y-1 relative overflow-hidden group whitespace-nowrap border-2 border-foreground"
+                  className="bg-foreground text-white px-4 lg:px-8 py-2 lg:py-3 rounded-full font-black shadow-pop hover:shadow-none hover:translate-x-1 hover:translate-y-1 relative overflow-hidden group whitespace-nowrap border-2 border-foreground"
                 >
-                  <span className="relative z-10 text-xs uppercase tracking-widest italic">Start Project</span>
+                  <span className="relative z-10 text-[10px] lg:text-xs uppercase tracking-widest italic">Start Project</span>
                   <div className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
                 </motion.button>
               </Magnetic>
@@ -74,9 +74,9 @@ const Navbar = () => {
             <Magnetic strength={0.1}>
               <button 
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="lg:hidden w-12 h-12 border-2 border-foreground rounded-xl flex items-center justify-center bg-white shadow-pop hover:bg-muted transition-colors z-50 pointer-events-auto"
+                className="lg:hidden w-10 h-10 lg:w-12 lg:h-12 border-2 border-foreground rounded-lg lg:rounded-xl flex items-center justify-center bg-white shadow-pop hover:bg-muted transition-colors z-50 pointer-events-auto"
               >
-                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
               </button>
             </Magnetic>
           </div>

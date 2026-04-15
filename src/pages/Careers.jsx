@@ -14,7 +14,8 @@ const Careers = () => {
     phone: '',
     portfolio_url: '',
     resume_url: '',
-    message: ''
+    message: '',
+    website_url: '' // Honeypot
   });
 
   const positions = [
@@ -30,13 +31,18 @@ const Careers = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (formData.website_url) {
+      alert("Bot detection triggered.");
+      return;
+    }
     setIsSubmitting(true);
     
     try {
+      const { website_url, ...submissionData } = formData;
       const { error } = await supabase
         .from('job_applications')
         .insert([{
-          ...formData,
+          ...submissionData,
           role: selectedPosition.title,
           team: selectedPosition.team,
           type: selectedPosition.type,
@@ -46,7 +52,7 @@ const Careers = () => {
       if (error) throw error;
       
       setIsSuccess(true);
-      setFormData({ name: '', email: '', phone: '', portfolio_url: '', resume_url: '', message: '' });
+      setFormData({ name: '', email: '', phone: '', portfolio_url: '', resume_url: '', message: '', website_url: '' });
       setTimeout(() => setSelectedPosition(null), 3000);
     } catch (err) {
       console.error('Application Error:', err);
@@ -136,13 +142,13 @@ const Careers = () => {
               exit={{ scale: 0.9, y: 20 }}
               className="bg-white border-4 border-foreground rounded-[3rem] w-full max-w-2xl overflow-hidden shadow-pop-lg flex flex-col max-h-[90vh]"
             >
-              <div className="p-8 border-b-4 border-foreground flex justify-between items-center bg-primary text-white">
+              <div className="p-8 border-b-4 border-foreground flex justify-between items-center bg-primary text-white sticky top-0 z-20">
                 <div>
-                  <h2 className="text-3xl font-heading font-black uppercase italic leading-none">Apply // {selectedPosition.title}</h2>
-                  <p className="text-[10px] font-black uppercase tracking-[0.3em] mt-2 opacity-80">{selectedPosition.team} // {selectedPosition.location}</p>
+                  <h2 className="text-xl lg:text-3xl font-heading font-black uppercase italic leading-none">Apply // {selectedPosition.title}</h2>
+                  <p className="text-[8px] lg:text-[10px] font-black uppercase tracking-[0.3em] mt-2 opacity-80">{selectedPosition.team} // {selectedPosition.location}</p>
                 </div>
                 <button onClick={() => setSelectedPosition(null)} className="p-2 hover:bg-black/10 rounded-full transition-all">
-                  <X size={32} />
+                  <X size={24} className="lg:size-[32px]" />
                 </button>
               </div>
 
@@ -160,94 +166,103 @@ const Careers = () => {
                     <p className="text-lg font-bold text-muted-foreground">Our intelligence unit will review your coordinates shortly.</p>
                   </motion.div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div className="space-y-2">
-                        <label className="text-[10px] font-black uppercase tracking-widest opacity-40">Full Name</label>
+                    <div className="space-y-6 lg:space-y-8">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                        {/* Honeypot */}
                         <input 
-                          required
                           type="text" 
-                          value={formData.name}
-                          onChange={(e) => setFormData({...formData, name: e.target.value})}
-                          className="w-full p-4 border-2 border-foreground rounded-2xl font-bold focus:shadow-pop-sm transition-all outline-none"
-                          placeholder="NEO"
+                          name="website_url" 
+                          value={formData.website_url} 
+                          onChange={(e) => setFormData({...formData, website_url: e.target.value})}
+                          className="hidden" 
+                          autoComplete="off"
                         />
+                        <div className="space-y-2">
+                          <label className="text-[10px] font-black uppercase tracking-widest opacity-40">Full Name</label>
+                          <input 
+                            required
+                            type="text" 
+                            value={formData.name}
+                            onChange={(e) => setFormData({...formData, name: e.target.value})}
+                            className="w-full p-4 border-2 border-foreground rounded-2xl font-bold focus:shadow-pop-sm transition-all outline-none"
+                            placeholder="NEO"
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <label className="text-[10px] font-black uppercase tracking-widest opacity-40">Email Address</label>
+                          <input 
+                            required
+                            type="email" 
+                            value={formData.email}
+                            onChange={(e) => setFormData({...formData, email: e.target.value})}
+                            className="w-full p-4 border-2 border-foreground rounded-2xl font-bold focus:shadow-pop-sm transition-all outline-none"
+                            placeholder="NEO@ZORVIA.TECH"
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <label className="text-[10px] font-black uppercase tracking-widest opacity-40">Phone Number</label>
+                          <input 
+                            required
+                            type="tel" 
+                            value={formData.phone}
+                            onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                            className="w-full p-4 border-2 border-foreground rounded-2xl font-bold focus:shadow-pop-sm transition-all outline-none"
+                            placeholder="+1 555 000 000"
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <label className="text-[10px] font-black uppercase tracking-widest opacity-40">Portfolio URL</label>
+                          <input 
+                            type="url" 
+                            value={formData.portfolio_url}
+                            onChange={(e) => setFormData({...formData, portfolio_url: e.target.value})}
+                            className="w-full p-4 border-2 border-foreground rounded-2xl font-bold focus:shadow-pop-sm transition-all outline-none"
+                            placeholder="HTTPS://ZORVIA.TECH/PORTFOLIO"
+                          />
+                        </div>
                       </div>
                       <div className="space-y-2">
-                        <label className="text-[10px] font-black uppercase tracking-widest opacity-40">Email Address</label>
+                        <label className="text-[10px] font-black uppercase tracking-widest opacity-40">Resume / LinkedIn URL</label>
                         <input 
                           required
-                          type="email" 
-                          value={formData.email}
-                          onChange={(e) => setFormData({...formData, email: e.target.value})}
-                          className="w-full p-4 border-2 border-foreground rounded-2xl font-bold focus:shadow-pop-sm transition-all outline-none"
-                          placeholder="NEO@ZORVIA.TECH"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <label className="text-[10px] font-black uppercase tracking-widest opacity-40">Phone Number</label>
-                        <input 
-                          required
-                          type="tel" 
-                          value={formData.phone}
-                          onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                          className="w-full p-4 border-2 border-foreground rounded-2xl font-bold focus:shadow-pop-sm transition-all outline-none"
-                          placeholder="+1 555 000 000"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <label className="text-[10px] font-black uppercase tracking-widest opacity-40">Portfolio URL</label>
-                        <input 
                           type="url" 
-                          value={formData.portfolio_url}
-                          onChange={(e) => setFormData({...formData, portfolio_url: e.target.value})}
+                          value={formData.resume_url}
+                          onChange={(e) => setFormData({...formData, resume_url: e.target.value})}
                           className="w-full p-4 border-2 border-foreground rounded-2xl font-bold focus:shadow-pop-sm transition-all outline-none"
-                          placeholder="HTTPS://ZORVIA.TECH/PORTFOLIO"
+                          placeholder="HTTPS://LINKEDIN.COM/IN/NEO"
                         />
                       </div>
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-black uppercase tracking-widest opacity-40">Cover Note</label>
+                        <textarea 
+                          rows="4"
+                          value={formData.message}
+                          onChange={(e) => setFormData({...formData, message: e.target.value})}
+                          className="w-full p-4 border-2 border-foreground rounded-2xl font-bold focus:shadow-pop-sm transition-all outline-none resize-none"
+                          placeholder="WHY ARE YOU THE ARCHITECT WE NEED?"
+                        />
+                      </div>
+                      
+                      <Magnetic strength={0.2}>
+                        <button 
+                          type="submit"
+                          disabled={isSubmitting}
+                          className="w-full py-5 lg:py-6 bg-black text-white rounded-2xl font-black uppercase tracking-[0.2em] flex items-center justify-center gap-4 hover:bg-primary transition-all disabled:opacity-50 text-sm lg:text-base"
+                        >
+                          {isSubmitting ? (
+                            <>
+                              <Loader2 size={20} className="animate-spin" />
+                              TRANSMITTING...
+                            </>
+                          ) : (
+                            <>
+                              SUBMIT APPLICATION
+                              <ArrowRight size={20} />
+                            </>
+                          )}
+                        </button>
+                      </Magnetic>
                     </div>
-                    <div className="space-y-2">
-                      <label className="text-[10px] font-black uppercase tracking-widest opacity-40">Resume / LinkedIn URL</label>
-                      <input 
-                        required
-                        type="url" 
-                        value={formData.resume_url}
-                        onChange={(e) => setFormData({...formData, resume_url: e.target.value})}
-                        className="w-full p-4 border-2 border-foreground rounded-2xl font-bold focus:shadow-pop-sm transition-all outline-none"
-                        placeholder="HTTPS://LINKEDIN.COM/IN/NEO"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-[10px] font-black uppercase tracking-widest opacity-40">Cover Note</label>
-                      <textarea 
-                        rows="4"
-                        value={formData.message}
-                        onChange={(e) => setFormData({...formData, message: e.target.value})}
-                        className="w-full p-4 border-2 border-foreground rounded-2xl font-bold focus:shadow-pop-sm transition-all outline-none resize-none"
-                        placeholder="WHY ARE YOU THE ARCHITECT WE NEED?"
-                      />
-                    </div>
-                    
-                    <Magnetic strength={0.2}>
-                      <button 
-                        type="submit"
-                        disabled={isSubmitting}
-                        className="w-full py-6 bg-black text-white rounded-2xl font-black uppercase tracking-[0.2em] flex items-center justify-center gap-4 hover:bg-primary transition-all disabled:opacity-50"
-                      >
-                        {isSubmitting ? (
-                          <>
-                            <Loader2 size={24} className="animate-spin" />
-                            TRANSMITTING...
-                          </>
-                        ) : (
-                          <>
-                            SUBMIT APPLICATION
-                            <ArrowRight size={24} />
-                          </>
-                        )}
-                      </button>
-                    </Magnetic>
-                  </form>
                 )}
               </div>
             </motion.div>

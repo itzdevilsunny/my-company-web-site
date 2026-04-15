@@ -42,20 +42,20 @@ const ServiceCard = ({ s, i }) => {
       viewport={{ once: true }}
       transition={{ type: "spring", stiffness: 100, delay: i * 0.1 }}
       whileHover={{ scale: 1.02, rotate: i % 2 === 0 ? 1 : -1 }}
-      className={`${s.className} group`}
+      className={`${s.className} group h-full`}
     >
-      <div className="relative h-full p-10 bg-white border-2 border-foreground rounded-2xl shadow-pop hover:shadow-pop-lg transition-all duration-300">
-        <div className={`absolute top-0 left-10 -translate-y-1/2 w-16 h-16 ${s.color} text-white rounded-full border-2 border-foreground flex items-center justify-center shadow-pop group-hover:rotate-12 transition-transform`}>
-          {s.icon}
+      <div className="relative h-full p-8 lg:p-10 bg-white border-2 border-foreground rounded-2xl shadow-pop hover:shadow-pop-lg transition-all duration-300">
+        <div className={`absolute top-0 left-8 lg:left-10 -translate-y-1/2 w-12 h-12 lg:w-16 lg:h-16 ${s.color} text-white rounded-full border-2 border-foreground flex items-center justify-center shadow-pop group-hover:rotate-12 transition-transform`}>
+          {React.cloneElement(s.icon, { size: window.innerWidth < 1024 ? 24 : 32 })}
         </div>
         
-        <div className="mt-8">
-          <h3 className="text-3xl font-heading font-extrabold mb-4 text-foreground">{s.title}</h3>
-          <p className="text-lg text-muted-foreground leading-relaxed font-sans">{s.desc}</p>
+        <div className="mt-6 lg:mt-8">
+          <h3 className="text-2xl lg:text-3xl font-heading font-extrabold mb-3 lg:mb-4 text-foreground">{s.title}</h3>
+          <p className="text-base lg:text-lg text-muted-foreground leading-relaxed font-sans">{s.desc}</p>
         </div>
         
-        <div className="mt-10 flex items-center gap-2 font-bold text-primary group-hover:translate-x-2 transition-transform">
-          Learn More <ArrowUpRight size={20} />
+        <div className="mt-8 lg:mt-10 flex items-center gap-2 font-bold text-primary group-hover:translate-x-2 transition-transform text-sm lg:text-base">
+          Learn More <ArrowUpRight size={18} className="lg:size-[20px]" />
         </div>
 
         {/* Squiggle Decoration inside card */}

@@ -18,7 +18,8 @@ import {
   CheckCircle2, 
   Clock, 
   AlertCircle, 
-  Plus
+  Plus,
+  X
 } from 'lucide-react';
 
 const ACCESS_KEY = "ZORVIA_HQ_2026";
@@ -36,9 +37,11 @@ const AdminDashboard = () => {
   const [portfolio, setPortfolio] = useState([]);
   
   const [isLoading, setIsLoading] = useState(true);
+  const [errorMsg, setErrorMsg] = useState(null);
   const [selectedItem, setSelectedItem] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [showAddForm, setShowAddForm] = useState(false);
+  const [showMobileSidebar, setShowMobileSidebar] = useState(false);
 
   useEffect(() => {
     const isEmployeeAuth = localStorage.getItem('zorvia_employee_auth') === 'true';
@@ -77,6 +80,7 @@ const AdminDashboard = () => {
       setPortfolio(portRes.data || []);
     } catch (err) {
       console.error("Error fetching data:", err);
+      setErrorMsg("Cloud synchronization failed. Please verify your connection.");
     } finally {
       setIsLoading(false);
     }
@@ -114,6 +118,10 @@ const AdminDashboard = () => {
 
   const handleAddTeam = async (e) => {
     e.preventDefault();
+    if (!teamForm.name || !teamForm.role || !teamForm.bio || !teamForm.image_url) {
+      alert('Validation Failed: All fields are required.');
+      return;
+    }
     try {
       const { error } = await supabase.from('team_members').insert([{
         name: teamForm.name,
@@ -136,6 +144,10 @@ const AdminDashboard = () => {
 
   const handleAddPortfolio = async (e) => {
     e.preventDefault();
+    if (!portfolioForm.name || !portfolioForm.description || !portfolioForm.tech_stack) {
+      alert('Validation Failed: Project identity and blueprints required.');
+      return;
+    }
     try {
       const techStackArray = portfolioForm.tech_stack.split(',').map(s => s.trim()).filter(Boolean);
       const { error } = await supabase.from('portfolio_projects').insert([{
@@ -215,9 +227,34 @@ const AdminDashboard = () => {
   );
 
   return (
-    <div className="min-h-screen bg-[#F8F9FA] pt-32 pb-20 px-6 lg:px-12 flex flex-col lg:flex-row gap-8">
+    <div className="min-h-screen bg-muted/30 flex flex-col lg:flex-row p-4 lg:p-8 gap-6 lg:gap-8">
+      {/* Mobile Sidebar Toggle */}
+      <div className="lg:hidden flex items-center justify-between bg-white border-2 border-foreground p-4 rounded-2xl shadow-pop">
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 bg-black text-white rounded-lg flex items-center justify-center font-black">Z</div>
+          <span className="font-heading font-black uppercase text-sm tracking-tight">HQ Command</span>
+        </div>
+        <button 
+          onClick={() => setShowMobileSidebar(!showMobileSidebar)}
+          className="p-2 border-2 border-foreground rounded-lg bg-primary text-white"
+        >
+          {showMobileSidebar ? <X size={20} /> : <BarChart3 size={20} />}
+        </button>
+      </div>
+
       {/* Sidebar Navigation */}
-      <aside className="lg:w-80 space-y-4">
+      <aside className={`
+        ${showMobileSidebar ? 'flex' : 'hidden'} lg:flex 
+        fixed lg:relative inset-0 z-[60] lg:z-auto
+        flex-col w-full lg:w-80 shrink-0 gap-8
+        bg-muted/95 lg:bg-transparent p-6 lg:p-0
+        overflow-y-auto lg:overflow-visible
+      `}>
+        <div className="lg:hidden absolute top-6 right-6">
+           <button onClick={() => setShowMobileSidebar(false)} className="p-2 bg-white border-2 border-foreground rounded-full shadow-pop">
+              <X size={24} />
+           </button>
+        </div>
         <div className="p-8 bg-white border-4 border-foreground rounded-[2.5rem] shadow-pop mb-8">
            <div className="flex items-center gap-4 mb-8">
               <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center text-white shadow-pop-sm">
@@ -308,6 +345,21 @@ const AdminDashboard = () => {
 
       {/* Main Content Area */}
       <main className="flex-grow flex flex-col items-start w-full">
+        {errorMsg && (
+          <motion.div 
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            className="w-full bg-red-50 border-2 border-red-200 p-4 mb-6 rounded-2xl flex items-center justify-between text-red-600 font-bold text-sm"
+          >
+             <div className="flex items-center gap-3">
+                <AlertCircle size={18} />
+                {errorMsg}
+             </div>
+             <button onClick={() => setErrorMsg(null)} className="p-1 hover:bg-red-100 rounded-full transition-all">
+                <X size={16} />
+             </button>
+          </motion.div>
+        )}
         <div className="mb-8 flex flex-col md:flex-row gap-4 items-center justify-between w-full">
            <div className="relative flex-grow max-w-xl w-full group">
               <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within:text-primary transition-colors" size={20} />

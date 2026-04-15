@@ -9,12 +9,17 @@ const Contact = () => {
     name: '',
     email: '',
     project_type: 'Web Platform',
-    project_description: ''
+    project_description: '',
+    website_url: '' // Honeypot
   });
   const [status, setStatus] = useState('idle'); // idle, submitting, success, error
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (formData.website_url) {
+      setStatus('error');
+      return;
+    }
     if(!formData.name || !formData.email || !formData.project_description) {
       setStatus('error');
       return;
@@ -22,13 +27,11 @@ const Contact = () => {
 
     setStatus('submitting');
     try {
+      const { website_url, ...submissionData } = formData;
       const { error } = await supabase
         .from('project_inquiries')
         .insert([{
-          name: formData.name,
-          email: formData.email,
-          project_type: formData.project_type,
-          project_description: formData.project_description,
+          ...submissionData,
           contact_method: 'Global Contact Form',
           status: 'new'
         }]);
@@ -36,7 +39,7 @@ const Contact = () => {
       if (error) throw error;
       
       setStatus('success');
-      setFormData({ name: '', email: '', project_type: 'Web Platform', project_description: '' });
+      setFormData({ name: '', email: '', project_type: 'Web Platform', project_description: '', website_url: '' });
       setTimeout(() => setStatus('idle'), 5000);
     } catch (err) {
       console.error(err);
@@ -122,8 +125,17 @@ const Contact = () => {
             whileInView={{ opacity: 1, x: 0 }}
             className="p-10 bg-white border-4 border-foreground rounded-[3rem] shadow-pop-lg relative overflow-hidden"
           >
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <form onSubmit={handleSubmit} className="space-y-8">
+              {/* Honeypot */}
+              <input 
+                type="text" 
+                name="website_url" 
+                value={formData.website_url} 
+                onChange={(e) => setFormData({...formData, website_url: e.target.value})}
+                className="hidden" 
+                autoComplete="off"
+              />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
                   <label className="block text-[10px] font-black uppercase tracking-widest mb-2 ml-4">Your Name</label>
                   <input 
