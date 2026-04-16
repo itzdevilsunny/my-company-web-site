@@ -25,3 +25,11 @@ dist-ssr
 
 # Ignore local supabase config with secrets
 supabase/config.toml
+# Supabase
+.branches
+.temp
+
+# dotenvx
+.env.keys
+.env.local
+.env.*.local
