@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, Sparkles, Layout, CheckCircle2, Search, Monitor, Smartphone, Tablet } from 'lucide-react';
+import { ArrowLeft, Sparkles, Layout, CheckCircle2, Search, Monitor, Smartphone, Tablet, SlidersHorizontal, X } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { themes } from '../data/themes';
 import Magnetic from '../components/ui/Magnetic';
@@ -17,17 +17,15 @@ const DesignSelection = () => {
   const [previewDevice, setPreviewDevice] = useState('desktop');
   const [showFilters, setShowFilters] = useState(false);
   const scrollContainerRef = useRef(null);
+  const cardListRef = useRef(null);
 
   useEffect(() => {
     if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
+      scrollContainerRef.current.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }, [selectedThemeId]);
 
-  const selectedTheme = useMemo(() => 
+  const selectedTheme = useMemo(() =>
     themes.find(t => t.id === selectedThemeId) || themes[0],
     [selectedThemeId]
   );
@@ -46,183 +44,221 @@ const DesignSelection = () => {
     navigate('/start-project');
   };
 
+  // Scale the preview mockup based on device and container width
+  const getPreviewContainerClass = () => {
+    if (previewDevice === 'mobile') return 'max-w-[375px]';
+    if (previewDevice === 'tablet') return 'max-w-[768px]';
+    return 'w-full';
+  };
+
   return (
-    <div className="h-screen bg-background text-foreground overflow-hidden flex flex-col font-sans">
-      {/* Top Filter Bar */}
-      <header className="px-4 lg:px-6 py-2 lg:py-3 border-b border-slate-200 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4 lg:gap-6 bg-white/80 backdrop-blur-md z-30 shadow-sm relative">
-        <div className="flex items-center justify-between lg:justify-start gap-4 lg:gap-6">
-          <div className="flex items-center gap-3 lg:gap-5">
-            <Magnetic strength={0.2}>
-              <Link to="/" className="flex items-center gap-2 lg:gap-3 px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-slate-500 hover:text-foreground hover:bg-slate-100 transition-all group">
-                <ArrowLeft size={14} lg:size={16} className="group-hover:-translate-x-1 transition-transform" />
-                <span className="text-[10px] lg:text-[9px] font-black uppercase tracking-widest">Back</span>
-              </Link>
-            </Magnetic>
-            
-            <div className="hidden lg:block h-6 w-[1px] bg-slate-200" />
+    <div className="h-[100dvh] bg-background text-foreground flex flex-col font-sans overflow-hidden">
 
-            {/* Mode Filters (Desktop) */}
-            <div className="hidden lg:flex items-center gap-4">
-                <div className="flex bg-slate-100 p-1 rounded-xl border border-slate-200 shadow-inner">
-                  {['All', 'Light', 'Dark'].map(m => (
-                    <button
-                      key={m}
-                      onClick={() => setModeFilter(m)}
-                      className={`px-3 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest transition-all ${modeFilter === m ? 'bg-white text-foreground shadow-sm' : 'text-slate-400 hover:text-foreground'}`}
-                    >
-                      {m}
-                    </button>
-                  ))}
-                </div>
-            </div>
+      {/* ── Top Nav Bar ── */}
+      <header className="px-3 sm:px-4 lg:px-6 py-2 border-b border-slate-200 bg-white/90 backdrop-blur-md z-30 shadow-sm shrink-0">
+        <div className="flex items-center justify-between gap-2">
 
-            <div className="hidden lg:flex items-center gap-4">
-                <div className="flex bg-slate-100 p-1 rounded-xl border border-slate-200 shadow-inner">
-                  {['All', 'Sans', 'Serif', 'Mono'].map(t => (
-                    <button
-                      key={t}
-                      onClick={() => setTypeFilter(t)}
-                      className={`px-3 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest transition-all ${typeFilter === t ? 'bg-primary text-white shadow-lg shadow-primary/20' : 'text-slate-400 hover:text-foreground'}`}
-                    >
-                      {t}
-                    </button>
-                  ))}
-                </div>
+          {/* Left: Back + brand */}
+          <div className="flex items-center gap-2 min-w-0">
+            <Link
+              to="/"
+              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-slate-50 border border-slate-200 text-slate-500 hover:text-foreground hover:bg-slate-100 transition-all group shrink-0"
+            >
+              <ArrowLeft size={13} className="group-hover:-translate-x-0.5 transition-transform" />
+              <span className="text-[9px] font-black uppercase tracking-widest">Back</span>
+            </Link>
+
+            {/* Desktop mode + type filters inline */}
+            <div className="hidden lg:flex items-center gap-3 ml-2">
+              <div className="h-5 w-px bg-slate-200" />
+              <div className="flex bg-slate-100 p-0.5 rounded-xl border border-slate-200">
+                {['All', 'Light', 'Dark'].map(m => (
+                  <button
+                    key={m}
+                    onClick={() => setModeFilter(m)}
+                    className={`px-3 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest transition-all ${modeFilter === m ? 'bg-white text-foreground shadow-sm' : 'text-slate-400 hover:text-foreground'}`}
+                  >
+                    {m}
+                  </button>
+                ))}
+              </div>
+              <div className="flex bg-slate-100 p-0.5 rounded-xl border border-slate-200">
+                {['All', 'Sans', 'Serif', 'Mono'].map(t => (
+                  <button
+                    key={t}
+                    onClick={() => setTypeFilter(t)}
+                    className={`px-3 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest transition-all ${typeFilter === t ? 'bg-primary text-white shadow-sm' : 'text-slate-400 hover:text-foreground'}`}
+                  >
+                    {t}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 
-          <div className="flex lg:hidden items-center gap-2">
-             <button 
-               onClick={() => setShowFilters(!showFilters)}
-               className={`p-2 rounded-xl border-2 transition-all ${showFilters ? 'bg-primary text-white border-primary' : 'bg-slate-50 border-slate-200 text-slate-500'}`}
-             >
-                <Search size={16} />
-             </button>
-             <button
-               onClick={handleSelectTheme}
-               className="px-5 py-3 bg-foreground text-white rounded-xl font-heading font-black text-[10px] uppercase tracking-widest shadow-pop-sm active:scale-95 transition-all"
-             >
-                Confirm
-             </button>
+          {/* Right: search (desktop) + filter toggle (mobile) + confirm */}
+          <div className="flex items-center gap-2 shrink-0">
+            {/* Desktop search */}
+            <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 bg-slate-50 rounded-xl border border-slate-200 focus-within:border-primary/50 transition-all">
+              <Search size={11} className="text-slate-300 shrink-0" />
+              <input
+                value={searchTerm}
+                onChange={e => setSearchTerm(e.target.value)}
+                placeholder="Search themes..."
+                className="bg-transparent border-none outline-none text-[10px] font-bold uppercase tracking-widest placeholder:text-slate-300 w-32 text-foreground"
+              />
+            </div>
+
+            {/* Mobile filter toggle */}
+            <button
+              onClick={() => setShowFilters(!showFilters)}
+              className={`lg:hidden p-2 rounded-lg border transition-all ${showFilters ? 'bg-primary text-white border-primary' : 'bg-slate-50 border-slate-200 text-slate-500'}`}
+            >
+              {showFilters ? <X size={14} /> : <SlidersHorizontal size={14} />}
+            </button>
+
+            {/* Confirm button — compact on mobile */}
+            <button
+              onClick={handleSelectTheme}
+              className="px-3 sm:px-5 py-2 bg-foreground text-white rounded-xl font-heading font-black text-[9px] sm:text-[10px] uppercase tracking-widest shadow-pop-sm active:scale-95 transition-all flex items-center gap-1.5"
+            >
+              <span className="hidden sm:inline">Confirm Selection</span>
+              <span className="sm:hidden">Confirm</span>
+              <Layout size={11} />
+            </button>
           </div>
         </div>
 
-        {/* Mobile Filters Dropdown */}
+        {/* Mobile filters panel */}
         <AnimatePresence>
-           {showFilters && (
-             <motion.div 
-               initial={{ height: 0, opacity: 0 }}
-               animate={{ height: 'auto', opacity: 1 }}
-               exit={{ height: 0, opacity: 0 }}
-               className="lg:hidden flex flex-col gap-4 overflow-hidden bg-slate-50/50 p-4 rounded-2xl border border-slate-200"
-             >
-                <div className="flex items-center gap-3 px-4 py-3 bg-white rounded-xl border border-slate-200">
-                   <Search size={14} className="text-slate-300" />
-                   <input 
-                     value={searchTerm}
-                     onChange={(e) => setSearchTerm(e.target.value)}
-                     placeholder="Search systems..." 
-                     className="bg-transparent border-none outline-none text-[10px] font-bold uppercase tracking-widest placeholder:text-slate-300 w-full text-foreground"
-                   />
+          {showFilters && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="lg:hidden overflow-hidden"
+            >
+              <div className="pt-2 pb-1 flex flex-col gap-2">
+                {/* Search */}
+                <div className="flex items-center gap-2 px-3 py-2 bg-slate-50 rounded-xl border border-slate-200">
+                  <Search size={12} className="text-slate-300 shrink-0" />
+                  <input
+                    value={searchTerm}
+                    onChange={e => setSearchTerm(e.target.value)}
+                    placeholder="Search systems..."
+                    className="bg-transparent border-none outline-none text-[10px] font-bold uppercase tracking-widest placeholder:text-slate-300 w-full text-foreground"
+                  />
                 </div>
-                
-                <div className="grid grid-cols-2 gap-3">
-                   <div className="flex flex-col gap-2">
-                      <span className="text-[8px] font-black text-slate-400 uppercase tracking-widest ml-1">Mode //</span>
-                      <div className="flex bg-white p-1 rounded-lg border border-slate-200">
-                         {['All', 'Light', 'Dark'].map(m => (
-                           <button
-                             key={m}
-                             onClick={() => setModeFilter(m)}
-                             className={`flex-1 py-2 rounded text-[9px] font-black uppercase transition-all ${modeFilter === m ? 'bg-slate-100 text-foreground' : 'text-slate-400'}`}
-                           >
-                             {m}
-                           </button>
-                         ))}
-                      </div>
-                   </div>
-                   <div className="flex flex-col gap-2">
-                      <span className="text-[8px] font-black text-slate-400 uppercase tracking-widest ml-1">Type //</span>
-                      <div className="flex bg-white p-1 rounded-lg border border-slate-200">
-                         {['All', 'Sans', 'Serif', 'Mono'].map(t => (
-                           <button
-                             key={t}
-                             onClick={() => setTypeFilter(t)}
-                             className={`flex-1 py-2 rounded text-[9px] font-black uppercase transition-all ${typeFilter === t ? 'bg-primary text-white' : 'text-slate-400'}`}
-                           >
-                             {t}
-                           </button>
-                         ))}
-                      </div>
-                   </div>
+                {/* Mode + Type in grid */}
+                <div className="grid grid-cols-2 gap-2">
+                  <div className="flex flex-col gap-1">
+                    <span className="text-[8px] font-black text-slate-400 uppercase tracking-widest px-1">Mode //</span>
+                    <div className="flex bg-white p-0.5 rounded-lg border border-slate-200">
+                      {['All', 'Light', 'Dark'].map(m => (
+                        <button
+                          key={m}
+                          onClick={() => setModeFilter(m)}
+                          className={`flex-1 py-1.5 rounded text-[8px] font-black uppercase transition-all ${modeFilter === m ? 'bg-slate-100 text-foreground' : 'text-slate-400'}`}
+                        >
+                          {m}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <span className="text-[8px] font-black text-slate-400 uppercase tracking-widest px-1">Type //</span>
+                    <div className="flex bg-white p-0.5 rounded-lg border border-slate-200">
+                      {['All', 'Sans', 'Serif', 'Mono'].map(t => (
+                        <button
+                          key={t}
+                          onClick={() => setTypeFilter(t)}
+                          className={`flex-1 py-1.5 rounded text-[8px] font-black uppercase transition-all ${typeFilter === t ? 'bg-primary text-white' : 'text-slate-400'}`}
+                        >
+                          {t}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-             </motion.div>
-           )}
+              </div>
+            </motion.div>
+          )}
         </AnimatePresence>
-
-        <div className="hidden lg:flex items-center gap-6">
-            <div className="flex items-center gap-3 px-4 py-2 bg-slate-50 rounded-2xl border border-slate-200 focus-within:border-primary/50 transition-all">
-               <Search size={12} className="text-slate-300" />
-               <input 
-                 value={searchTerm}
-                 onChange={(e) => setSearchTerm(e.target.value)}
-                 placeholder="Search themes..." 
-                 className="bg-transparent border-none outline-none text-xs font-bold uppercase tracking-widest placeholder:text-slate-300 w-40 text-foreground"
-               />
-            </div>
-
-            <Magnetic strength={0.3}>
-              <button
-                 onClick={handleSelectTheme}
-                 className="px-6 py-2.5 bg-primary text-white rounded-full font-heading font-black text-[10px] uppercase tracking-widest shadow-pop hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all flex items-center gap-3 group"
-              >
-                 Confirm Selection
-                 <Layout size={14} className="group-hover:rotate-12 transition-transform" />
-              </button>
-            </Magnetic>
-        </div>
       </header>
 
-      <main className="flex-grow flex flex-col lg:flex-row overflow-hidden relative">
-        {/* Sidebar */}
-        <aside className="w-full lg:w-[320px] h-auto lg:h-full border-b lg:border-b-0 lg:border-r border-slate-200 bg-white/50 backdrop-blur-sm flex flex-col transition-all z-20 overflow-hidden shrink-0">
-          <div className="p-3 lg:p-4 lg:pb-2 border-b border-slate-100 bg-slate-50/50 flex justify-between items-center text-[9px] font-black uppercase tracking-[0.2em] text-slate-400">
-             <span>Library // {filteredThemes.length} matches</span>
+      {/* ── Main Body ── */}
+      <main className="flex-1 flex flex-col lg:flex-row overflow-hidden min-h-0">
+
+        {/* ── Sidebar / Theme Carousel ──
+            Mobile: horizontal snap scroll row at top
+            Desktop: vertical scrolling sidebar
+        */}
+        <aside className="shrink-0 lg:w-[300px] xl:w-[320px] border-b lg:border-b-0 lg:border-r border-slate-200 bg-white/60 backdrop-blur-sm flex flex-col min-h-0">
+          {/* Count bar */}
+          <div className="px-3 py-1.5 border-b border-slate-100 bg-slate-50/80 shrink-0">
+            <span className="text-[8px] font-black uppercase tracking-[0.25em] text-slate-400">
+              Library // {filteredThemes.length} matches
+            </span>
           </div>
-          
-          <div className="flex-grow overflow-x-auto lg:overflow-y-auto custom-scrollbar p-3 lg:p-4 flex lg:flex-col gap-3 lg:space-y-3 whitespace-nowrap lg:whitespace-normal no-scrollbar lg:no-scrollbar">
+
+          {/* Cards — horizontal on mobile, vertical on desktop */}
+          <div
+            ref={cardListRef}
+            className="
+              flex flex-row lg:flex-col
+              gap-2 p-2 lg:p-3
+              overflow-x-auto lg:overflow-x-hidden
+              overflow-y-hidden lg:overflow-y-auto
+              snap-x snap-mandatory lg:snap-none
+              no-scrollbar
+              lg:flex-1 lg:min-h-0
+            "
+          >
             {filteredThemes.map((theme, index) => (
               <button
                 key={theme.id}
                 onClick={() => setSelectedThemeId(theme.id)}
-                className={`flex-shrink-0 w-[160px] lg:w-full p-2.5 lg:p-3 rounded-lg lg:rounded-xl flex items-center justify-between group transition-all relative overflow-hidden ${
-                  selectedThemeId === theme.id 
-                    ? 'bg-white border-2 border-foreground shadow-pop-sm translate-x-[-1px] translate-y-[-1px]' 
-                    : 'hover:bg-white border-2 border-transparent hover:border-slate-200 lg:hover:translate-x-[-1px] lg:hover:translate-y-[-1px]'
-                }`}
+                className={`
+                  snap-start shrink-0
+                  w-[148px] sm:w-[160px] lg:w-full
+                  p-2.5 lg:p-3 rounded-xl
+                  flex items-center gap-2 lg:gap-3 lg:justify-between
+                  transition-all relative overflow-hidden text-left
+                  ${selectedThemeId === theme.id
+                    ? 'bg-white border-2 border-foreground shadow-pop-sm -translate-x-px -translate-y-px'
+                    : 'border-2 border-transparent hover:bg-white hover:border-slate-200'}
+                `}
               >
-                <div className="flex items-center gap-2 lg:gap-3 relative z-10">
-                   <div className={`w-8 h-8 lg:w-10 lg:h-10 rounded-lg flex items-center justify-center text-sm lg:text-base shadow-inner border transition-all ${selectedThemeId === theme.id ? 'border-primary/50 bg-primary/10 scale-95' : 'border-slate-100 bg-slate-50 group-hover:bg-slate-100'}`}>
-                      {theme.icon}
-                   </div>
-                   <div className="text-left">
-                      <h3 className={`text-[11px] lg:text-xs font-heading font-black mb-0.5 leading-tight tracking-tight ${selectedThemeId === theme.id ? 'text-foreground' : 'text-slate-500 group-hover:text-foreground/90'}`}>{theme.name}</h3>
-                      <div className="flex items-center gap-1.5">
-                         <span className="text-[7px] lg:text-[7px] font-black uppercase tracking-widest text-primary">{theme.type}</span>
-                         <span className="w-0.5 h-0.5 rounded-full bg-slate-200" />
-                         <span className="text-[7px] lg:text-[7px] font-black uppercase tracking-widest text-slate-400">{theme.mode}</span>
-                      </div>
-                   </div>
+                <div className="flex items-center gap-2 min-w-0">
+                  <div className={`
+                    w-8 h-8 lg:w-9 lg:h-9 rounded-lg shrink-0
+                    flex items-center justify-center text-sm shadow-inner border transition-all
+                    ${selectedThemeId === theme.id ? 'border-primary/40 bg-primary/10' : 'border-slate-100 bg-slate-50'}
+                  `}>
+                    {theme.icon}
+                  </div>
+                  <div className="text-left min-w-0">
+                    <h3 className={`text-[10px] lg:text-[11px] font-heading font-black leading-tight tracking-tight truncate ${selectedThemeId === theme.id ? 'text-foreground' : 'text-slate-500'}`}>
+                      {theme.name}
+                    </h3>
+                    <div className="flex items-center gap-1">
+                      <span className="text-[7px] font-black uppercase tracking-widest text-primary">{theme.type}</span>
+                      <span className="w-0.5 h-0.5 rounded-full bg-slate-300 shrink-0" />
+                      <span className="text-[7px] font-black uppercase tracking-widest text-slate-400">{theme.mode}</span>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="hidden lg:block relative z-10 opacity-20 group-hover:opacity-100 transition-all">
-                  <span className="text-[8px] font-black tabular-nums text-foreground">{(index + 1).toString().padStart(2, '0')}</span>
-                </div>
+                {/* Index number — desktop only */}
+                <span className="hidden lg:block text-[8px] font-black tabular-nums text-slate-300 shrink-0">
+                  {(index + 1).toString().padStart(2, '0')}
+                </span>
 
                 {selectedThemeId === theme.id && (
-                  <motion.div 
-                    layoutId="active-nav-glow"
-                    className="absolute inset-0 bg-primary/[0.03] pointer-events-none"
+                  <motion.div
+                    layoutId="active-card-highlight"
+                    className="absolute inset-0 bg-primary/[0.03] pointer-events-none rounded-xl"
                   />
                 )}
               </button>
@@ -230,89 +266,110 @@ const DesignSelection = () => {
           </div>
         </aside>
 
-        {/* Content Area */}
-        <section className="flex-grow relative bg-slate-50/30 flex flex-col overflow-hidden">
-          {/* Top Bar for Viewport Toggle (Responsive Width) */}
-          <div className="p-3 lg:p-4 border-b border-slate-100 flex justify-center gap-4 lg:gap-6 bg-white/50 backdrop-blur-sm overflow-x-auto">
-              {[
-                { id: 'desktop', icon: <Monitor size={14} lg:size={16} /> },
-                { id: 'tablet', icon: <Tablet size={14} lg:size={16} /> },
-                { id: 'mobile', icon: <Smartphone size={14} lg:size={16} /> }
-              ].map(d => (
-                <button 
-                  key={d.id}
-                  onClick={() => setPreviewDevice(d.id)}
-                  className={`p-2 rounded-lg lg:rounded-xl transition-all ${previewDevice === d.id ? 'bg-white text-primary shadow-pop-sm border-2 border-foreground translate-x-[-1px] translate-y-[-1px]' : 'text-slate-300 hover:text-foreground/50'}`}
-                >
-                  {d.icon}
-                </button>
-              ))}
+        {/* ── Preview Content Area ── */}
+        <section className="flex-1 flex flex-col min-h-0 overflow-hidden bg-slate-50/40">
+
+          {/* Device toggle bar */}
+          <div className="shrink-0 px-3 py-1.5 border-b border-slate-100 bg-white/60 backdrop-blur-sm flex items-center justify-center gap-3">
+            {[
+              { id: 'desktop', icon: <Monitor size={13} /> },
+              { id: 'tablet',  icon: <Tablet  size={13} /> },
+              { id: 'mobile',  icon: <Smartphone size={13} /> },
+            ].map(d => (
+              <button
+                key={d.id}
+                onClick={() => setPreviewDevice(d.id)}
+                className={`p-1.5 rounded-lg transition-all ${
+                  previewDevice === d.id
+                    ? 'bg-white text-primary shadow-pop-sm border-2 border-foreground -translate-x-px -translate-y-px'
+                    : 'text-slate-300 hover:text-slate-500'
+                }`}
+              >
+                {d.icon}
+              </button>
+            ))}
           </div>
 
-          <div 
+          {/* Scrollable content */}
+          <div
             ref={scrollContainerRef}
-            className="flex-grow p-4 lg:p-10 overflow-y-auto custom-scrollbar flex flex-col items-center"
+            className="flex-1 overflow-y-auto overflow-x-hidden no-scrollbar p-3 sm:p-5 lg:p-8"
           >
             <AnimatePresence mode="wait">
               <motion.div
                 key={selectedTheme.id}
-                initial={{ opacity: 0, scale: 0.98 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-                className="w-full max-w-5xl flex flex-col gap-6 lg:gap-10"
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.25 }}
+                className="w-full max-w-5xl mx-auto flex flex-col gap-5 lg:gap-8"
               >
-                {/* Header Info */}
-                <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 lg:gap-8 border-b border-slate-100 pb-6 lg:pb-10">
-                   <div className="space-y-3 lg:space-y-4">
-                      <div className="flex items-center gap-2 lg:gap-3">
-                         <span className="px-2 lg:px-3 py-1 bg-primary/10 text-primary border border-primary/20 rounded-lg text-[8px] lg:text-[9px] font-black uppercase tracking-[0.2em]">{selectedTheme.mode}</span>
-                         <span className="px-2 lg:px-3 py-1 bg-slate-100 text-slate-500 border border-slate-200 rounded-lg text-[8px] lg:text-[9px] font-black uppercase tracking-[0.2em]">{selectedTheme.type} System</span>
+                {/* Theme meta header */}
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 pb-4 border-b border-slate-100">
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="px-2 py-0.5 bg-primary/10 text-primary border border-primary/20 rounded-lg text-[8px] font-black uppercase tracking-widest">
+                        {selectedTheme.mode}
+                      </span>
+                      <span className="px-2 py-0.5 bg-slate-100 text-slate-500 border border-slate-200 rounded-lg text-[8px] font-black uppercase tracking-widest">
+                        {selectedTheme.type} System
+                      </span>
+                    </div>
+                    <h2 className="text-2xl sm:text-4xl lg:text-5xl font-heading font-black tracking-tighter italic leading-none text-foreground">
+                      {selectedTheme.name}
+                    </h2>
+                    <p className="text-sm text-slate-500 font-medium leading-relaxed max-w-lg">
+                      {selectedTheme.description}
+                    </p>
+                    {selectedTheme.features && (
+                      <div className="flex flex-wrap gap-1.5 pt-1">
+                        {selectedTheme.features.map(f => (
+                          <span
+                            key={f}
+                            className="px-2 py-0.5 bg-white border border-slate-100 rounded-full text-[7px] font-black uppercase tracking-widest text-slate-400"
+                          >
+                            {f}
+                          </span>
+                        ))}
                       </div>
-                      <h2 className="text-3xl md:text-5xl lg:text-6xl font-heading font-black tracking-tighter italic leading-none text-foreground">
-                        {selectedTheme.name}
-                      </h2>
-                      <p className="text-sm lg:text-base text-slate-500 font-medium max-w-xl leading-relaxed">
-                         {selectedTheme.description}
-                      </p>
-                      {selectedTheme.features && (
-                        <div className="flex flex-wrap gap-1.5 lg:gap-2 pt-1">
-                           {selectedTheme.features.map(f => (
-                             <span key={f} className="px-2 lg:px-2.5 py-0.5 bg-white border border-slate-100 rounded-full text-[7px] lg:text-[8px] font-black uppercase tracking-widest text-slate-400">{f}</span>
-                           ))}
-                        </div>
-                      )}
-                   </div>
-                   
+                    )}
+                  </div>
                 </div>
 
-                {/* DYNAMIC REAL MOCKUP CONTAINER */}
-                <div 
-                  className={`transition-all duration-500 mx-auto w-full overflow-hidden`}
-                >
-                   <div className="bg-slate-900 border-b border-white/5 px-4 lg:px-6 py-2 lg:py-3 flex items-center justify-between gap-4 rounded-t-2xl lg:rounded-t-3xl shadow-xl">
-                      <div className="flex gap-1 lg:gap-1.5">
-                         <div className="w-2 h-2 rounded-full bg-[#FF5F57]" />
-                         <div className="w-2 h-2 rounded-full bg-[#FFBC2E]" />
-                         <div className="w-2 h-2 rounded-full bg-[#28C840]" />
-                      </div>
-                      <div className="px-4 lg:px-6 py-1 bg-white/5 rounded-lg text-[6px] lg:text-[7px] font-black uppercase tracking-[0.2em] text-white/30 border border-white/10 flex items-center gap-1.5 lg:gap-2">
-                        <Sparkles size={8} lg:size={10} className="text-primary" />
-                        zorvia.tech/preview/{selectedTheme.id}
-                      </div>
-                      <div className="w-6 lg:w-10" />
-                   </div>
+                {/* ── Browser Chrome + Mockup ── */}
+                <div className="w-full overflow-hidden rounded-2xl border border-slate-200 shadow-xl">
+                  {/* Browser top bar */}
+                  <div className="bg-slate-900 px-3 sm:px-5 py-2 flex items-center justify-between gap-3 rounded-t-2xl">
+                    <div className="flex gap-1.5 shrink-0">
+                      <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F57]" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-[#FFBC2E]" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-[#28C840]" />
+                    </div>
+                    <div className="flex-1 max-w-xs mx-auto px-3 py-1 bg-white/5 rounded-md text-[7px] sm:text-[8px] font-black uppercase tracking-widest text-white/30 border border-white/10 flex items-center gap-1.5 justify-center truncate">
+                      <Sparkles size={7} className="text-primary shrink-0" />
+                      <span className="truncate">zorvia.tech/preview/{selectedTheme.id}</span>
+                    </div>
+                    <div className="w-10 shrink-0" />
+                  </div>
 
-                   <div 
-                    className={`min-h-[350px] lg:min-h-[550px] transition-all duration-500 rounded-b-2xl lg:rounded-b-3xl border-x border-b border-slate-200 relative overflow-hidden bg-white shadow-2xl flex items-center justify-center p-4 lg:p-0`}
-                   >
-                      <div className={`transition-all duration-500 h-full ${
-                        previewDevice === 'desktop' ? 'w-full' : previewDevice === 'tablet' ? 'w-[768px]' : 'w-[375px]'
-                      } origin-top scale-[0.55] sm:scale-100`}>
-                        <MockupRenderer theme={selectedTheme} />
-                      </div>
-                   </div>
+                  {/* Mockup viewport — scales with device selector */}
+                  <div className="bg-white flex items-start justify-center overflow-hidden min-h-[260px] sm:min-h-[340px] lg:min-h-[480px]">
+                    <div
+                      className={`
+                        transition-all duration-500 w-full h-full
+                        ${previewDevice === 'mobile'  ? 'max-w-[375px]'  : ''}
+                        ${previewDevice === 'tablet'  ? 'max-w-[768px]'  : ''}
+                        ${previewDevice === 'desktop' ? 'max-w-full'     : ''}
+                      `}
+                      style={{
+                        minHeight: previewDevice === 'mobile' ? 600 : previewDevice === 'tablet' ? 500 : 480
+                      }}
+                    >
+                      <MockupRenderer theme={selectedTheme} />
+                    </div>
+                  </div>
                 </div>
+
               </motion.div>
             </AnimatePresence>
           </div>
