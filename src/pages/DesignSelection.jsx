@@ -8,7 +8,7 @@ import MockupRenderer from '../components/features/design-selection/MockupRender
 
 // Natural widths the mockups were designed for
 const NATURAL_WIDTHS = { desktop: 1280, tablet: 768, mobile: 375 };
-const NATURAL_HEIGHT = 1400;
+const NATURAL_HEIGHT = 3000;
 
 const DesignSelection = () => {
   const navigate = useNavigate();
@@ -217,22 +217,20 @@ const DesignSelection = () => {
                     : 'border-transparent hover:bg-white hover:border-slate-200'}
                 `}
               >
-                <div className="flex items-center gap-2 min-w-0">
+                <div className="flex items-center gap-1.5 min-w-0">
                   <div className={`
-                    w-7 h-7 lg:w-8 lg:h-8 rounded-lg shrink-0
+                    w-6 h-6 lg:w-8 lg:h-8 rounded-lg shrink-0
                     flex items-center justify-center text-xs shadow-inner border
                     ${selectedThemeId === theme.id ? 'border-primary/40 bg-primary/10' : 'border-slate-100 bg-slate-50'}
                   `}>
                     {theme.icon}
                   </div>
                   <div className="min-w-0">
-                    <p className={`text-[10px] font-heading font-black leading-tight tracking-tight truncate ${selectedThemeId === theme.id ? 'text-foreground' : 'text-slate-500'}`}>
+                    <p className={`text-[9px] lg:text-[10px] font-heading font-black leading-tight tracking-tight truncate ${selectedThemeId === theme.id ? 'text-foreground' : 'text-slate-500'}`}>
                       {theme.name}
                     </p>
                     <div className="flex items-center gap-1">
-                      <span className="text-[6px] font-black uppercase tracking-widest text-primary">{theme.type}</span>
-                      <span className="w-0.5 h-0.5 rounded-full bg-slate-300 shrink-0" />
-                      <span className="text-[6px] font-black uppercase tracking-widest text-slate-400">{theme.mode}</span>
+                      <span className="text-[5px] lg:text-[6px] font-black uppercase tracking-widest text-primary">{theme.type}</span>
                     </div>
                   </div>
                 </div>
@@ -252,11 +250,7 @@ const DesignSelection = () => {
         <section className="flex-1 flex flex-col min-h-0 overflow-hidden bg-slate-50/40">
 
           {/* Device toggle — very compact */}
-          <div className="shrink-0 px-3 py-1 border-b border-slate-100 bg-white/70 flex items-center justify-between">
-            {/* Theme name — mobile only, saves vertical space */}
-            <span className="lg:hidden text-[10px] font-heading font-black italic tracking-tight text-foreground truncate max-w-[120px]">
-              {selectedTheme.name}
-            </span>
+          <div className="shrink-0 px-3 py-1 border-b border-slate-100 bg-white/70 flex items-center justify-end">
             <div className="flex items-center gap-2 ml-auto">
               {[
                 { id: 'desktop', icon: <Monitor size={12} /> },
@@ -330,15 +324,16 @@ const DesignSelection = () => {
                   {/* ── Scaled mockup viewport ── */}
                   <div
                     ref={previewWrapRef}
-                    className="w-full overflow-hidden bg-white"
-                    style={{ height: scaledH || 300 }}
+                    className="w-full bg-white overflow-y-auto overflow-x-hidden no-scrollbar"
+                    style={{ height: scaledH || 500 }}
                   >
                     <div
                       style={{
                         width: naturalW,
                         height: NATURAL_HEIGHT,
                         transform: `scale(${scale})`,
-                        transformOrigin: 'top left',
+                        transformOrigin: 'top center',
+                        margin: '0 auto'
                       }}
                     >
                       <MockupRenderer theme={selectedTheme} />
