@@ -4,7 +4,7 @@ import { Layout, Shapes, Layers, Hash, Command, Circle, Square, Triangle } from 
 
 const BauhausMockup = ({ theme }) => {
   return (
-    <div className="h-full bg-white flex flex-col font-sans relative overflow-hidden text-black selection:bg-black selection:text-white">
+    <div className="min-h-screen bg-white flex flex-col font-sans relative overflow-hidden text-black selection:bg-black selection:text-white">
       {/* 1. Geometric Background Architecture */}
       <div className="absolute inset-0 pointer-events-none">
          <div className="absolute top-0 right-0 w-[40%] h-full bg-[#E6192E] border-l-8 border-black opacity-10" />
@@ -105,3 +105,5 @@ const BauhausMockup = ({ theme }) => {
 };
 
 export default BauhausMockup;
+
+

@@ -4,7 +4,7 @@ import { Shield, Zap, Box, Lock, BarChart, Settings, Sliders } from 'lucide-reac
 
 const ModernDarkMockup = ({ theme }) => {
   return (
-    <div className="h-full relative overflow-hidden bg-[#0B0F19] text-white font-sans selection:bg-[#3B82F6] selection:text-white">
+    <div className="min-h-screen relative overflow-hidden bg-[#0B0F19] text-white font-sans selection:bg-[#3B82F6] selection:text-white">
       
       {/* 1. Ambient Glow Orbs */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -92,3 +92,4 @@ const ModernDarkMockup = ({ theme }) => {
 };
 
 export default ModernDarkMockup;
+

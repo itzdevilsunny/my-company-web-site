@@ -4,7 +4,7 @@ import { Hexagon, Activity, Wallet, ArrowDownUp, ShieldAlert, BarChart2, Repeat 
 
 const Web3Mockup = ({ theme }) => {
   return (
-    <div className="h-full relative overflow-hidden bg-[#030712] text-white font-mono selection:bg-[#F59E0B] selection:text-black">
+    <div className="min-h-screen relative overflow-hidden bg-[#030712] text-white font-mono selection:bg-[#F59E0B] selection:text-black">
       
       {/* Floating Neon Grid Background */}
       <div className="absolute inset-0 pointer-events-none opacity-20" style={{ backgroundImage: 'radial-gradient(circle at center, #F59E0B 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
@@ -106,3 +106,4 @@ const Web3Mockup = ({ theme }) => {
 };
 
 export default Web3Mockup;
+

@@ -4,7 +4,7 @@ import { Zap, ArrowRight, Activity, Cpu, Wind, FastForward, Repeat } from 'lucid
 
 const KineticMockup = ({ theme }) => {
   return (
-    <div className="h-full relative overflow-hidden bg-[#09090B] text-[#FAFAFA] font-sans selection:bg-[#DFE104] selection:text-black">
+    <div className="min-h-screen relative overflow-hidden bg-[#09090B] text-[#FAFAFA] font-sans selection:bg-[#DFE104] selection:text-black">
       {/* 1. High-Velocity Background Marquees */}
       <div className="absolute inset-0 flex flex-col justify-between py-20 opacity-[0.03] pointer-events-none">
         {[1, 2, 3, 4, 5].map(i => (
@@ -104,3 +104,4 @@ const KineticMockup = ({ theme }) => {
 };
 
 export default KineticMockup;
+

@@ -35,7 +35,7 @@ const TerminalMockup = ({ theme }) => {
   }, [logs]);
 
   return (
-    <div className="h-full bg-black text-[#00FF00] font-mono p-6 md:p-12 flex flex-col relative overflow-hidden selection:bg-[#00FF00] selection:text-black">
+    <div className="min-h-screen bg-black text-[#00FF00] font-mono p-6 md:p-12 flex flex-col relative overflow-hidden selection:bg-[#00FF00] selection:text-black">
       {/* 1. Header with System Vitals */}
       <div className="flex flex-col sm:flex-row justify-between items-start gap-8 mb-8 md:mb-12 border-b border-[#00FF00]/20 pb-8 relative z-10 font-sans md:font-mono">
         <div className="space-y-2">
@@ -168,3 +168,5 @@ const TerminalMockup = ({ theme }) => {
 };
 
 export default TerminalMockup;
+
+

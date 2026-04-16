@@ -4,7 +4,7 @@ import { Layers, Plus, Search, Menu, MoreVertical, Heart, Share2, MessageCircle 
 
 const MaterialMockup = ({ theme }) => {
   return (
-    <div className="h-full relative overflow-hidden bg-[#F3F4F6] text-slate-800 font-sans selection:bg-[#6200EE] selection:text-white">
+    <div className="min-h-screen relative overflow-hidden bg-[#F3F4F6] text-slate-800 font-sans selection:bg-[#6200EE] selection:text-white">
       {/* 1. App Bar Layer */}
       <motion.header 
         initial={{ y: -50 }}
@@ -110,3 +110,4 @@ const MaterialMockup = ({ theme }) => {
 };
 
 export default MaterialMockup;
+

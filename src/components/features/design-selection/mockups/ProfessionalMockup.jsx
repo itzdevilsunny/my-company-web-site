@@ -4,7 +4,7 @@ import { Briefcase, Building, ChevronRight, BarChart3, Users, FileText } from 'l
 
 const ProfessionalMockup = ({ theme }) => {
   return (
-    <div className="h-full relative overflow-hidden bg-[#F8FAFC] text-slate-800 font-sans selection:bg-[#1E40AF] selection:text-white border-t-8 border-[#1E40AF]">
+    <div className="min-h-screen relative overflow-hidden bg-[#F8FAFC] text-slate-800 font-sans selection:bg-[#1E40AF] selection:text-white border-t-8 border-[#1E40AF]">
       
       {/* Structural Corp Header */}
       <header className="bg-white border-b border-slate-200 px-8 py-4 flex justify-between items-center shadow-sm">
@@ -77,3 +77,4 @@ const ProfessionalMockup = ({ theme }) => {
 };
 
 export default ProfessionalMockup;
+

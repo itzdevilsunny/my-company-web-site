@@ -4,7 +4,7 @@ import { BookOpen, PenTool, Search, Archive, Bookmark, Scroll, Library } from 'l
 
 const AcademiaMockup = ({ theme }) => {
   return (
-    <div className="h-full relative overflow-hidden bg-[#FDFBF7] text-[#2C241E] font-serif selection:bg-[#4A3728] selection:text-[#FDFBF7]">
+    <div className="min-h-screen relative overflow-hidden bg-[#FDFBF7] text-[#2C241E] font-serif selection:bg-[#4A3728] selection:text-[#FDFBF7]">
       {/* 1. Paper Texture Overlay */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.05] bg-[url('https://www.transparenttextures.com/patterns/old-map.png')] grayscale" />
       <div className="absolute inset-0 pointer-events-none opacity-[0.02] bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')]" />
@@ -139,3 +139,4 @@ const AcademiaMockup = ({ theme }) => {
 };
 
 export default AcademiaMockup;
+

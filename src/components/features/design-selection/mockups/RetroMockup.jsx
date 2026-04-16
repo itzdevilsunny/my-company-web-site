@@ -4,7 +4,7 @@ import { Star, Zap, Coffee, Music, Camera, Heart, Sun, Rainbow } from 'lucide-re
 
 const RetroMockup = ({ theme }) => {
   return (
-    <div className="h-full relative overflow-hidden bg-[#FEF3C7] text-[#111111] font-sans selection:bg-[#EA580C] selection:text-white">
+    <div className="min-h-screen relative overflow-hidden bg-[#FEF3C7] text-[#111111] font-sans selection:bg-[#EA580C] selection:text-white">
       {/* 1. Animated Groovy Sunburst Background */}
       <div className="absolute inset-0 flex items-center justify-center opacity-20 pointer-events-none overflow-hidden">
          <motion.div 
@@ -104,3 +104,4 @@ const RetroMockup = ({ theme }) => {
 };
 
 export default RetroMockup;
+

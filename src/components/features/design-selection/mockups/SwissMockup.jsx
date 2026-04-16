@@ -4,7 +4,7 @@ import { Circle, Crosshair, Plus, Minus, Move, LayoutGrid } from 'lucide-react';
 
 const SwissMockup = ({ theme }) => {
   return (
-    <div className="h-full relative overflow-hidden bg-white text-black font-sans selection:bg-[#E6192E] selection:text-white">
+    <div className="min-h-screen relative overflow-hidden bg-white text-black font-sans selection:bg-[#E6192E] selection:text-white">
       {/* 1. Global Red Highlight Pattern */}
       <div className="absolute top-0 right-0 w-[40%] h-full bg-[#E6192E]/[0.03] border-l border-black/5" />
 
@@ -130,3 +130,4 @@ const SwissMockup = ({ theme }) => {
 };
 
 export default SwissMockup;
+

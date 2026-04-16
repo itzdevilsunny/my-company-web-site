@@ -29,7 +29,7 @@ const CyberpunkMockup = ({ theme }) => {
   }, []);
 
   return (
-    <div className="h-full relative overflow-hidden bg-[#0D0221] text-[#00FF9F] font-mono selection:bg-[#FF00FF] selection:text-white">
+    <div className="min-h-screen relative overflow-hidden bg-[#0D0221] text-[#00FF9F] font-mono selection:bg-[#FF00FF] selection:text-white">
       {/* Background Data Grid */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#1A0B2E_1px,transparent_1px),linear-gradient(to_bottom,#1A0B2E_1px,transparent_1px)] bg-[size:40px_40px] opacity-20" />
       
@@ -120,3 +120,5 @@ const CyberpunkMockup = ({ theme }) => {
 };
 
 export default CyberpunkMockup;
+
+

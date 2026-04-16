@@ -4,7 +4,7 @@ import { Edit3, Ruler, MousePointer2, ChevronRight, Share2, CornerRightDown, Sta
 
 const SketchMockup = ({ theme }) => {
   return (
-    <div className="h-full relative overflow-hidden bg-[#E7EEF6] text-[#2C4872] font-mono selection:bg-[#B1C9E8] selection:text-[#2C4872]">
+    <div className="min-h-screen relative overflow-hidden bg-[#E7EEF6] text-[#2C4872] font-mono selection:bg-[#B1C9E8] selection:text-[#2C4872]">
       {/* 1. Blueprint / Graph Paper Background */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#B1C9E8_1px,transparent_1px),linear-gradient(to_bottom,#B1C9E8_1px,transparent_1px)] bg-[size:30px_30px] opacity-30" />
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#B1C9E8_2px,transparent_2px),linear-gradient(to_bottom,#B1C9E8_2px,transparent_2px)] bg-[size:150px_150px] opacity-40" />
@@ -112,3 +112,4 @@ const SketchMockup = ({ theme }) => {
 };
 
 export default SketchMockup;
+

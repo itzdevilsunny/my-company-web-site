@@ -4,7 +4,7 @@ import { ArrowRight, Globe } from 'lucide-react';
 
 const BoldTypographyMockup = ({ theme }) => {
   return (
-    <div className="h-full relative overflow-hidden bg-black text-white font-sans selection:bg-white selection:text-black">
+    <div className="min-h-screen relative overflow-hidden bg-black text-white font-sans selection:bg-white selection:text-black">
       
       {/* Immersive Typography Background */}
       <div className="absolute inset-0 flex flex-col justify-between overflow-hidden opacity-10 pointer-events-none select-none mix-blend-overlay">
@@ -63,3 +63,4 @@ const BoldTypographyMockup = ({ theme }) => {
 };
 
 export default BoldTypographyMockup;
+

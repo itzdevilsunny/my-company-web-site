@@ -32,7 +32,7 @@ const MaximalismMockup = ({ theme }) => {
   }));
 
   return (
-    <div className="h-full w-full relative bg-max-bg font-dm-sans overflow-hidden max-selection">
+    <div className="min-h-screen w-full relative bg-max-bg font-dm-sans overflow-hidden max-selection">
       {/* Texture Layering System */}
       <div className="absolute inset-0 pattern-max-dots opacity-20 pointer-events-none" />
       <div className="absolute inset-0 pattern-max-stripes opacity-10 pointer-events-none" />
@@ -209,3 +209,5 @@ const MaximalismMockup = ({ theme }) => {
 };
 
 export default MaximalismMockup;
+
+

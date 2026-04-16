@@ -4,7 +4,7 @@ import { ArrowUpRight, Star, Zap, Layout, Shapes, Layers, Hash, Command } from '
 
 const BrutalistMockup = ({ theme }) => {
   return (
-    <div className="h-full bg-white flex flex-col font-heading selection:bg-black selection:text-[#FFD600]">
+    <div className="min-h-screen bg-white flex flex-col font-heading selection:bg-black selection:text-[#FFD600]">
       {/* 1. Massive Architectural Header */}
       <div className="border-b-4 border-black p-6 md:p-12 bg-[#FFD600] flex justify-between items-center relative overflow-hidden group">
          <div className="absolute top-0 left-0 w-full h-full pattern-max-dots opacity-10 group-hover:opacity-20 transition-opacity" />
@@ -89,3 +89,5 @@ const BrutalistMockup = ({ theme }) => {
 };
 
 export default BrutalistMockup;
+
+

@@ -4,7 +4,7 @@ import { Sun, Cloud, Music, Monitor, Zap, Heart, Sparkles, Send } from 'lucide-r
 
 const VaporwaveMockup = ({ theme }) => {
   return (
-    <div className="h-full relative overflow-hidden bg-[#01CDFE] font-sans text-white selection:bg-[#FF71CE] selection:text-white">
+    <div className="min-h-screen relative overflow-hidden bg-[#01CDFE] font-sans text-white selection:bg-[#FF71CE] selection:text-white">
       {/* 1. Retro Background Composition */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
          {/* Perspective Grid */}
@@ -137,3 +137,4 @@ const VaporwaveMockup = ({ theme }) => {
 };
 
 export default VaporwaveMockup;
+

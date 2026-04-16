@@ -4,7 +4,7 @@ import { LayoutGrid, Database, Server, Settings, Search, Bell, ChevronDown, List
 
 const EnterpriseMockup = ({ theme }) => {
   return (
-    <div className="h-full relative overflow-hidden bg-white text-slate-800 font-sans selection:bg-slate-800 selection:text-white flex border border-slate-300 shadow-xl">
+    <div className="min-h-screen relative overflow-hidden bg-white text-slate-800 font-sans selection:bg-slate-800 selection:text-white flex border border-slate-300 shadow-xl">
       
       {/* Enterprise Sidebar */}
       <aside className="w-64 bg-slate-50 border-r border-slate-200 flex flex-col hidden lg:flex">
@@ -93,3 +93,4 @@ const EnterpriseMockup = ({ theme }) => {
 };
 
 export default EnterpriseMockup;
+

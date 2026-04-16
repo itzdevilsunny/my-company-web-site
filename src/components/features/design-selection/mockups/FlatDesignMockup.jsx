@@ -4,7 +4,7 @@ import { Cloud, CheckCircle, Search, Mail, ArrowRight } from 'lucide-react';
 
 const FlatDesignMockup = ({ theme }) => {
   return (
-    <div className="h-full relative overflow-hidden bg-[#ECF0F1] text-[#2C3E50] font-sans selection:bg-[#3498DB] selection:text-white">
+    <div className="min-h-screen relative overflow-hidden bg-[#ECF0F1] text-[#2C3E50] font-sans selection:bg-[#3498DB] selection:text-white">
       
       {/* 2D Geometric Vectors */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -87,3 +87,4 @@ const FlatDesignMockup = ({ theme }) => {
 };
 
 export default FlatDesignMockup;
+

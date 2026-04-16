@@ -4,7 +4,7 @@ import { Leaf, Wind, Sun, Sprout, Droplets, Flower2, Bird, Cloud } from 'lucide-
 
 const OrganicMockup = ({ theme }) => {
   return (
-    <div className="h-full relative overflow-hidden bg-[#F2F2EB] text-[#2D3A3A] font-serif selection:bg-[#8BA888] selection:text-white">
+    <div className="min-h-screen relative overflow-hidden bg-[#F2F2EB] text-[#2D3A3A] font-serif selection:bg-[#8BA888] selection:text-white">
       {/* 1. Fluid Background Blobs */}
       <div className="absolute inset-0 pointer-events-none">
         <motion.div
@@ -130,3 +130,4 @@ const OrganicMockup = ({ theme }) => {
 };
 
 export default OrganicMockup;
+

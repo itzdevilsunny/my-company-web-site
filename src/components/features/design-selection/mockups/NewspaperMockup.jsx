@@ -154,3 +154,4 @@ const NewspaperMockup = ({ theme }) => {
 };
 
 export default NewspaperMockup;
+

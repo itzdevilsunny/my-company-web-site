@@ -4,7 +4,7 @@ import { Cpu, HardDrive, Settings, Activity, Shield, AlertTriangle, ChevronRight
 
 const IndustrialMockup = ({ theme }) => {
   return (
-    <div className="h-full relative overflow-hidden bg-[#1f2937] text-slate-300 font-mono selection:bg-[#F97316] selection:text-white">
+    <div className="min-h-screen relative overflow-hidden bg-[#1f2937] text-slate-300 font-mono selection:bg-[#F97316] selection:text-white">
       {/* 1. Structural Overlays (Steel/Rust) */}
       <div className="absolute inset-0 pointer-events-none">
          <div className="absolute top-0 left-0 w-full h-2 bg-[#F97316]" />
@@ -126,3 +126,4 @@ const IndustrialMockup = ({ theme }) => {
 };
 
 export default IndustrialMockup;
+

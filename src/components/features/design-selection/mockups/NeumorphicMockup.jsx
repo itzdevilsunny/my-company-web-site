@@ -13,7 +13,7 @@ const NeumorphicMockup = ({ theme }) => {
   const smallInner = "inset 4px 4px 8px #bebebe, inset -4px -4px 8px #ffffff";
 
   return (
-    <div className="h-full relative overflow-hidden bg-[#e0e0e0] text-[#444444] font-sans selection:bg-slate-300">
+    <div className="min-h-screen relative overflow-hidden bg-[#e0e0e0] text-[#444444] font-sans selection:bg-slate-300">
       
       {/* 1. Header with Soft Controls */}
       <nav className="p-12 flex justify-between items-center relative z-10">
@@ -137,3 +137,4 @@ const NeumorphicMockup = ({ theme }) => {
 };
 
 export default NeumorphicMockup;
+

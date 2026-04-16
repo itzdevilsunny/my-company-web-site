@@ -4,7 +4,7 @@ import { Circle, Square, Triangle, Hexagon, Star, Sparkles, Smile, ArrowRight } 
 
 const PlayfulMockup = ({ theme }) => {
   return (
-    <div className="h-full relative overflow-hidden bg-white text-slate-800 font-sans selection:bg-[#8B5CF6] selection:text-white">
+    <div className="min-h-screen relative overflow-hidden bg-white text-slate-800 font-sans selection:bg-[#8B5CF6] selection:text-white">
       
       {/* 1. Floating Primitives Background */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -116,3 +116,4 @@ const PlayfulMockup = ({ theme }) => {
 };
 
 export default PlayfulMockup;
+

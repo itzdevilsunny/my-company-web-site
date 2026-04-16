@@ -4,7 +4,7 @@ import { Diamond, Star, Sparkles, Anchor, ChevronDown, Award, Globe } from 'luci
 
 const ArtDecoMockup = ({ theme }) => {
   return (
-    <div className="h-full relative overflow-hidden bg-[#0A0A0A] text-[#D4AF37] font-serif selection:bg-[#D4AF37] selection:text-black">
+    <div className="min-h-screen relative overflow-hidden bg-[#0A0A0A] text-[#D4AF37] font-serif selection:bg-[#D4AF37] selection:text-black">
       {/* 1. Geometric Sunray Background */}
       <div className="absolute inset-0 pointer-events-none opacity-10">
          <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -132,3 +132,4 @@ const ArtDecoMockup = ({ theme }) => {
 };
 
 export default ArtDecoMockup;
+

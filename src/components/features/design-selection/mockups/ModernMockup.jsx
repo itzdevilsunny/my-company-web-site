@@ -6,7 +6,7 @@ const ModernMockup = ({ theme }) => {
   const primary = theme.styles.primary || '#3b82f6';
   
   return (
-    <div className="h-full relative overflow-hidden bg-slate-50 font-sans selection:bg-primary/20">
+    <div className="min-h-screen relative overflow-hidden bg-slate-50 font-sans selection:bg-primary/20">
       {/* 1. Subtle Background Gradients */}
       <div className="absolute inset-0 pointer-events-none">
          <div className="absolute top-0 right-0 w-[60%] h-[60%] bg-primary/5 rounded-full blur-[120px]" />
@@ -152,3 +152,4 @@ const ModernMockup = ({ theme }) => {
 };
 
 export default ModernMockup;
+

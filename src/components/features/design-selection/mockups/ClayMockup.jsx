@@ -6,7 +6,7 @@ const ClayMockup = ({ theme }) => {
   const primary = theme.styles.primary || '#F472B6';
   
   return (
-    <div className="h-full relative overflow-hidden bg-[#FDF2F8] font-sans selection:bg-[#F472B6] selection:text-white">
+    <div className="min-h-screen relative overflow-hidden bg-[#FDF2F8] font-sans selection:bg-[#F472B6] selection:text-white">
       {/* 1. Playful Background Shapes */}
       <div className="absolute inset-0 pointer-events-none">
         <motion.div 
@@ -118,3 +118,4 @@ const ClayMockup = ({ theme }) => {
 };
 
 export default ClayMockup;
+

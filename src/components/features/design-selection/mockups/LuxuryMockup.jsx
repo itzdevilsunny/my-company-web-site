@@ -4,7 +4,7 @@ import { Crown, Star, ShieldCheck, Diamond, Sparkles, ChevronDown, Compass, User
 
 const LuxuryMockup = ({ theme }) => {
   return (
-    <div className="h-full relative overflow-hidden bg-[#050505] text-[#D4AF37] font-serif selection:bg-[#D4AF37] selection:text-black">
+    <div className="min-h-screen relative overflow-hidden bg-[#050505] text-[#D4AF37] font-serif selection:bg-[#D4AF37] selection:text-black">
       {/* 1. Subtle Parallax Background */}
       <div className="absolute inset-0 pointer-events-none opacity-20">
          <motion.div 
@@ -107,3 +107,4 @@ const LuxuryMockup = ({ theme }) => {
 };
 
 export default LuxuryMockup;
+
