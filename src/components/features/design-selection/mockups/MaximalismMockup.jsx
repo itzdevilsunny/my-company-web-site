@@ -72,7 +72,7 @@ const MaximalismMockup = ({ theme }) => {
         <motion.h1 
           initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
           animate={{ opacity: 0.15, scale: 1, rotate: -5 }}
-          className="text-[25rem] font-bungee leading-none text-max-purple tracking-tighter"
+          className="text-[10rem] sm:text-[15rem] md:text-[25rem] font-bungee leading-none text-max-purple tracking-tighter"
         >
           WOW
         </motion.h1>
@@ -101,21 +101,21 @@ const MaximalismMockup = ({ theme }) => {
       ))}
 
       {/* Hero Content Section */}
-      <div className="relative z-20 flex flex-col items-center justify-center h-full px-12 text-center gap-12">
+      <div className="relative z-20 flex flex-col items-center justify-center h-full px-6 md:px-12 text-center gap-8 md:gap-12">
         <div className="space-y-6">
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            className="inline-block px-8 py-3 bg-max-purple rounded-full border-4 border-max-white shadow-max-hard-magenta rotate-2"
+            className="inline-block px-6 md:px-8 py-2 md:py-3 bg-max-purple rounded-full border-[3px] md:border-4 border-max-white shadow-max-hard-magenta rotate-2"
           >
-             <span className="text-white font-bangers text-3xl tracking-widest uppercase">The Energy Source</span>
+             <span className="text-white font-bangers text-xl md:text-3xl tracking-widest uppercase">The Energy Source</span>
           </motion.div>
           
           <motion.h2 
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.1 }}
-            className="text-8xl lg:text-9xl font-bungee text-white text-shadow-max-mega leading-none tracking-tighter"
+            className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bungee text-white text-shadow-max-mega leading-none tracking-tighter"
           >
             MORE IS <br />
             <span className="text-gradient-max">MORE</span>
@@ -125,26 +125,26 @@ const MaximalismMockup = ({ theme }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-2xl text-white font-bold max-w-2xl mx-auto leading-relaxed"
+            className="text-lg md:text-2xl text-white font-bold max-w-2xl mx-auto leading-relaxed"
           >
             A high-energy digital ecosystem where visual abundance meets unapologetic excess. Every pixel is a celebration of dopamine.
           </motion.p>
         </div>
 
         {/* Call to Action Row */}
-        <div className="flex flex-wrap justify-center gap-8">
+        <div className="flex flex-col sm:flex-row justify-center gap-6 md:gap-8 w-full max-w-md md:max-w-none">
           <motion.button
             whileHover={{ scale: 1.1, rotate: -3 }}
             whileTap={{ scale: 0.95 }}
-            className="h-20 px-12 bg-gradient-to-r from-max-magenta via-max-purple to-max-cyan rounded-full border-4 border-max-yellow shadow-max-hard-double animate-pulse-glow"
+            className="h-16 md:h-20 px-8 md:px-12 bg-gradient-to-r from-max-magenta via-max-purple to-max-cyan rounded-full border-[3px] md:border-4 border-max-yellow shadow-max-hard-double animate-pulse-glow w-full sm:w-auto"
           >
-            <span className="text-white font-bungee text-2xl uppercase tracking-widest text-shadow-max-single">Launch Project</span>
+            <span className="text-white font-bungee text-xl md:text-2xl uppercase tracking-widest text-shadow-max-single">Launch Project</span>
           </motion.button>
           
           <motion.button
             whileHover={{ scale: 1.1, rotate: 3 }}
             whileTap={{ scale: 0.95 }}
-            className="h-20 px-12 bg-max-bg border-4 border-dashed border-max-cyan rounded-full text-white font-bungee text-2xl uppercase tracking-widest hover:bg-max-cyan transition-colors shadow-max-hard-magenta"
+            className="h-16 md:h-20 px-8 md:px-12 bg-max-bg border-[3px] md:border-4 border-dashed border-max-cyan rounded-full text-white font-bungee text-xl md:text-2xl uppercase tracking-widest hover:bg-max-cyan transition-colors shadow-max-hard-magenta w-full sm:w-auto"
           >
             View Demo
           </motion.button>
@@ -160,10 +160,10 @@ const MaximalismMockup = ({ theme }) => {
             <motion.div
               key={i}
               whileHover={{ scale: 1.05, rotate: i % 2 === 0 ? 2 : -2 }}
-              className={`p-8 bg-max-muted/80 backdrop-blur-md border-4 rounded-3xl relative overflow-hidden group`}
+              className={`p-6 md:p-8 bg-max-muted/80 backdrop-blur-md border-4 rounded-3xl relative overflow-hidden group`}
               style={{ 
                 borderColor: accents[i % accents.length],
-                boxShadow: `8px 8px 0px ${accents[(i + 1) % accents.length]}, 16px 16px 0px ${accents[(i + 2) % accents.length]}`
+                boxShadow: `6px 6px 0px ${accents[(i + 1) % accents.length]}, 12px 12px 0px ${accents[(i + 2) % accents.length]}`
               }}
             >
               {/* Card Pattern Overlay */}
@@ -176,7 +176,7 @@ const MaximalismMockup = ({ theme }) => {
                 >
                   <f.icon size={32} style={{ color: accents[i % accents.length] }} />
                 </div>
-                <h4 className="text-3xl font-bungee text-white text-shadow-max-single uppercase">{f.title}</h4>
+                <h4 className="text-2xl md:text-3xl font-bungee text-white text-shadow-max-single uppercase">{f.title}</h4>
                 <p className="text-white/80 font-bold leading-relaxed">{f.desc}</p>
               </div>
             </motion.div>
@@ -189,7 +189,7 @@ const MaximalismMockup = ({ theme }) => {
         {['🚀', '✨', '🔥', '🎨'].map((e, i) => (
           <motion.span 
             key={i}
-            className="text-7xl"
+            className="text-5xl md:text-7xl"
             animate={{ 
               y: [0, -10, 0],
               scale: [1, 1.2, 1]

@@ -38,7 +38,7 @@ const Footer = () => {
           </div>
           
           <p className="text-base lg:text-xl text-muted-foreground font-sans max-w-md mb-8 lg:mb-12 leading-tight font-bold tracking-tight">
-            We architect wildly optimistic digital ecosystems for organizations that prioritize high-velocity growth.
+            We provide professional digital solutions including website development, frontend design, landing pages, mobile apps, branding, and UI/UX services.
           </p>
 
           <div className="flex gap-4 lg:gap-6">
@@ -141,7 +141,7 @@ const Footer = () => {
         <div className="flex flex-wrap justify-center gap-6 lg:gap-12 text-[8px] lg:text-[10px] font-black uppercase tracking-[0.4em] text-foreground/40 text-center">
           <Link to="/security" className="hover:text-primary transition-colors">Security Profile</Link>
           <Link to="/privacy" className="hover:text-secondary transition-colors">Privacy Policy</Link>
-          <Link to="/terms" className="hover:text-tertiary transition-colors">Terms of Service</Link>
+          <Link to="/terms" className="hover:text-tertiary transition-colors">Terms & Conditions</Link>
           <Link to="/help-desk" className="hover:text-quaternary transition-colors">Help Desk</Link>
         </div>
       </div>

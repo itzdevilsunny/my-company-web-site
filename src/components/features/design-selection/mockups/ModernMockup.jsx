@@ -14,7 +14,7 @@ const ModernMockup = ({ theme }) => {
       </div>
 
       {/* 2. SaaS Header */}
-      <nav className="relative z-10 px-10 py-5 bg-white/80 backdrop-blur-md border-b border-slate-200 flex justify-between items-center">
+      <nav className="relative z-10 px-6 md:px-10 py-3 md:py-5 bg-white/80 backdrop-blur-md border-b border-slate-200 flex justify-between items-center">
          <div className="flex items-center gap-10">
             <div className="flex items-center gap-2">
                <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white shadow-lg">
@@ -28,23 +28,23 @@ const ModernMockup = ({ theme }) => {
                ))}
             </div>
          </div>
-         <div className="flex items-center gap-6">
-            <Search className="text-slate-400" size={20} />
+          <div className="flex items-center gap-4 md:gap-6">
+            <Search className="text-slate-400 hidden sm:block" size={20} />
             <Bell className="text-slate-400" size={20} />
-            <div className="w-10 h-10 rounded-full bg-slate-100 border-2 border-white shadow-sm overflow-hidden flex items-center justify-center text-slate-400">
-               <Users size={20} />
+            <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-slate-100 border-2 border-white shadow-sm overflow-hidden flex items-center justify-center text-slate-400">
+               <Users size={18} />
             </div>
-         </div>
+          </div>
       </nav>
 
       {/* 3. Dashboard Interface */}
-      <main className="relative z-10 p-10 lg:p-16 grid grid-cols-12 gap-10">
+       <main className="relative z-10 p-6 md:p-10 lg:p-16 grid grid-cols-12 gap-6 md:gap-10">
          {/* Hero / Hero Metrics */}
          <div className="col-span-12 lg:col-span-8 space-y-10">
             <div className="bg-white p-12 rounded-[2rem] border border-slate-200 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] relative overflow-hidden group">
-               <div className="absolute top-0 right-0 p-8">
-                  <Sparkles size={120} className="text-primary/5 group-hover:text-primary/10 transition-colors" />
-               </div>
+                <div className="absolute top-0 right-0 p-4 md:p-8">
+                   <Sparkles size={80} className="text-primary/5 group-hover:text-primary/10 transition-colors" />
+                </div>
                
                <div className="relative z-10">
                   <motion.div
@@ -56,29 +56,29 @@ const ModernMockup = ({ theme }) => {
                      Live System Monitoring Active
                   </motion.div>
 
-                  <h2 className="text-6xl font-black text-slate-900 tracking-tighter leading-tight mb-6">
-                    Exponential growth <br />
-                    delivered with <span className="text-primary drop-shadow-sm">precision.</span>
-                  </h2>
+                   <h2 className="text-3xl sm:text-4xl md:text-6xl font-black text-slate-900 tracking-tighter leading-tight mb-6">
+                     Exponential growth <br />
+                     delivered with <span className="text-primary drop-shadow-sm">precision.</span>
+                   </h2>
 
                   <p className="text-xl text-slate-500 font-medium max-w-xl mb-12 leading-relaxed">
                     Scale your enterprise architecture with high-performance digital solutions, automated workflows, and global security.
                   </p>
 
-                  <div className="flex gap-4">
-                     <button className="px-10 py-5 bg-primary text-white font-black rounded-2xl shadow-lg shadow-primary/20 hover:scale-105 transition-transform flex items-center gap-3 group">
-                        Deploy Architecture
-                        <ChevronRight className="group-hover:translate-x-1 transition-transform" />
-                     </button>
-                     <button className="px-10 py-5 bg-white border border-slate-200 text-slate-900 font-black rounded-2xl hover:bg-slate-50 transition-colors">
-                        View Reports
-                     </button>
-                  </div>
+                   <div className="flex flex-col sm:flex-row gap-4">
+                      <button className="px-6 md:px-10 py-3 md:py-5 bg-primary text-white font-black rounded-2xl shadow-lg shadow-primary/20 hover:scale-105 transition-transform flex items-center justify-center gap-3 group">
+                         Deploy Architecture
+                         <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                      </button>
+                      <button className="px-6 md:px-10 py-3 md:py-5 bg-white border border-slate-200 text-slate-900 font-black rounded-2xl hover:bg-slate-50 transition-colors">
+                         View Reports
+                      </button>
+                   </div>
                </div>
             </div>
 
             {/* Bottom Metrics Grid */}
-            <div className="grid grid-cols-2 gap-10">
+             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-10">
                <div className="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm flex flex-col justify-between">
                   <div className="flex justify-between items-start mb-6">
                      <div className="p-3 bg-indigo-50 rounded-2xl text-indigo-500">
@@ -87,8 +87,8 @@ const ModernMockup = ({ theme }) => {
                      <span className="text-xs font-bold text-green-500">+12.5%</span>
                   </div>
                   <div>
-                     <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Compute Efficiency</div>
-                     <div className="text-4xl font-black text-slate-900 tabular-nums">99.98%</div>
+                      <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Compute Efficiency</div>
+                      <div className="text-3xl md:text-4xl font-black text-slate-900 tabular-nums">99.98%</div>
                   </div>
                </div>
 
@@ -100,8 +100,8 @@ const ModernMockup = ({ theme }) => {
                      <span className="text-xs font-bold text-slate-400">Secured</span>
                   </div>
                   <div>
-                     <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Active Protocols</div>
-                     <div className="text-4xl font-black text-slate-900 tabular-nums">482</div>
+                      <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Active Protocols</div>
+                      <div className="text-3xl md:text-4xl font-black text-slate-900 tabular-nums">482</div>
                   </div>
                </div>
             </div>

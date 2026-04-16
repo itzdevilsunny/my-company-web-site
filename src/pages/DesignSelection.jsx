@@ -53,9 +53,9 @@ const DesignSelection = () => {
         <div className="flex items-center justify-between lg:justify-start gap-4 lg:gap-6">
           <div className="flex items-center gap-3 lg:gap-5">
             <Magnetic strength={0.2}>
-              <Link to="/" className="flex items-center gap-2 lg:gap-3 px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-500 hover:text-foreground hover:bg-slate-100 transition-all group">
+              <Link to="/" className="flex items-center gap-2 lg:gap-3 px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-slate-500 hover:text-foreground hover:bg-slate-100 transition-all group">
                 <ArrowLeft size={14} lg:size={16} className="group-hover:-translate-x-1 transition-transform" />
-                <span className="text-[8px] lg:text-[9px] font-black uppercase tracking-widest">Back</span>
+                <span className="text-[10px] lg:text-[9px] font-black uppercase tracking-widest">Back</span>
               </Link>
             </Magnetic>
             
@@ -100,7 +100,7 @@ const DesignSelection = () => {
              </button>
              <button
                onClick={handleSelectTheme}
-               className="px-4 py-2 bg-foreground text-white rounded-xl font-heading font-black text-[9px] uppercase tracking-widest shadow-pop-sm"
+               className="px-5 py-3 bg-foreground text-white rounded-xl font-heading font-black text-[10px] uppercase tracking-widest shadow-pop-sm active:scale-95 transition-all"
              >
                 Confirm
              </button>
@@ -190,15 +190,15 @@ const DesignSelection = () => {
              <span>Library // {filteredThemes.length} matches</span>
           </div>
           
-          <div className="flex-grow overflow-x-auto lg:overflow-y-auto custom-scrollbar p-3 lg:p-4 flex lg:flex-col gap-3 lg:space-y-3 whitespace-nowrap lg:whitespace-normal">
+          <div className="flex-grow overflow-x-auto lg:overflow-y-auto custom-scrollbar p-3 lg:p-4 flex lg:flex-col gap-3 lg:space-y-3 whitespace-nowrap lg:whitespace-normal no-scrollbar lg:no-scrollbar">
             {filteredThemes.map((theme, index) => (
               <button
                 key={theme.id}
                 onClick={() => setSelectedThemeId(theme.id)}
-                className={`flex-shrink-0 w-[200px] lg:w-full p-2.5 lg:p-3 rounded-lg lg:rounded-xl flex items-center justify-between group transition-all relative overflow-hidden ${
+                className={`flex-shrink-0 w-[160px] lg:w-full p-2.5 lg:p-3 rounded-lg lg:rounded-xl flex items-center justify-between group transition-all relative overflow-hidden ${
                   selectedThemeId === theme.id 
-                    ? 'bg-white border-2 border-foreground shadow-pop-sm' 
-                    : 'hover:bg-white border-2 border-transparent hover:border-slate-200 hover:translate-x-[-1px] hover:translate-y-[-1px]'
+                    ? 'bg-white border-2 border-foreground shadow-pop-sm translate-x-[-1px] translate-y-[-1px]' 
+                    : 'hover:bg-white border-2 border-transparent hover:border-slate-200 lg:hover:translate-x-[-1px] lg:hover:translate-y-[-1px]'
                 }`}
               >
                 <div className="flex items-center gap-2 lg:gap-3 relative z-10">
@@ -206,11 +206,11 @@ const DesignSelection = () => {
                       {theme.icon}
                    </div>
                    <div className="text-left">
-                      <h3 className={`text-[10px] lg:text-xs font-heading font-black mb-0.5 leading-tight tracking-tight ${selectedThemeId === theme.id ? 'text-foreground' : 'text-slate-500 group-hover:text-foreground/90'}`}>{theme.name}</h3>
+                      <h3 className={`text-[11px] lg:text-xs font-heading font-black mb-0.5 leading-tight tracking-tight ${selectedThemeId === theme.id ? 'text-foreground' : 'text-slate-500 group-hover:text-foreground/90'}`}>{theme.name}</h3>
                       <div className="flex items-center gap-1.5">
-                         <span className="text-[6px] lg:text-[7px] font-black uppercase tracking-widest text-primary">{theme.type}</span>
-                         <span className="w-1 h-1 rounded-full bg-slate-200" />
-                         <span className="text-[6px] lg:text-[7px] font-black uppercase tracking-widest text-slate-400">{theme.mode}</span>
+                         <span className="text-[7px] lg:text-[7px] font-black uppercase tracking-widest text-primary">{theme.type}</span>
+                         <span className="w-0.5 h-0.5 rounded-full bg-slate-200" />
+                         <span className="text-[7px] lg:text-[7px] font-black uppercase tracking-widest text-slate-400">{theme.mode}</span>
                       </div>
                    </div>
                 </div>
@@ -269,7 +269,7 @@ const DesignSelection = () => {
                          <span className="px-2 lg:px-3 py-1 bg-primary/10 text-primary border border-primary/20 rounded-lg text-[8px] lg:text-[9px] font-black uppercase tracking-[0.2em]">{selectedTheme.mode}</span>
                          <span className="px-2 lg:px-3 py-1 bg-slate-100 text-slate-500 border border-slate-200 rounded-lg text-[8px] lg:text-[9px] font-black uppercase tracking-[0.2em]">{selectedTheme.type} System</span>
                       </div>
-                      <h2 className="text-3xl lg:text-6xl font-heading font-black tracking-tighter italic leading-none text-foreground">
+                      <h2 className="text-3xl md:text-5xl lg:text-6xl font-heading font-black tracking-tighter italic leading-none text-foreground">
                         {selectedTheme.name}
                       </h2>
                       <p className="text-sm lg:text-base text-slate-500 font-medium max-w-xl leading-relaxed">
@@ -308,7 +308,7 @@ const DesignSelection = () => {
                    >
                       <div className={`transition-all duration-500 h-full ${
                         previewDevice === 'desktop' ? 'w-full' : previewDevice === 'tablet' ? 'w-[768px]' : 'w-[375px]'
-                      } origin-top scale-[0.6] sm:scale-100`}>
+                      } origin-top scale-[0.55] sm:scale-100`}>
                         <MockupRenderer theme={selectedTheme} />
                       </div>
                    </div>
