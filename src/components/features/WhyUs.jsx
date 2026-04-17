@@ -18,14 +18,6 @@ const WhyUs = () => {
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center relative z-10">
         <div>
-          <motion.div 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            className="text-primary font-black text-[10px] lg:text-xs uppercase tracking-[0.3em] mb-3 lg:mb-4"
-          >
-            Our Strategic Advantage
-          </motion.div>
-          
           <motion.h2 
             className="text-3xl sm:text-4xl lg:text-6xl font-heading text-foreground tracking-tighter leading-none mb-4 lg:mb-8"
           >

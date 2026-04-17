@@ -47,13 +47,6 @@ const Portfolio = ({ teaser = false }) => {
       <div className="relative z-10 max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-12 lg:mb-16 gap-6 lg:gap-8">
           <div className="max-w-2xl">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              className="text-primary font-black text-[10px] lg:text-xs uppercase tracking-[0.3em] mb-3 lg:mb-4"
-            >
-              // Case Studies & Proofs
-            </motion.div>
             <h2 className="text-3xl lg:text-5xl font-heading text-foreground tracking-tighter leading-none">
               Strategic <span className="text-secondary italic">Portfolio.</span>
             </h2>
