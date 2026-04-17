@@ -73,13 +73,6 @@ const Services = () => {
   return (
     <section id="services" className="px-6 lg:px-16 py-20 lg:py-24 bg-transparent relative">
       <div className="flex flex-col items-center mb-12 text-center">
-        <motion.span 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          className="text-secondary font-bold uppercase tracking-[0.3em] text-sm mb-4 bg-secondary/10 px-4 py-1 rounded-full border border-secondary/20"
-        >
-          Visual Spectrum
-        </motion.span>
         <motion.h2 
           className="text-3xl sm:text-4xl lg:text-6xl font-heading text-foreground tracking-tight max-w-3xl"
         >
@@ -90,7 +83,7 @@ const Services = () => {
           />
           <AnimatedText 
             text="In Every Solution." 
-            className="text-primary italic block sm:inline" 
+            className="text-primary italic block" 
             from="right"
             delay={0.5}
           />
