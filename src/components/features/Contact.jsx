@@ -84,7 +84,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <p className="text-[8px] lg:text-[10px] font-black uppercase tracking-widest text-muted-foreground mb-1">Email Support</p>
-                  <p className="text-base lg:text-lg font-heading font-black">hello@zorvia.digital</p>
+                  <p className="text-base lg:text-lg font-heading font-black">zorvia02@gmail.com</p>
                 </div>
               </div>
               
@@ -111,15 +111,17 @@ const Contact = () => {
 
             <div className="flex gap-3 lg:gap-4">
               {[
-                { icon: <TwitterIcon size={18} />, color: 'hover:bg-[#1DA1F2]' },
-                { icon: <InstagramIcon size={18} />, color: 'hover:bg-[#E4405F]' },
-                { icon: <LinkedinIcon size={18} />, color: 'hover:bg-[#0077b5]' },
-                { icon: <GithubIcon size={18} />, color: 'hover:bg-[#333]' }
+                { icon: <TwitterIcon size={18} />, color: 'hover:bg-[#1DA1F2]', url: 'https://x.com/zorvia02' },
+                { icon: <InstagramIcon size={18} />, color: 'hover:bg-[#E4405F]', url: 'https://www.instagram.com/zorvia02?igsh=MTA0b2EwMXA1b29vYg==' },
+                { icon: <GithubIcon size={18} />, color: 'hover:bg-[#333]', url: 'https://github.com/zorvia02' },
+                { icon: <Mail size={18} />, color: 'hover:bg-[#EA4335]', url: 'mailto:zorvia02@gmail.com' }
               ].map((social, i) => (
                 <motion.a 
                   key={i}
                   whileHover={{ y: -5, rotate: 10 }}
-                  href="#"
+                  href={social.url}
+                  target={social.url.startsWith('mailto') ? '_self' : '_blank'}
+                  rel="noopener noreferrer"
                   className={`w-8 h-8 lg:w-10 lg:h-10 bg-white border-2 border-foreground rounded-lg lg:rounded-xl flex items-center justify-center shadow-pop-sm transition-all ${social.color} hover:text-white`}
                 >
                   {social.icon}

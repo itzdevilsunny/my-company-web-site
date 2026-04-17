@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Sparkles, Globe, Clock, Zap } from 'lucide-react';
+import { ArrowRight, Sparkles, Globe, Clock, Zap, Mail } from 'lucide-react';
 import { TwitterIcon, GithubIcon, LinkedinIcon, InstagramIcon } from '../ui/Icons';
 import Magnetic from '../ui/Magnetic';
 
@@ -43,15 +43,17 @@ const Footer = () => {
 
           <div className="flex gap-4 lg:gap-6">
             {[
-              { Icon: TwitterIcon, color: 'hover:bg-primary' },
-              { Icon: GithubIcon, color: 'hover:bg-secondary' },
-              { Icon: LinkedinIcon, color: 'hover:bg-tertiary' },
-              { Icon: InstagramIcon, color: 'hover:bg-quaternary' }
-            ].map(({ Icon, color }, i) => (
+              { Icon: TwitterIcon, color: 'hover:bg-primary', url: 'https://x.com/zorvia02' },
+              { Icon: GithubIcon, color: 'hover:bg-secondary', url: 'https://github.com/zorvia02' },
+              { Icon: Mail, color: 'hover:bg-tertiary', url: 'mailto:zorvia02@gmail.com' },
+              { Icon: InstagramIcon, color: 'hover:bg-quaternary', url: 'https://www.instagram.com/zorvia02?igsh=MTA0b2EwMXA1b29vYg==' }
+            ].map(({ Icon, color, url }, i) => (
               <Magnetic key={i} strength={0.4}>
                 <motion.a 
                   whileHover={{ y: -5 }}
-                  href="#"
+                  href={url}
+                  target={url.startsWith('mailto') ? '_self' : '_blank'}
+                  rel="noopener noreferrer"
                   className={`w-10 h-10 lg:w-14 lg:h-14 bg-white border-2 border-foreground rounded-xl lg:rounded-2xl flex items-center justify-center shadow-pop text-foreground ${color} hover:text-white transition-all`}
                 >
                   <Icon size={18} lg:size={24} strokeWidth={3} />
