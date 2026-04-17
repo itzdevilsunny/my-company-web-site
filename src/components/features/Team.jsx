@@ -38,13 +38,6 @@ const Team = ({ teaser = false }) => {
       
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-20">
-          <motion.div 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            className="text-secondary font-black text-xs uppercase tracking-[0.4em] mb-4"
-          >
-            // Human Intelligence
-          </motion.div>
           <h2 className="text-3xl lg:text-5xl font-heading text-foreground tracking-tighter leading-none mb-4">
             Meet the <span className="text-primary italic">Zorvians.</span>
           </h2>
