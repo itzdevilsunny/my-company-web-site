@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Magnetic from '../ui/Magnetic';
 
 const technologies = [
@@ -86,7 +86,7 @@ const TechStack = () => {
              <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 lg:gap-8 mb-12">
                <motion.div layout className="contents">
                  <AnimatePresence mode="popLayout">
-                   {displayedTech.map((tech, i) => (
+                   {displayedTech.map((tech) => (
                      <Magnetic key={tech.name} strength={0.4}>
                        <motion.div
                          layout
