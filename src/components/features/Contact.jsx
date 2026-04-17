@@ -62,13 +62,6 @@ const Contact = () => {
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
           <div>
-            <motion.div 
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              className="text-primary font-black text-[10px] lg:text-xs uppercase tracking-[0.4em] mb-3 lg:mb-4"
-            >
-              // Reach Out
-            </motion.div>
             <h2 className="text-2xl sm:text-3xl lg:text-5xl font-heading text-foreground tracking-tighter leading-none mb-4 lg:mb-8">
               Start your <br />
               <span className="text-secondary italic">Revolution.</span>
