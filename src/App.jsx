@@ -21,6 +21,7 @@ import ScrollProgress from './components/ui/ScrollProgress';
 import PageTransition from './components/ui/PageTransition';
 import CustomCursor from './components/ui/CustomCursor';
 import ScrollToTop from './components/ui/ScrollToTop';
+import FloatingNav from './components/ui/FloatingNav';
 
 function AppContent() {
   const location = useLocation();
@@ -33,6 +34,7 @@ function AppContent() {
       <ScrollProgress />
       <ThreeBackground />
       <CommandPalette />
+      <FloatingNav />
       {!isNoChromePage && <Navbar />}
       <main>
         <AnimatePresence mode="wait">
