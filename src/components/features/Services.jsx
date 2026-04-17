@@ -7,28 +7,28 @@ const services = [
   { 
     icon: <Code size={32} />, 
     title: 'Advanced Web Development', 
-    desc: 'Scalable, high-performance web platforms engineered for industry-leading speed.',
+    desc: 'We engineer robust, highly scalable digital infrastructures using modern stacks. Our high-performance platforms are architecture-first, ensuring lightning-fast load times, flawless database structures, and uncompromising SEO standards to dominate your market.',
     color: 'bg-primary',
     className: 'lg:col-span-2'
   },
   { 
     icon: <Smartphone size={32} />, 
     title: 'Mobile Excellence', 
-    desc: 'Seamless mobile applications that prioritize user engagement and accessibility.',
+    desc: 'We craft frictionless iOS and Android experiences that captivate from the first tap. By blending native-like performance with intuitive, gesture-driven UX design, we ensure your mobile presence delivers maximum retention.',
     color: 'bg-secondary',
     className: 'lg:col-span-1'
   },
   { 
     icon: <Palette size={32} />, 
     title: 'Creative Strategy', 
-    desc: 'Comprehensive UI/UX design systems focused on brand conversion and clarity.',
+    desc: 'Our design philosophy transcends aesthetics. We build comprehensive, psychology-driven UI/UX design systems that guide user behavior, creating immersive visual narratives engineered specifically to maximize ROI and brand conversion.',
     color: 'bg-tertiary',
     className: 'lg:col-span-1'
   },
   { 
     icon: <BrainCircuit size={32} />, 
     title: 'Intelligent Systems', 
-    desc: 'Custom-built artificial intelligence solutions integrated with your core business logic.',
+    desc: 'Future-proof your enterprise with state-of-the-art AI integration. We seamlessly embed custom LLM solutions and automated neural pipelines directly into your core business logic to multiply efficiency and unlock predictive insights.',
     color: 'bg-quaternary',
     className: 'lg:col-span-2'
   }
@@ -55,7 +55,7 @@ const ServiceCard = ({ s, i }) => {
         </div>
         
         <div className="mt-6 lg:mt-8 flex items-center gap-2 font-bold text-primary group-hover:translate-x-1 transition-transform text-xs lg:text-sm">
-          Learn More <ArrowUpRight size={16} className="lg:size-[18px]" />
+          Read More <ArrowUpRight size={16} className="lg:size-[18px]" />
         </div>
 
         {/* Squiggle Decoration inside card */}
