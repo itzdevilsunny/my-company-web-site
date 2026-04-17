@@ -110,11 +110,11 @@ const Footer = () => {
 
         <div className="mt-16 lg:mt-24 pt-8 lg:pt-10 border-t-2 border-foreground/10 flex flex-col items-center justify-center gap-6 relative z-10">
         
-        <div className="flex flex-wrap justify-center gap-6 lg:gap-12 text-[8px] lg:text-[10px] font-black uppercase tracking-[0.4em] text-foreground/40 text-center">
-          <Link to="/security" className="hover:text-primary transition-colors">Security Profile</Link>
-          <Link to="/privacy" className="hover:text-secondary transition-colors">Privacy Policy</Link>
-          <Link to="/terms" className="hover:text-tertiary transition-colors">Terms & Conditions</Link>
-          <Link to="/help-desk" className="hover:text-quaternary transition-colors">Help Desk</Link>
+        <div className="flex flex-wrap justify-center gap-6 lg:gap-12 text-xs lg:text-sm font-black uppercase tracking-widest text-foreground text-center">
+          <Link to="/security" className="hover:text-primary transition-all hover:scale-105">Security Profile</Link>
+          <Link to="/privacy" className="hover:text-secondary transition-all hover:scale-105">Privacy Policy</Link>
+          <Link to="/terms" className="hover:text-tertiary transition-all hover:scale-105">Terms & Conditions</Link>
+          <Link to="/help-desk" className="hover:text-quaternary transition-all hover:scale-105">Help Desk</Link>
         </div>
       </div>
     </footer>
