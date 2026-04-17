@@ -1,25 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Sparkles, Globe, Clock, Zap, Mail } from 'lucide-react';
+import { ArrowRight, Sparkles, Zap, Mail } from 'lucide-react';
 import { TwitterIcon, GithubIcon, InstagramIcon } from '../ui/Icons';
 import Magnetic from '../ui/Magnetic';
 
 const Footer = () => {
-  const [time, setTime] = useState(new Date());
-
-  useEffect(() => {
-    const timer = setInterval(() => setTime(new Date()), 1000);
-    return () => clearInterval(timer);
-  }, []);
-
-  const formatTime = (offset) => {
-    return new Date(time.getTime() + (offset * 3600000)).toLocaleTimeString('en-US', {
-      hour12: false,
-      hour: '2-digit',
-      minute: '2-digit'
-    });
-  };
 
   return (
     <footer className="bg-white border-t-2 border-foreground px-6 lg:px-12 py-12 lg:py-20 relative overflow-hidden">
@@ -122,23 +107,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="mt-16 lg:mt-24 pt-8 lg:pt-10 border-t-2 border-foreground/10 flex flex-col lg:flex-row justify-between items-center gap-10 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12 text-center">
-          <p className="text-[10px] lg:text-xs font-black uppercase tracking-[0.3em] text-muted-foreground">
-            © 2026 ZORVIA ARCHITECTS. CRAFTED IN BENGALURU.
-          </p>
-          <div className="flex items-center gap-4 lg:gap-8 bg-muted/30 px-4 lg:px-6 py-2 rounded-full border border-foreground/5 shadow-inner">
-             <div className="flex items-center gap-2">
-                <Globe size={10} lg:size={12} className="text-primary" />
-                <span className="text-[8px] lg:text-[10px] font-black uppercase tracking-widest">SF: {formatTime(-15)}</span>
-             </div>
-             <div className="w-1 h-1 bg-foreground/20 rounded-full" />
-             <div className="flex items-center gap-2">
-                <Clock size={10} lg:size={12} className="text-secondary" />
-                <span className="text-[8px] lg:text-[10px] font-black uppercase tracking-widest">BLR: {formatTime(0)}</span>
-             </div>
-          </div>
-        </div>
+        <div className="mt-16 lg:mt-24 pt-8 lg:pt-10 border-t-2 border-foreground/10 flex flex-col items-center justify-center gap-6 relative z-10">
         
         <div className="flex flex-wrap justify-center gap-6 lg:gap-12 text-[8px] lg:text-[10px] font-black uppercase tracking-[0.4em] text-foreground/40 text-center">
           <Link to="/security" className="hover:text-primary transition-colors">Security Profile</Link>
