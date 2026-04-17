@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Sparkles, Globe, Clock, Zap, Mail } from 'lucide-react';
-import { TwitterIcon, GithubIcon, LinkedinIcon, InstagramIcon } from '../ui/Icons';
+import { TwitterIcon, GithubIcon, InstagramIcon } from '../ui/Icons';
 import Magnetic from '../ui/Magnetic';
 
 const Footer = () => {

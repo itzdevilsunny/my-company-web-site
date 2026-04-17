@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Send, MapPin, Phone, Mail, Sparkles, MessageSquare, CheckCircle2, AlertCircle } from 'lucide-react';
-import { InstagramIcon, GithubIcon, LinkedinIcon, TwitterIcon } from '../ui/Icons';
+import { InstagramIcon, GithubIcon, TwitterIcon } from '../ui/Icons';
 import { supabase } from '../../lib/supabaseClient';
 
 const Contact = () => {

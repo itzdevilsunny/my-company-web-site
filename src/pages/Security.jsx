@@ -378,7 +378,7 @@ const Security = () => {
                   </p>
                </div>
                <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-                  <a href="mailto:security@zorvia.tech" className={`px-10 py-5 rounded-2xl font-black text-sm uppercase tracking-widest shadow-pop hover:shadow-none transition-all flex items-center gap-3 ${easyMode ? 'bg-red-500 text-white' : 'bg-foreground text-white'}`}>
+                  <a href="mailto:zorvia02@gmail.com" className={`px-10 py-5 rounded-2xl font-black text-sm uppercase tracking-widest shadow-pop hover:shadow-none transition-all flex items-center gap-3 ${easyMode ? 'bg-red-500 text-white' : 'bg-foreground text-white'}`}>
                      {easyMode ? 'Send Alert' : 'Report Threat'} <ChevronRight size={18} />
                   </a>
                   <Link to="/help-desk" className="text-sm font-black uppercase tracking-widest text-muted-foreground hover:text-secondary transition-colors">
