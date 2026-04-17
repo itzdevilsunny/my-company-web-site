@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Code, Smartphone, Palette, BrainCircuit, Cloud, ArrowUpRight } from 'lucide-react';
 import AnimatedText from '../ui/AnimatedText';
@@ -35,6 +35,8 @@ const services = [
 ];
 
 const ServiceCard = ({ s, i }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 50, scale: 0.9 }}
@@ -44,19 +46,34 @@ const ServiceCard = ({ s, i }) => {
       whileHover={{ scale: 1.02, rotate: i % 2 === 0 ? 1 : -1 }}
       className={`${s.className} group h-full`}
     >
-      <div className="relative h-full p-6 lg:p-8 bg-white border-2 border-foreground rounded-xl shadow-pop hover:shadow-pop transition-all duration-300">
-        <div className={`absolute top-0 left-6 lg:left-8 -translate-y-1/2 w-10 h-10 lg:w-12 lg:h-12 ${s.color} text-white rounded-full border-2 border-foreground flex items-center justify-center shadow-pop group-hover:rotate-12 transition-transform`}>
-          {React.cloneElement(s.icon, { size: window.innerWidth < 1024 ? 24 : 32 })}
+      <div className="relative h-full p-6 lg:p-8 bg-white border-2 border-foreground rounded-xl shadow-pop hover:shadow-pop transition-all duration-300 flex flex-col justify-between">
+        <div>
+          <div className={`absolute top-0 left-6 lg:left-8 -translate-y-1/2 w-10 h-10 lg:w-12 lg:h-12 ${s.color} text-white rounded-full border-2 border-foreground flex items-center justify-center shadow-pop group-hover:rotate-12 transition-transform`}>
+            {React.cloneElement(s.icon, { size: window.innerWidth < 1024 ? 24 : 32 })}
+          </div>
+          
+          <div className="mt-4 lg:mt-6">
+            <h3 className="text-xl lg:text-2xl font-heading font-extrabold mb-2 lg:mb-3 text-foreground">{s.title}</h3>
+            <motion.div 
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: isExpanded ? 'auto' : 0, opacity: isExpanded ? 1 : 0 }}
+              className="overflow-hidden"
+              transition={{ duration: 0.3 }}
+            >
+              <p className="text-sm lg:text-base text-muted-foreground leading-relaxed font-sans pb-4 pt-2">
+                {s.desc}
+              </p>
+            </motion.div>
+          </div>
         </div>
         
-        <div className="mt-4 lg:mt-6">
-          <h3 className="text-xl lg:text-2xl font-heading font-extrabold mb-2 lg:mb-3 text-foreground">{s.title}</h3>
-          <p className="text-sm lg:text-base text-muted-foreground leading-relaxed font-sans">{s.desc}</p>
-        </div>
-        
-        <div className="mt-6 lg:mt-8 flex items-center gap-2 font-bold text-primary group-hover:translate-x-1 transition-transform text-xs lg:text-sm">
-          Read More <ArrowUpRight size={16} className="lg:size-[18px]" />
-        </div>
+        <button 
+          onClick={(e) => { e.stopPropagation(); setIsExpanded(!isExpanded); }}
+          className="mt-4 flex w-fit items-center gap-2 font-bold text-primary group-hover:translate-x-1 transition-transform text-xs lg:text-sm cursor-pointer outline-none hover:text-secondary group-hover:scale-105"
+        >
+          {isExpanded ? 'Read Less' : 'Read More'} 
+          <ArrowUpRight size={16} className={`lg:size-[18px] transition-transform duration-300 ${isExpanded ? 'rotate-90' : ''}`} />
+        </button>
 
         {/* Squiggle Decoration inside card */}
         <div className="absolute bottom-4 right-4 text-muted/30 opacity-0 group-hover:opacity-100 transition-opacity">
