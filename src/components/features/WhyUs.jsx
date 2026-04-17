@@ -23,7 +23,7 @@ const WhyUs = () => {
             whileInView={{ opacity: 1 }}
             className="text-primary font-black text-[10px] lg:text-xs uppercase tracking-[0.3em] mb-3 lg:mb-4"
           >
-            // Our Strategic Advantage
+            Our Strategic Advantage
           </motion.div>
           
           <motion.h2 
