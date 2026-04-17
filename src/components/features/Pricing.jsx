@@ -7,32 +7,32 @@ import Magnetic from '../ui/Magnetic';
 
 const plans = [
   {
-    name: 'Starter Pro',
+    name: 'Basic',
     price: '₹2,999',
-    desc: 'Perfect for startups and emerging digital products looking for high-impact presence.',
+    desc: 'Landing Page / UI Design for startups and high-impact digital presence.',
     color: 'border-quaternary',
     accent: 'text-quaternary',
     icon: <Zap size={40} />,
-    features: ['High-Energy UX', 'Responsive Framework', 'Core SEO Pack', 'Sticker-Style UI', '48hr Support'],
+    features: ['Custom UI/UX Design', '1-3 Page Responsive Site', 'Essential SEO Setup', 'Contact Form Integration', 'Standard Delivery'],
   },
   {
-    name: 'Scale Alpha',
+    name: 'Standard',
     price: '₹5,999',
-    featured: true,
-    desc: 'Bespoke systems engineered for organizational expansion and high-velocity conversions.',
+    desc: 'Hackathon Projects / Apps engineered with high-velocity conversions.',
     color: 'border-secondary',
     accent: 'text-secondary',
     icon: <Rocket size={40} />,
-    features: ['Advanced Ecosystem', 'Custom Logic Kernal', 'Magnetic UX Flow', 'Full SEO Arsenal', 'Top-Priority Dev'],
+    features: ['Full App Development', 'Authentication & DB Setup', 'Dynamic API Integrations', 'Interactive UI State', '48hr Priority Support'],
   },
   {
-    name: 'Vault Custom',
+    name: 'Premium',
     price: '₹8,999',
-    desc: 'Full-scale digital ecosystems for global industry leaders with complex architectures.',
+    featured: true,
+    desc: 'Dashboard + Scalable System for global leaders with complex architectures.',
     color: 'border-primary',
     accent: 'text-primary',
     icon: <Crown size={40} />,
-    features: ['Cloud Architecture', 'AI-Driven Core', 'Enterprise Security', 'Custom API Mesh', 'Dedicated Project Lead'],
+    features: ['Complex Dashboard Architecture', 'Scalable Cloud Backend', 'Heavy Data Visualization', 'Enterprise-Grade Security', 'Dedicated Project Lead'],
   },
 ];
 
@@ -46,7 +46,7 @@ const PricingCard = ({ plan, i }) => {
     >
       {plan.featured && (
         <Magnetic strength={0.4}>
-          <div className="absolute -top-10 left-1/2 -translate-x-1/2 px-8 py-3 bg-tertiary border-4 border-foreground rounded-full text-foreground font-heading font-black text-xs uppercase tracking-widest shadow-pop z-30 flex items-center gap-2">
+          <div className="absolute -top-10 left-1/2 -translate-x-1/2 border-primary px-8 py-3 bg-tertiary border-4 rounded-full text-foreground font-heading font-black text-xs uppercase tracking-widest shadow-pop z-30 flex items-center gap-2 w-max max-w-full text-center">
             <Star size={14} fill="currentColor" /> Best Investment
           </div>
         </Magnetic>
