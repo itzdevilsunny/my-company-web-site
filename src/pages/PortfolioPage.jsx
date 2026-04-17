@@ -16,14 +16,6 @@ const PortfolioPage = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-12 mb-12 lg:mb-16 relative z-10">
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 lg:gap-10 mb-8 lg:mb-12">
           <div className="max-w-4xl">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="bg-primary/20 text-primary border-2 border-primary/30 px-4 lg:px-6 py-1.5 lg:py-2 rounded-full font-black text-[10px] lg:text-xs uppercase tracking-[0.4em] mb-6 lg:mb-8 inline-flex items-center gap-3 shadow-pop-sm"
-            >
-              <Sparkles size={14} fill="currentColor" /> Strategic Case Studies
-            </motion.div>
-            
             <h1 className="text-4xl sm:text-6xl lg:text-8xl font-heading text-foreground tracking-tighter leading-[0.85] mb-6 lg:mb-8 flex flex-col">
               <AnimatedText text="OUR" from="left" delay={0.1} />
               <AnimatedText text="PREVIOUS" className="text-secondary italic underline decoration-foreground decoration-4 underline-offset-4" from="left" delay={0.3} />
