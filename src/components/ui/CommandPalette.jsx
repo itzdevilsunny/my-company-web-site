@@ -100,13 +100,13 @@ const CommandPalette = () => {
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-10 right-10 z-[100] bg-white border-2 border-foreground shadow-pop p-4 rounded-2xl hover:bg-muted hover:shadow-pop-active transition-all group lg:flex hidden items-center gap-3"
+        className="fixed bottom-6 right-6 z-[100] bg-white border-2 border-foreground shadow-pop p-3 rounded-2xl hover:bg-muted hover:shadow-pop-active transition-all group lg:flex hidden items-center gap-2"
       >
-        <div className="w-10 h-10 bg-primary text-white rounded-xl flex items-center justify-center shadow-pop-sm group-hover:rotate-12 transition-transform">
-            <Zap size={20} fill="currentColor" />
+        <div className="w-8 h-8 bg-primary text-white rounded-lg flex items-center justify-center shadow-pop-sm group-hover:rotate-12 transition-transform">
+            <Zap size={16} fill="currentColor" />
         </div>
-        <span className="text-[10px] font-black uppercase tracking-widest flex items-center gap-1.5 pt-0.5">
-            Press <kbd className="px-1.5 py-0.5 bg-muted border border-foreground/10 rounded">⌘K</kbd> to talk to AI
+        <span className="text-[9px] font-black uppercase tracking-widest flex items-center gap-1.5 pt-0.5">
+            Press <kbd className="px-1 py-0.5 bg-muted border border-foreground/10 rounded">⌘K</kbd> to talk to AI
         </span>
       </motion.button>
 
