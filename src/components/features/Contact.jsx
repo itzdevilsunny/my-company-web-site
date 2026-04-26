@@ -71,35 +71,35 @@ const Contact = () => {
             </p>
 
             <div className="space-y-6 lg:space-y-8 mb-12 lg:mb-16">
-              <div className="flex items-center gap-3 lg:gap-4 group">
+              <a href="mailto:contact@zorvia.digital" className="flex items-center gap-3 lg:gap-4 group cursor-pointer decoration-transparent">
                 <div className="w-10 h-10 lg:w-12 lg:h-12 bg-white border-2 border-foreground rounded-xl lg:rounded-2xl flex items-center justify-center shadow-pop group-hover:bg-primary group-hover:text-white transition-all">
                   <Mail size={20} lg:size={24} />
                 </div>
                 <div>
                   <p className="text-[8px] lg:text-[10px] font-black uppercase tracking-widest text-muted-foreground mb-1">Email Support</p>
-                  <p className="text-base lg:text-lg font-heading font-black">zorvia02@gmail.com</p>
+                  <p className="text-base lg:text-lg font-heading font-black">contact@zorvia.digital</p>
                 </div>
-              </div>
+              </a>
               
-              <div className="flex items-center gap-3 lg:gap-4 group">
+              <a href="tel:+918674828218" className="flex items-center gap-3 lg:gap-4 group cursor-pointer decoration-transparent">
                 <div className="w-10 h-10 lg:w-12 lg:h-12 bg-white border-2 border-foreground rounded-xl lg:rounded-2xl flex items-center justify-center shadow-pop group-hover:bg-secondary group-hover:text-white transition-all">
                   <Phone size={20} lg:size={24} />
                 </div>
                 <div>
                   <p className="text-[8px] lg:text-[10px] font-black uppercase tracking-widest text-muted-foreground mb-1">Quick Contact</p>
-                  <p className="text-base lg:text-lg font-heading font-black">+91 (800) ZORVIA-DX</p>
+                  <p className="text-base lg:text-lg font-heading font-black">+91 8674828218</p>
                 </div>
-              </div>
+              </a>
 
-              <div className="flex items-center gap-3 lg:gap-4 group">
+              <a href="https://www.google.com/maps/search/?api=1&query=South+Delhi,+Delhi,+110049" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 lg:gap-4 group cursor-pointer decoration-transparent">
                 <div className="w-10 h-10 lg:w-12 lg:h-12 bg-white border-2 border-foreground rounded-xl lg:rounded-2xl flex items-center justify-center shadow-pop group-hover:bg-tertiary group-hover:text-white transition-all">
                   <MapPin size={20} lg:size={24} />
                 </div>
                 <div>
-                  <p className="text-[8px] lg:text-[10px] font-black uppercase tracking-widest text-muted-foreground mb-1">Headquarters</p>
-                  <p className="text-base lg:text-lg font-heading font-black text-pretty">Bhubaneswar, Odisha, India</p>
+                  <p className="text-[8px] lg:text-[10px] font-black uppercase tracking-widest text-muted-foreground mb-1">Addresss</p>
+                  <p className="text-base lg:text-lg font-heading font-black text-pretty">South Delhi, Delhi, pin code - 110049</p>
                 </div>
-              </div>
+              </a>
             </div>
 
             <div className="flex gap-3 lg:gap-4">
@@ -107,7 +107,7 @@ const Contact = () => {
                 { icon: <TwitterIcon size={18} />, color: 'hover:bg-[#1DA1F2]', url: 'https://x.com/zorvia02' },
                 { icon: <InstagramIcon size={18} />, color: 'hover:bg-[#E4405F]', url: 'https://www.instagram.com/zorvia02?igsh=MTA0b2EwMXA1b29vYg==' },
                 { icon: <GithubIcon size={18} />, color: 'hover:bg-[#333]', url: 'https://github.com/zorvia02' },
-                { icon: <Mail size={18} />, color: 'hover:bg-[#EA4335]', url: 'mailto:zorvia02@gmail.com' }
+                { icon: <Mail size={18} />, color: 'hover:bg-[#EA4335]', url: 'mailto:contact@zorvia.digital' }
               ].map((social, i) => (
                 <motion.a 
                   key={i}

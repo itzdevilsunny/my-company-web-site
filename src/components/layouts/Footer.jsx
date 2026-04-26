@@ -31,7 +31,7 @@ const Footer = () => {
             {[
               { Icon: TwitterIcon, color: 'hover:bg-primary', url: 'https://x.com/zorvia02' },
               { Icon: GithubIcon, color: 'hover:bg-secondary', url: 'https://github.com/zorvia02' },
-              { Icon: Mail, color: 'hover:bg-tertiary', url: 'mailto:zorvia02@gmail.com' },
+              { Icon: Mail, color: 'hover:bg-tertiary', url: 'mailto:contact@zorvia.digital' },
               { Icon: InstagramIcon, color: 'hover:bg-quaternary', url: 'https://www.instagram.com/zorvia02?igsh=MTA0b2EwMXA1b29vYg==' }
             ].map(({ Icon, color, url }, i) => (
               <Magnetic key={i} strength={0.4}>
